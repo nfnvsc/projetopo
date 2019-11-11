@@ -22,7 +22,6 @@ public class LibraryManager {
   // FIXME define contructor(s)
   
   // FIXME define methods
-
   /**
    * Serialize the persistent state of this application.
    * 
