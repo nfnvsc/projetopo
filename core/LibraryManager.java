@@ -2,6 +2,8 @@ package m19.core;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
@@ -23,8 +25,20 @@ public class LibraryManager {
   private String _filename;
 
   // FIXME define contructor(s)
-  
+  public LibraryManager(){
+    _library = Library();
+  }
   // FIXME define methods
+  private void saveSerialize(String filename) throws MissingFileAssociationException, IOException{
+    if (filename == NULL) throw new MissingFileAssociationException();
+
+    FileOutputStream fileOutputStream = new FileOutputStream(filename);
+		BufferedOutputStream bufferedInputStream = new BufferedOutputStream(fileOutputStream);
+    ObjectOutputStream out = new ObjectOutputStream(bufferedInputStream);
+    out.writeObject(_library);
+    out.close();
+    fileOut.close();
+  }
   /**
    * Serialize the persistent state of this application.
    * 
@@ -35,15 +49,7 @@ public class LibraryManager {
    */
   public void save() throws MissingFileAssociationException, IOException {
     // FIXME implement method 
-    try{
-      FileOutputStream fileOut = new FileOutputStream(_filename);
-      ObjectOutputStream out = new ObjectOutputStream(fileOut);
-      out.writeObject(_library);
-      out.close();
-      fileOut.close();
-    } catch(IOException i){
-      i.printStackTrace();
-    }
+    saveSerialize(_filename);
   }
 
   /**
@@ -56,17 +62,8 @@ public class LibraryManager {
    * @throws IOException if some error happen during the serialization of the persistent state
    */
   public void saveAs(String filename) throws MissingFileAssociationException, IOException {
-    // FIXME implement method
-    try{
-      FileOutputStream fileOut = new FileOutputStream(filename);
-      ObjectOutputStream out = new ObjectOutputStream(fileOut);
-      out.writeObject(_library);
-      out.close();
-      fileOut.close();
-    } catch(IOException i){
-      i.printStackTrace();
-    }
-    
+    // FIXME implement method 
+    saveSerialize(filename);
   }
 
   /**
@@ -80,7 +77,15 @@ public class LibraryManager {
    */
   public void load(String filename) throws FileNotFoundException, IOException, ClassNotFoundException {
     // FIXME implement method
-    
+    File file = new File(filename);
+    if (!file.exists()) throw new FileNotFoundException();
+
+    FileInputStream fileInputStream = new FileInputStream(filename);
+		BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+		ObjectInputStream objectInputStream = new ObjectInputStream(bufferedInputStream);
+		Object object = objectInputStream.readObject();
+    objectInputStream.close();
+    _library = (Library) object;
   }
 
   /**
