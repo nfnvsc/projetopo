@@ -26,7 +26,7 @@ public class LibraryManager {
 
   // FIXME define contructor(s)
   public LibraryManager(){
-    _library = Library();
+    _library = new Library();
   }
   // FIXME define methods
   private void saveSerialize(String filename) throws MissingFileAssociationException, IOException{
