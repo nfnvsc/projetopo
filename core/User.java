@@ -14,9 +14,9 @@ public class User {
     private UserBehavior _userDescription;
 
     public User(String name, String email) {
-        this._name = name;
-        this._email = email;
-        this._isActive = true;
+        _name = name;
+        _email = email;
+        _isActive = true;
     }
     public void setUserId(int id) {
         _id = id;

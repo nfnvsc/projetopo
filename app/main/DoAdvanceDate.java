@@ -22,7 +22,7 @@ public class DoAdvanceDate extends Command<LibraryManager> {
     super(Label.ADVANCE_DATE, receiver);
     // FIXME initialize input fields
     Scanner scan = new Scanner(System.in);
-    System.out.println("Days to advance:");
+    System.out.println(Message.requestDaysToAdvance());
     int nDays = scan.nextInt();
 
   }

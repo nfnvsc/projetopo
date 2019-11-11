@@ -23,7 +23,7 @@ public class DoDisplayDate extends Command<LibraryManager> {
   @Override
   public final void execute() {
     // FIXME define method
-    popup(_receiver.getCurrentDate());
+    popup(Message.currentDate(_receiver.getCurrentDate()));
   }
   
 }
