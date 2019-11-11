@@ -21,15 +21,13 @@ public class Library implements Serializable {
   // FIXME define attributes
   private int _nextWorkId;
   private int _nextUserId;
-  private ArrayList<User> _users;
-  private ArrayList<Work> _works;
+  private ArrayList<User> _users = new ArrayList<>();
+  private ArrayList<? super Work> _works = new ArrayList<>();
   // FIXME define contructor(s)
 
   public Library() {
     _nextUserId = 0;
     _nextWorkId = 0;
-    _users = new ArrayList<User>();
-    _works = new ArrayList<Work>();
   }
   // FIXME define methods
 
