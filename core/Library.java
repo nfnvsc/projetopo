@@ -7,6 +7,7 @@ import m19.core.exception.MissingFileAssociationException;
 import m19.core.exception.BadEntrySpecificationException;
 
 // FIXME import other system types
+import java.util.ArrayList;
 // FIXME import project (core) types if needed
 
 /**
@@ -18,10 +19,29 @@ public class Library implements Serializable {
   private static final long serialVersionUID = 201901101348L;
 
   // FIXME define attributes
-
+  private int _nextWorkId;
+  private int _nextUserId;
+  private ArrayList<User> _users = new ArrayList<>();
+  private ArrayList<? super Work> _works = new ArrayList<>();
   // FIXME define contructor(s)
 
+  public Library() {
+    _nextUserId = 0;
+    _nextWorkId = 0;
+  }
   // FIXME define methods
+
+  public addUser(User user) {
+    user.setUserId = _nextUserId;
+    _users.add(user);
+    _nextUserId++;
+  }
+
+  public addWork(Work work) {
+    work.setWorkId = _nextWorkId;
+    _works.add(work);
+    _nextWorkId++;
+  }
 
   /**
    * Read the text input file at the beginning of the program and populates the
@@ -34,6 +54,7 @@ public class Library implements Serializable {
    */
   void importFile(String filename) throws BadEntrySpecificationException, IOException {
     // FIXME implement method
+
   }
 
 }
