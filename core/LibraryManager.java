@@ -1,7 +1,9 @@
 package m19.core;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 import m19.core.exception.MissingFileAssociationException;
 import m19.core.exception.BadEntrySpecificationException;
@@ -18,6 +20,7 @@ public class LibraryManager {
   private Library _library;  // FIXME initialize this attribute
 
   // FIXME define other attributes
+  private String _filename;
 
   // FIXME define contructor(s)
   
@@ -32,7 +35,16 @@ public class LibraryManager {
 
    */
   public void save() throws MissingFileAssociationException, IOException {
-    // FIXME implement method
+    // FIXME implement method 
+    try{
+      FileOutputStream fileOut = new FileOutputStream(_filename);
+      ObjectOutputStream out = new ObjectOutputStream(fileOut);
+      out.writeObject(_library);
+      out.close();
+      fileOut.close();
+    } catch(IOException i){
+      i.printStackTrace();
+    }
   }
 
   /**
@@ -46,6 +58,16 @@ public class LibraryManager {
    */
   public void saveAs(String filename) throws MissingFileAssociationException, IOException {
     // FIXME implement method
+    try{
+      FileOutputStream fileOut = new FileOutputStream(filename);
+      ObjectOutputStream out = new ObjectOutputStream(fileOut);
+      out.writeObject(_library);
+      out.close();
+      fileOut.close();
+    } catch(IOException i){
+      i.printStackTrace();
+    }
+    
   }
 
   /**
@@ -59,6 +81,7 @@ public class LibraryManager {
    */
   public void load(String filename) throws FileNotFoundException, IOException, ClassNotFoundException {
     // FIXME implement method
+    
   }
 
   /**
