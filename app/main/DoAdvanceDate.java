@@ -4,7 +4,8 @@ import m19.core.LibraryManager;
 
 import pt.tecnico.po.ui.Command;
 
-// FIXME import iother core concepts
+import java.util.Scanner;
+// FIXME import other core concepts
 // FIXME import ui concepts
 
 /**
@@ -20,12 +21,17 @@ public class DoAdvanceDate extends Command<LibraryManager> {
   public DoAdvanceDate(LibraryManager receiver) {
     super(Label.ADVANCE_DATE, receiver);
     // FIXME initialize input fields
+    Scanner scan = new Scanner(System.in);
+    System.out.println("Days to advance:");
+    int nDays = scan.nextInt();
+
   }
 
   /** @see pt.tecnico.po.ui.Command#execute() */
   @Override
   public final void execute() {
     // FIXME define method
+    _receiver.advanceDays(nDays);
   }
   
 }

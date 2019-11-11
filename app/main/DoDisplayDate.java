@@ -6,7 +6,7 @@ import pt.tecnico.po.ui.Command;
 
 // FIXME import other core concepts
 // FIXME import other ui concepts
-
+import pt.tecnico.po.ui.Display;
 /**
  * 4.1.2. Display the current date.
  */
@@ -23,6 +23,7 @@ public class DoDisplayDate extends Command<LibraryManager> {
   @Override
   public final void execute() {
     // FIXME define method
+    popup(_receiver.getCurrentDate());
   }
   
 }

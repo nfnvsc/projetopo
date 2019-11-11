@@ -1,6 +1,7 @@
 package m19.core;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.io.IOException;
 
 import m19.core.exception.MissingFileAssociationException;
@@ -21,16 +22,18 @@ public class Library implements Serializable {
   // FIXME define attributes
   private int _nextWorkId;
   private int _nextUserId;
+  private Date _date;
   private ArrayList<User> _users = new ArrayList<>();
   private ArrayList<? super Work> _works = new ArrayList<>();
-  // FIXME define contructor(s)
 
+  // FIXME define contructor(s)
   public Library() {
     _nextUserId = 0;
     _nextWorkId = 0;
+    _date = new Date();
   }
-  // FIXME define methods
 
+  // FIXME define methods
   public addUser(User user) {
     user.setUserId = _nextUserId;
     _users.add(user);
@@ -41,6 +44,13 @@ public class Library implements Serializable {
     work.setWorkId = _nextWorkId;
     _works.add(work);
     _nextWorkId++;
+  }
+
+  public int getDate(){
+    return _date.getCurrentDate();
+  }
+  public void advanceDate(int nDays) {
+    _date.advanceDays(nDays);
   }
 
   /**
@@ -54,7 +64,8 @@ public class Library implements Serializable {
    */
   void importFile(String filename) throws BadEntrySpecificationException, IOException {
     // FIXME implement method
-
+    Parser parser = new parser(this);
+    parser.parseFile(filename);
   }
 
 }
