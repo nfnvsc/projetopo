@@ -27,12 +27,13 @@ public class LibraryManager {
   // FIXME define contructor(s)
   public LibraryManager(){
     _library = new Library();
+    _filename = null;
   }
   // FIXME define methods
-  private void saveSerialize(String filename) throws MissingFileAssociationException, IOException{
-    if (filename == NULL) throw new MissingFileAssociationException();
+  private void saveSerialize() throws MissingFileAssociationException, IOException{
+    if (filename == null) throw new MissingFileAssociationException();
 
-    FileOutputStream fileOutputStream = new FileOutputStream(filename);
+    FileOutputStream fileOutputStream = new FileOutputStream(_filename);
 		BufferedOutputStream bufferedInputStream = new BufferedOutputStream(fileOutputStream);
     ObjectOutputStream out = new ObjectOutputStream(bufferedInputStream);
     out.writeObject(_library);
@@ -49,7 +50,7 @@ public class LibraryManager {
    */
   public void save() throws MissingFileAssociationException, IOException {
     // FIXME implement method 
-    saveSerialize(_filename);
+    saveSerialize();
   }
 
   /**
@@ -63,7 +64,8 @@ public class LibraryManager {
    */
   public void saveAs(String filename) throws MissingFileAssociationException, IOException {
     // FIXME implement method 
-    saveSerialize(filename);
+    _filename = filename;
+    saveSerialize();
   }
 
   /**
@@ -105,7 +107,12 @@ public class LibraryManager {
   public int getCurrentDate() {
     return _library.getDate();
   }
+
   public void advanceDays(int nDays) {
     _library.advanceDate(nDays);
+  }
+
+  public boolean hasAssociatedFile(){
+    return _filename == null;
   }
 }

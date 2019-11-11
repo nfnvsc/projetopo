@@ -14,6 +14,7 @@ import java.util.Scanner;
 public class DoAdvanceDate extends Command<LibraryManager> {
 
   // FIXME define input fields
+  private int _nDays;
 
   /**
    * @param receiver
@@ -23,15 +24,15 @@ public class DoAdvanceDate extends Command<LibraryManager> {
     // FIXME initialize input fields
     Scanner scan = new Scanner(System.in);
     System.out.println(Message.requestDaysToAdvance());
-    int nDays = scan.nextInt();
-
+    _nDays = scan.nextInt();
+    scan.close();
   }
 
   /** @see pt.tecnico.po.ui.Command#execute() */
   @Override
   public final void execute() {
     // FIXME define method
-    _receiver.advanceDays(nDays);
+    _receiver.advanceDays(_nDays);
   }
   
 }
