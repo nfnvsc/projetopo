@@ -1,7 +1,6 @@
 package m19.core;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.io.IOException;
 
 import m19.core.exception.MissingFileAssociationException;

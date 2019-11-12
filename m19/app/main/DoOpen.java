@@ -6,7 +6,7 @@ import m19.core.LibraryManager;
 
 import pt.tecnico.po.ui.Command;
 import java.util.Scanner;
-
+import pt.tecnico.po.ui.DialogException;
 // FIXME import other core concepts
 // FIXME import other ui concepts
 

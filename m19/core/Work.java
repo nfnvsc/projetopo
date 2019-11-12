@@ -1,12 +1,9 @@
 package m19.core;
 
 import java.util.ArrayList;
-import java.util.Locale.Category;
 
 abstract class Work {
-    private enum Category {
-        REFERENCE, FICTION, SCITECH;
-    }
+
     private int _id;
     private int _price;
     private int _numberOfCopies;

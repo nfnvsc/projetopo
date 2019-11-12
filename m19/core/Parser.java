@@ -40,34 +40,34 @@ public class Parser {
             break;
 
         default:
-            throw new BadEntrySpecificationEception("Invalid type " + components[0] + " in line " + line);
+            throw new BadEntrySpecificationException("Invalid type " + components[0] + " in line " + line);
         }
     }
 
   private void parseDVD(String[] components, String line) throws BadEntrySpecificationException {
     if (components.length != 7)
-      throw new BadEntrySpecificationEception("Wrong number of fields (6) in " + line);
+      throw new BadEntrySpecificationException("Wrong number of fields (6) in " + line);
     Dvd dvd = new Dvd(components[1], components[2], Integer.parseInt(components[3]),
                       Category.valueOf(components[4]), Integer.parseInt(components[5]),
                       Integer.parseInt(components[6]));
-    _library.addWork(Dvd);
+    _library.addWork(dvd);
     // add dvd to _library
   }
 
   private void parseBook(String[] components, String line) throws BadEntrySpecificationException {
     if (components.length != 7)
-      throw new BadEntrySpecificationEception("Wrong number of fields (6) in " + line);
+      throw new BadEntrySpecificationException("Wrong number of fields (6) in " + line);
 
     Book book = new Book(components[1], components[2], Integer.parseInt(components[3]),
                          Category.valueOf(components[4]), Integer.parseInt(components[5]),
                          Integer.parseInt(components[6]));
-    _library.addWork(Book);
+    _library.addWork(book);
     // add book to _library
   }
 
   private void parseUser(String[] components, String line) throws BadEntrySpecificationException {
     if (components.length != 3)
-      throw new BadEntrySpecificationEception("Wrong number of fields (2) in " + line);
+      throw new BadEntrySpecificationException("Wrong number of fields (2) in " + line);
     User user = new User(components[1], components[2]);
     _library.addUser(user);
     // add user to _library
