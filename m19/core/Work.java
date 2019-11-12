@@ -1,3 +1,5 @@
+package m19.core;
+
 import java.util.ArrayList;
 import java.util.Locale.Category;
 

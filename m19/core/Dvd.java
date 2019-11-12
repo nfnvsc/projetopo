@@ -1,3 +1,5 @@
+package m19.core;
+
 public class Dvd extends Work {
     private String _director;
     private String _igac;

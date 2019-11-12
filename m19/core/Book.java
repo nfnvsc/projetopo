@@ -1,3 +1,5 @@
+package m19.core;
+
 public class Book extends Work {
     private String _author;
     private String _isbn;
