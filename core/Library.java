@@ -35,13 +35,13 @@ public class Library implements Serializable {
 
   // FIXME define methods
   public addUser(User user) {
-    user.setUserId = _nextUserId;
+    user.setUserId(_nextUserId);
     _users.add(user);
     _nextUserId++;
   }
 
   public addWork(Work work) {
-    work.setWorkId = _nextWorkId;
+    work.setWorkId(_nextWorkId);
     _works.add(work);
     _nextWorkId++;
   }
