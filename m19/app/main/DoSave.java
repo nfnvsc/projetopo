@@ -25,21 +25,21 @@ public class DoSave extends Command<LibraryManager> {
   public DoSave(LibraryManager receiver) {
     super(Label.SAVE, receiver);
     // FIXME initialize input fields
-    if (_receiver.hasAssociatedFile()) {
-      _filename = null; 
-      return;
-    }
-
-    Scanner scan = new Scanner(System.in);
-    System.out.println(Message.newSaveAs());
-    _filename = scan.nextLine();
-    scan.close();
+    _filename = null;
   }
 
   /** @see pt.tecnico.po.ui.Command#execute() */
   @Override
   public final void execute() {
     // FIXME implement command
+    if (_receiver.hasAssociatedFile()) {
+      _filename = null; 
+    }else {
+      Scanner scan = new Scanner(System.in);
+      System.out.println(Message.newSaveAs());
+      _filename = scan.nextLine();
+    }
+
     try{
       if (_filename == null)
         _receiver.save();

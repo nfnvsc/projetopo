@@ -25,19 +25,19 @@ public class DoOpen extends Command<LibraryManager> {
   public DoOpen(LibraryManager receiver) {
     super(Label.OPEN, receiver);
     // FIXME initialize input fields if needed
-    Scanner scan = new Scanner(System.in);
-    System.out.println(Message.openFile());
-    _filename = scan.nextLine();
-    System.out.println("Filename: "+ _filename);
-    //scan.close();
+    _filename = null;
     
   }
 
   /** @see pt.tecnico.po.ui.Command#execute() */
   @Override
   public final void execute() throws DialogException {
+    Scanner scan = new Scanner(System.in);
+    System.out.println(Message.openFile());
+    _filename = scan.nextLine();
+
     try {
-      // FIXME implement command
+        // FIXME implement command
       _receiver.load(_filename);
     } catch (FileNotFoundException fnfe) {
       throw new FileOpenFailedException(_filename);

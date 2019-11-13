@@ -22,9 +22,8 @@ public class DoAdvanceDate extends Command<LibraryManager> {
   public DoAdvanceDate(LibraryManager receiver) {
     super(Label.ADVANCE_DATE, receiver);
     // FIXME initialize input fields
-    Scanner scan = new Scanner(System.in);
-    System.out.println(Message.requestDaysToAdvance());
-    _nDays = scan.nextInt();
+    _nDays = 0;
+    
     
   }
 
@@ -32,6 +31,9 @@ public class DoAdvanceDate extends Command<LibraryManager> {
   @Override
   public final void execute() {
     // FIXME define method
+    Scanner scan = new Scanner(System.in);
+    System.out.println(Message.requestDaysToAdvance());
+    _nDays = scan.nextInt();
     _receiver.advanceDays(_nDays);
   }
   
