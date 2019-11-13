@@ -107,6 +107,8 @@ public class LibraryManager {
     }
   }
 
+
+
   //Metodos Data
   public int getCurrentDate() {
     return _library.getDate();
@@ -127,5 +129,14 @@ public class LibraryManager {
   }
   public String printUser(int id) {
     return _library.getUser(id).toString();
+  }
+
+  //Menu Gestao de Obras Metodos
+  public String printWork(int id){
+    return _library.showWork(id);
+  }
+
+  public String printAllWorks(){
+    return _library.showAllWorks();
   }
 }

@@ -7,7 +7,6 @@ import java.io.IOException;
 import m19.core.exception.BadEntrySpecificationException;
 
 // FIXME import other system types
-import java.util.ArrayList;
 import java.util.Hashtable;
 // FIXME import project (core) types if needed
 
@@ -24,7 +23,7 @@ public class Library implements Serializable {
   private int _nextUserId;
   private Date _date;
   private Hashtable<Integer, User> _users = new Hashtable<>();
-  private ArrayList<? super Work> _works = new ArrayList<>();
+  private Hashtable<Integer, ? super Work> _works = new Hashtable<>();
 
   // FIXME define contructor(s)
   public Library() {
@@ -44,7 +43,7 @@ public class Library implements Serializable {
 
   public void addWork(Work work) {
     work.setWorkId(_nextWorkId);
-    _works.add(work);
+    _works.put(work.getId(), work);
     _nextWorkId++;
   }
   public User getUser(int id) {
@@ -57,17 +56,21 @@ public class Library implements Serializable {
   public void advanceDate(int nDays) {
     _date.advanceDays(nDays);
   }
-  /*
-  public Work getWork(int id){
-    //return work with id
-  }
 
   public String showWork(int id){
-    Work work = getWork(id);
+    Work work = (Work)_works.get(id);
     return work.toString();
-  
   }
-*/
+
+  public String showAllWorks(){
+    int i;
+    String fullString = "";
+    for (i = 0; i < _nextWorkId; i++){
+      fullString += showWork(i) + "\n";
+    }
+    return fullString;
+  }
+
   /**
    * Read the text input file at the beginning of the program and populates the
    * instances of the various possible types (books, DVDs, users).

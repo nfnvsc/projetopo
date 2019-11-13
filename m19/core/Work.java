@@ -28,6 +28,10 @@ abstract class Work {
     public void setWorkId(int id){
         _id = id;
     }
+
+    public int getId(){
+        return _id;
+    }
 /*
     public int getId(){
         return _id;
