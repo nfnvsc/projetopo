@@ -1,26 +1,28 @@
 *** tests/A-07-07-M-ok.out	2019-10-28 12:43:38.000000000 +0000
---- tests/A-07-07-M-ok.outhyp	2019-11-13 13:57:23.134865252 +0000
+--- tests/A-07-07-M-ok.outhyp	2019-11-13 15:43:29.192737769 +0000
 ***************
-*** 1,20 ****
-- Menu Principal
-- 1 - Abrir dados
-- 2 - Guardar dados
-- 3 - Ver data
-- 4 - Avançar data
-- 5 - Menu de gestão de utentes
-- 6 - Menu de gestão de obras
-- 7 - Menu de gestão de requisições
-- 0 - Sair
-- Escolha uma opção: Ficheiro a abrir: Abrir dados: Operação inválida: O ficheiro 'naoExistente' não existe.
-- Menu Principal
-- 1 - Abrir dados
-- 2 - Guardar dados
-- 3 - Ver data
-- 4 - Avançar data
-- 5 - Menu de gestão de utentes
-- 6 - Menu de gestão de obras
-- 7 - Menu de gestão de requisições
-- 0 - Sair
-- Escolha uma opção: 
+*** 7,13 ****
+  6 - Menu de gestão de obras
+  7 - Menu de gestão de requisições
+  0 - Sair
+! Escolha uma opção: Ficheiro a abrir: Abrir dados: Operação inválida: O ficheiro 'naoExistente' não existe.
+  Menu Principal
+  1 - Abrir dados
+  2 - Guardar dados
+--- 7,13 ----
+  6 - Menu de gestão de obras
+  7 - Menu de gestão de requisições
+  0 - Sair
+! Escolha uma opção: Abrir dados: Operação inválida: O ficheiro '1' não existe.
+  Menu Principal
+  1 - Abrir dados
+  2 - Guardar dados
+***************
+*** 17,20 ****
+--- 17,21 ----
+  6 - Menu de gestão de obras
+  7 - Menu de gestão de requisições
+  0 - Sair
++ Escolha uma opção: Número inválido!
+  Escolha uma opção: 
 \ No newline at end of file
---- 0 ----

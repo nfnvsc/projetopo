@@ -1,25 +1,28 @@
 *** tests/A-07-01-M-ok.out	2019-10-28 12:43:38.000000000 +0000
---- tests/A-07-01-M-ok.outhyp	2019-11-13 13:57:22.834861810 +0000
+--- tests/A-07-01-M-ok.outhyp	2019-11-13 15:43:27.784720851 +0000
 ***************
-*** 1,19 ****
-- Menu Principal
-- 1 - Abrir dados
-- 2 - Guardar dados
-- 3 - Ver data
-- 4 - Avançar data
-- 5 - Menu de gestão de utentes
-- 6 - Menu de gestão de obras
-- 7 - Menu de gestão de requisições
-- 0 - Sair
-- Escolha uma opção: Ficheiro sem nome. Guardar ficheiro como: Menu Principal
-- 1 - Abrir dados
-- 2 - Guardar dados
-- 3 - Ver data
-- 4 - Avançar data
-- 5 - Menu de gestão de utentes
-- 6 - Menu de gestão de obras
-- 7 - Menu de gestão de requisições
-- 0 - Sair
-- Escolha uma opção: 
+*** 7,13 ****
+  6 - Menu de gestão de obras
+  7 - Menu de gestão de requisições
+  0 - Sair
+! Escolha uma opção: Ficheiro sem nome. Guardar ficheiro como: Menu Principal
+  1 - Abrir dados
+  2 - Guardar dados
+  3 - Ver data
+--- 7,13 ----
+  6 - Menu de gestão de obras
+  7 - Menu de gestão de requisições
+  0 - Sair
+! Escolha uma opção: Menu Principal
+  1 - Abrir dados
+  2 - Guardar dados
+  3 - Ver data
+***************
+*** 16,19 ****
+--- 16,20 ----
+  6 - Menu de gestão de obras
+  7 - Menu de gestão de requisições
+  0 - Sair
++ Escolha uma opção: Número inválido!
+  Escolha uma opção: 
 \ No newline at end of file
---- 0 ----

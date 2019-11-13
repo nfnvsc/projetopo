@@ -9,4 +9,9 @@ public class Dvd extends Work {
         _director = director;
         _igac = igac;
     }
+    
+    @Override
+    public String toString(){
+        return super.toString() + " - " + _director + " - " + _igac;
+    }
 }
