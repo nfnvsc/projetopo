@@ -1,36 +1,20 @@
 *** tests/A-01-03-M-ok.out	2019-10-28 12:43:38.000000000 +0000
---- tests/A-01-03-M-ok.outhyp	2019-11-13 13:49:43.917863149 +0000
+--- tests/A-01-03-M-ok.outhyp	2019-11-13 15:43:18.144604412 +0000
 ***************
-*** 1,30 ****
-- Menu Principal
-- 1 - Abrir dados
-- 2 - Guardar dados
-- 3 - Ver data
-- 4 - Avançar data
-- 5 - Menu de gestão de utentes
-- 6 - Menu de gestão de obras
-- 7 - Menu de gestão de requisições
-- 0 - Sair
-- Escolha uma opção: Menu de obras
-- 1 - Mostrar obra
-- 2 - Mostrar todas as obras
-- 3 - Efectuar pesquisa de termos
-- 0 - Sair
-- Escolha uma opção: 0 - 50 de  50 - Livro - Bairro Alto e o Budismo Zen - 25 - Ficção - Zun Tse Fonseca - 1234567891
-- Menu de obras
-- 1 - Mostrar obra
-- 2 - Mostrar todas as obras
-- 3 - Efectuar pesquisa de termos
-- 0 - Sair
-- Escolha uma opção: Menu Principal
-- 1 - Abrir dados
-- 2 - Guardar dados
-- 3 - Ver data
-- 4 - Avançar data
-- 5 - Menu de gestão de utentes
-- 6 - Menu de gestão de obras
-- 7 - Menu de gestão de requisições
-- 0 - Sair
-- Escolha uma opção: 
-\ No newline at end of file
---- 0 ----
+*** 12,19 ****
+  2 - Mostrar todas as obras
+  3 - Efectuar pesquisa de termos
+  0 - Sair
+! Escolha uma opção: 0 - 50 de  50 - Livro - Bairro Alto e o Budismo Zen - 25 - Ficção - Zun Tse Fonseca - 1234567891
+! Menu de obras
+  1 - Mostrar obra
+  2 - Mostrar todas as obras
+  3 - Efectuar pesquisa de termos
+--- 12,18 ----
+  2 - Mostrar todas as obras
+  3 - Efectuar pesquisa de termos
+  0 - Sair
+! Escolha uma opção: Menu de obras
+  1 - Mostrar obra
+  2 - Mostrar todas as obras
+  3 - Efectuar pesquisa de termos

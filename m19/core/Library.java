@@ -53,10 +53,21 @@ public class Library implements Serializable {
   public int getDate(){
     return _date.getCurrentDate();
   }
+
   public void advanceDate(int nDays) {
     _date.advanceDays(nDays);
   }
+  /*
+  public Work getWork(int id){
+    //return work with id
+  }
 
+  public String showWork(int id){
+    Work work = getWork(id);
+    return work.toString();
+  
+  }
+*/
   /**
    * Read the text input file at the beginning of the program and populates the
    * instances of the various possible types (books, DVDs, users).

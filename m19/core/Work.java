@@ -1,6 +1,5 @@
 package m19.core;
 
-import java.util.ArrayList;
 
 abstract class Work {
 
@@ -13,6 +12,7 @@ abstract class Work {
    /* public String getDescription() {
         return 
     }*/
+
     public Work(int price, int numberOfCopies, String title, Category category) {
         _price = price;
         _numberOfCopies = numberOfCopies;
@@ -20,7 +20,34 @@ abstract class Work {
         _category = category;
     }
 
+    public String toString(){
+        return String.valueOf(_id) +  " - " + String.valueOf(_price) + " - " + String.valueOf(_numberOfCopies) + " - " + _title + " - " + _category;
+    }
+
+    
     public void setWorkId(int id){
         _id = id;
     }
+/*
+    public int getId(){
+        return _id;
+    }
+
+    public int getPrice(){
+        return _price;
+    }
+
+    public int getNumberOfCopies(){
+        return _numberOfCopies;
+    }
+
+    public String getTitle(){
+        return _title;
+    }
+
+    public Category getCategory(){
+        return _category;
+    }
+    */
+
 }

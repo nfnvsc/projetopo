@@ -9,4 +9,9 @@ public class Book extends Work {
         _author = author;
         _isbn = isbn;
     }
+    
+    @Override
+    public String toString(){
+        return super.toString() + " - " + _author + " - " + _isbn;
+    }
 }
