@@ -112,6 +112,8 @@ public class LibraryManager {
     }
   }
 
+
+
   //Metodos Data
   public int getCurrentDate() {
     return _library.getDate();
@@ -153,4 +155,17 @@ public class LibraryManager {
     for (Map.Entry<Integer, User> entry : sorted.entrySet())
       System.out.println(printUser(entry.getKey()));
   }  
+
+  //Menu Gestao de Obras Metodos
+  public String printWork(int id){
+    return _library.showWork(id);
+  }
+
+  public String printAllWorks(){
+    return _library.showAllWorks();
+  }
+
+  public String printMatchingWorks(String searchTerm){
+    return _library.showMatchingWorks(searchTerm);
+  }
 }

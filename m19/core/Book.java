@@ -10,8 +10,13 @@ public class Book extends Work {
         _isbn = isbn;
     }
     
+    public String searchTerms(){
+        //por fazer
+        return "";
+    }
+
     @Override
     public String toString(){
-        return super.toString() + " - " + _author + " - " + _isbn;
+        return super.toString("BOOK") + " - " + _author + " - " + _isbn;
     }
 }

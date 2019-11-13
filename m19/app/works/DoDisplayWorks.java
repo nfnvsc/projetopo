@@ -21,5 +21,6 @@ public class DoDisplayWorks extends Command<LibraryManager> {
   @Override
   public final void execute() {
     // FIXME implement command
+    System.out.println(_receiver.printAllWorks());
   }
 }
