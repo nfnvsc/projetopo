@@ -26,6 +26,9 @@ public class User {
     protected boolean isActive() {
         return _isActive;
     }
+    public String getName(){
+        return _name;
+    }
     public UserBehavior getDescription() {
         return _userDescription;
     }

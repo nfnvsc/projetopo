@@ -2,6 +2,7 @@ package m19.core;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.TreeMap;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,6 +16,10 @@ import m19.core.exception.MissingFileAssociationException;
 import m19.core.exception.BadEntrySpecificationException;
 import m19.core.exception.ImportFileException;
 
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.List;
+import java.util.Comparator;
 // FIXME import other system types
 // FIXME import other project (core) types
 
@@ -128,4 +133,24 @@ public class LibraryManager {
   public String printUser(int id) {
     return _library.getUser(id).toString();
   }
+  public void getUsers() {
+    Map <Integer, User> sorted = new TreeMap<>(new Comparator<Integer>() {
+      @Override
+      public int compare(Integer key1, Integer key2) {
+        User user1 = _library.getUser(key1);
+        User user2 = _library.getUser(key2);
+        int compare = user1.getName().compareTo(user2.getName());
+        if (compare == 0)
+          if (key1 > key2)
+            return 1;
+          else
+            return -1;
+        else
+          return compare;
+      }
+    });
+    sorted.putAll(_library.getAllUsers());
+    for (Map.Entry<Integer, User> entry : sorted.entrySet())
+      System.out.println(printUser(entry.getKey()));
+  }  
 }

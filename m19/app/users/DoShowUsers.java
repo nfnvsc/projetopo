@@ -22,6 +22,7 @@ public class DoShowUsers extends Command<LibraryManager> {
   @Override
   public final void execute() {
     // FIXME implement command
+    _receiver.getUsers();
   }
   
 }
