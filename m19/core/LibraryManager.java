@@ -6,6 +6,10 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileInputStream;
+import java.io.BufferedInputStream;
+import java.io.ObjectInputStream;
+
 
 import m19.core.exception.MissingFileAssociationException;
 import m19.core.exception.BadEntrySpecificationException;
@@ -31,14 +35,13 @@ public class LibraryManager {
   }
   // FIXME define methods
   private void saveSerialize() throws MissingFileAssociationException, IOException{
-    if (filename == null) throw new MissingFileAssociationException();
+    if (_filename == null) throw new MissingFileAssociationException();
 
     FileOutputStream fileOutputStream = new FileOutputStream(_filename);
 		BufferedOutputStream bufferedInputStream = new BufferedOutputStream(fileOutputStream);
     ObjectOutputStream out = new ObjectOutputStream(bufferedInputStream);
     out.writeObject(_library);
     out.close();
-    fileOut.close();
   }
   /**
    * Serialize the persistent state of this application.

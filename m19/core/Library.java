@@ -63,7 +63,7 @@ public class Library implements Serializable {
    */
   void importFile(String filename) throws BadEntrySpecificationException, IOException {
     // FIXME implement method
-    Parser parser = new parser(this);
+    Parser parser = new Parser(this);
     parser.parseFile(filename);
   }
 
