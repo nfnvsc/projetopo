@@ -8,6 +8,7 @@ import m19.core.exception.BadEntrySpecificationException;
 
 // FIXME import other system types
 import java.util.ArrayList;
+import java.util.Hashtable;
 // FIXME import project (core) types if needed
 
 /**
@@ -22,7 +23,7 @@ public class Library implements Serializable {
   private int _nextWorkId;
   private int _nextUserId;
   private Date _date;
-  private ArrayList<User> _users = new ArrayList<>();
+  private Hashtable<Integer, User> _users = new Hashtable<>();
   private ArrayList<? super Work> _works = new ArrayList<>();
 
   // FIXME define contructor(s)
@@ -33,9 +34,11 @@ public class Library implements Serializable {
   }
 
   // FIXME define methods
+
+  //Metodos User
   public void addUser(User user) {
     user.setUserId(_nextUserId);
-    _users.add(user);
+    _users.put(user.getId(), user);
     _nextUserId++;
   }
 
@@ -44,7 +47,9 @@ public class Library implements Serializable {
     _works.add(work);
     _nextWorkId++;
   }
-
+  public User getUser(int id) {
+    return _users.get(id);
+  }
   public int getDate(){
     return _date.getCurrentDate();
   }

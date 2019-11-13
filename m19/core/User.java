@@ -35,4 +35,14 @@ public class User {
     protected ArrayList<Notification> getNotifications() {
         return _notifications;
     }
+    public int getId(){
+        return _id;
+    }
+    public String toString() {
+        if (_isActive) {
+            return String.valueOf(_id) + " - " + _name + " - " + _email +" - " + _userDescription + " - " +"ATIVO";
+        } else {
+            return String.valueOf(_id) + " - " + _name + " - " + _email + " - " + _userDescription + " - " + "SUSPENSO"; //Falta adicionar multa
+        }
+    }
 }

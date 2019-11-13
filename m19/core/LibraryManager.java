@@ -107,6 +107,7 @@ public class LibraryManager {
     }
   }
 
+  //Metodos Data
   public int getCurrentDate() {
     return _library.getDate();
   }
@@ -117,5 +118,14 @@ public class LibraryManager {
 
   public boolean hasAssociatedFile(){
     return _filename == null;
+  }
+
+  //Menu Gestao de Utentes Metodos
+  public void registerUser(String name, String email) {
+    User user = new User(name, email);
+    _library.addUser(user);
+  }
+  public String printUser(int id) {
+    return _library.getUser(id).toString();
   }
 }
