@@ -71,6 +71,17 @@ public class Library implements Serializable {
     return fullString;
   }
 
+  public String showMatchingWorks(String name){
+    int i;
+    //String output;
+    Work aux_work;
+    for(i = 0; i < _nextWorkId; i++){
+      aux_work = (Work)_works.get(i);
+      //(if (aux_work.get)
+    }
+    return "";
+  }
+
   /**
    * Read the text input file at the beginning of the program and populates the
    * instances of the various possible types (books, DVDs, users).

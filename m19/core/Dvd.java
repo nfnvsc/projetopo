@@ -12,6 +12,6 @@ public class Dvd extends Work {
     
     @Override
     public String toString(){
-        return super.toString() + " - " + _director + " - " + _igac;
+        return super.toString("DVD") + " - " + _director + " - " + _igac;
     }
 }

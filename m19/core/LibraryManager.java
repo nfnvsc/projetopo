@@ -139,4 +139,8 @@ public class LibraryManager {
   public String printAllWorks(){
     return _library.showAllWorks();
   }
+
+  public String printMatchingWorks(String searchTerm){
+    return _library.showMatchingWorks(searchTerm);
+  }
 }

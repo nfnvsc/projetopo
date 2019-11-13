@@ -30,8 +30,8 @@ public class DoDisplayWork extends Command<LibraryManager> {
     Scanner scan = new Scanner(System.in);
     System.out.println(Message.requestWorkId());
     _workId = scan.nextInt();
-
-
+    System.out.println(_receiver.printWork(_workId));
+    
   }
   
 }

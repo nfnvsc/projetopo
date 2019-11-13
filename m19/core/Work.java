@@ -6,6 +6,7 @@ abstract class Work {
     private int _id;
     private int _price;
     private int _numberOfCopies;
+    private int _copiesAvaliable;
     private String _title;
     private Category _category;
 
@@ -16,12 +17,13 @@ abstract class Work {
     public Work(int price, int numberOfCopies, String title, Category category) {
         _price = price;
         _numberOfCopies = numberOfCopies;
+        _copiesAvaliable = numberOfCopies;
         _title = title;
         _category = category;
     }
 
-    public String toString(){
-        return String.valueOf(_id) +  " - " + String.valueOf(_price) + " - " + String.valueOf(_numberOfCopies) + " - " + _title + " - " + _category;
+    public String toString(String type){
+        return String.valueOf(_id) +  " - " + _copiesAvaliable + " of " + _numberOfCopies + " - " + type + " - " + _title + " - " + String.valueOf(_price) + " - " +  _category;
     }
 
     
