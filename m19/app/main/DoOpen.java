@@ -7,7 +7,6 @@ import m19.app.exception.FileOpenFailedException;
 import pt.tecnico.po.ui.Command;
 import java.io.FileNotFoundException;
 import java.lang.ClassNotFoundException;
-import java.util.Scanner;
 import java.io.IOException;
 import pt.tecnico.po.ui.DialogException;
 // FIXME import other core concepts
