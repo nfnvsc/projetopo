@@ -3,7 +3,7 @@ package m19.core;
 import java.io.Serializable;
 import java.io.IOException;
 
-import m19.core.exception.MissingFileAssociationException;
+//import m19.core.exception.MissingFileAssociationException;
 import m19.core.exception.BadEntrySpecificationException;
 
 // FIXME import other system types

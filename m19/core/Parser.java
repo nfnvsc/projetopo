@@ -48,7 +48,7 @@ public class Parser {
     if (components.length != 7)
       throw new BadEntrySpecificationException("Wrong number of fields (6) in " + line);
     Dvd dvd = new Dvd(components[1], components[2], Integer.parseInt(components[3]),
-                      Category.valueOf(components[4]), Integer.parseInt(components[5]),
+                      Category.valueOf(components[4]), components[5],
                       Integer.parseInt(components[6]));
     _library.addWork(dvd);
     // add dvd to _library
@@ -59,7 +59,7 @@ public class Parser {
       throw new BadEntrySpecificationException("Wrong number of fields (6) in " + line);
 
     Book book = new Book(components[1], components[2], Integer.parseInt(components[3]),
-                         Category.valueOf(components[4]), Integer.parseInt(components[5]),
+                         Category.valueOf(components[4]), components[5],
                          Integer.parseInt(components[6]));
     _library.addWork(book);
     // add book to _library

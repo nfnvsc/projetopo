@@ -3,9 +3,12 @@ package m19.app.main;
 import java.util.Scanner;
 
 import m19.core.LibraryManager;
-
+import m19.app.exception.FileOpenFailedException;
 import pt.tecnico.po.ui.Command;
+import java.io.FileNotFoundException;
+import java.lang.ClassNotFoundException;
 import java.util.Scanner;
+import java.io.IOException;
 import pt.tecnico.po.ui.DialogException;
 // FIXME import other core concepts
 // FIXME import other ui concepts
