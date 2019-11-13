@@ -25,7 +25,7 @@ public class DoAdvanceDate extends Command<LibraryManager> {
     Scanner scan = new Scanner(System.in);
     System.out.println(Message.requestDaysToAdvance());
     _nDays = scan.nextInt();
-    scan.close();
+    
   }
 
   /** @see pt.tecnico.po.ui.Command#execute() */

@@ -28,7 +28,9 @@ public class DoOpen extends Command<LibraryManager> {
     Scanner scan = new Scanner(System.in);
     System.out.println(Message.openFile());
     _filename = scan.nextLine();
-    scan.close();
+    System.out.println("Filename: "+ _filename);
+    //scan.close();
+    
   }
 
   /** @see pt.tecnico.po.ui.Command#execute() */
