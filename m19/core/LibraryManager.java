@@ -173,19 +173,11 @@ public class LibraryManager {
     return _library.getWork(id).toString();
   }
 
-<<<<<<< HEAD
-  public void printAllWorks(){
-    int i;
-    String output = "";
-    int numberWorks = _library.getNumberWorks();
-    for (i = 0; i < numberWorks; i++){
-=======
   public String printAllWorks(){
     int i;
     String output = "";
     int numberWorks = _library.getNumberWorks();
     for (i = 0; i <= numberWorks; i++){
->>>>>>> d98f572950341410c657224d339a9833201fc832
       output += _library.getWork(i).toString() + "\n";
     }
     return output;

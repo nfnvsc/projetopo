@@ -22,8 +22,7 @@ public class DoDisplayWorks extends Command<LibraryManager> {
   @Override
   public final void execute() {
     // FIXME implement command
-    Display display = new Display();
-    _receiver.printAllWorks(display);
-    display.display();
+    _display.addLine(_receiver.printAllWorks());
+    _display.display();
   }
 }

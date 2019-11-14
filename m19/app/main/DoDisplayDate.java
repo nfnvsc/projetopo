@@ -3,6 +3,7 @@ package m19.app.main;
 import m19.core.LibraryManager;
 
 import pt.tecnico.po.ui.Command;
+import pt.tecnico.po.ui.Input;
 
 // FIXME import other core concepts
 // FIXME import other ui concepts
@@ -23,8 +24,7 @@ public class DoDisplayDate extends Command<LibraryManager> {
   @Override
   public final void execute() {
     // FIXME define method
-    Display display = new Display();
-    display.popup(Message.currentDate(_receiver.getCurrentDate()));
+    _display.popup(Message.currentDate(_receiver.getCurrentDate()));
   }
   
 }

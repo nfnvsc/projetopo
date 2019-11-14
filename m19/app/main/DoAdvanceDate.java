@@ -3,7 +3,7 @@ package m19.app.main;
 import m19.core.LibraryManager;
 
 import pt.tecnico.po.ui.Command;
-import pt.tecnico.po.ui.Display;
+import pt.tecnico.po.ui.Input;
 
 import java.util.Scanner;
 // FIXME import other core concepts
@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class DoAdvanceDate extends Command<LibraryManager> {
 
   // FIXME define input fields
-  private int _nDays;
+  private Input<Integer> _nDays;
 
   /**
    * @param receiver
@@ -23,7 +23,7 @@ public class DoAdvanceDate extends Command<LibraryManager> {
   public DoAdvanceDate(LibraryManager receiver) {
     super(Label.ADVANCE_DATE, receiver);
     // FIXME initialize input fields
-    _nDays = 0;
+    _nDays = _form.addIntegerInput(Message.requestDaysToAdvance());
     
     
   }
@@ -32,11 +32,8 @@ public class DoAdvanceDate extends Command<LibraryManager> {
   @Override
   public final void execute() {
     // FIXME define method
-    Display display = new Display();
-    Scanner scan = new Scanner(System.in);
-    display.popup(Message.requestDaysToAdvance());
-    _nDays = scan.nextInt();
-    _receiver.advanceDays(_nDays);
+    _form.parse();
+    _receiver.advanceDays(_nDays.value());
   }
   
 }

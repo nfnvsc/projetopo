@@ -1,5 +1,5 @@
 *** tests/A-02-02-M-ok.out	2019-10-28 13:13:24.000000000 +0000
---- tests/A-02-02-M-ok.outhyp	2019-11-14 15:58:28.875880608 +0000
+--- tests/A-02-02-M-ok.outhyp	2019-11-14 16:49:01.028155572 +0000
 ***************
 *** 12,21 ****
   2 - Mostrar todas as obras
@@ -12,13 +12,14 @@
   Menu de obras
   1 - Mostrar obra
   2 - Mostrar todas as obras
---- 12,20 ----
+--- 12,21 ----
   2 - Mostrar todas as obras
   3 - Efectuar pesquisa de termos
   0 - Sair
 ! Escolha uma opção: 0 - 22 of 22 - BOOK - A arte de sobreviver no 36 - 30 - FICTION - Joao Fonseca - 1234567892
 ! 1 - 50 of 50 - BOOK - Bairro Alto e o Budismo Zen - 25 - FICTION - Zun Tse Fonseca - 1234567891
 ! 2 - 50 of 50 - BOOK - Dicionário de Programação - 20 - REFERENCE - Odete Fonseca - 1234567890
+! 3 - 5 of 5 - BOOK - Analise Matematica sem Mestre - 29 - SCITECH - Carlos Fonseca - 1234567890
   Menu de obras
   1 - Mostrar obra
   2 - Mostrar todas as obras
