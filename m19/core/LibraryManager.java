@@ -143,7 +143,8 @@ public class LibraryManager {
     return _library.getUser(id).toString();
   }
 
-  public void getUsers(Display display) {
+  public String getUsers() {
+    String output = "";
     Map <Integer, User> sorted = new TreeMap<>(new Comparator<Integer>() {
       @Override
       public int compare(Integer key1, Integer key2) {
@@ -161,7 +162,8 @@ public class LibraryManager {
     });
     sorted.putAll(_library.getAllUsers());
     for (Map.Entry<Integer, User> entry : sorted.entrySet())
-      display.addLine(_library.getUser(entry.getKey()).toString());
+      output += _library.getUser(entry.getKey()).toString() + "\n";
+    return output;
   }  
 
   //Menu Gestao de Obras Metodos
@@ -171,12 +173,14 @@ public class LibraryManager {
     return _library.getWork(id).toString();
   }
 
-  public void printAllWorks(Display display){
+  public String printAllWorks(){
     int i;
+    String output = "";
     int numberWorks = _library.getNumberWorks();
-    for (i = 0; i < numberWorks; i++){
-      display.addLine(_library.getWork(i).toString());
+    for (i = 0; i <= numberWorks; i++){
+      output += _library.getWork(i).toString() + "\n";
     }
+    return output;
   }
 
   public String printMatchingWorks(String searchTerm){
