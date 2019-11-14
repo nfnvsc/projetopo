@@ -13,6 +13,7 @@ import java.io.ObjectInputStream;
 
 
 import m19.core.exception.MissingFileAssociationException;
+import pt.tecnico.po.ui.Display;
 import m19.core.exception.BadEntrySpecificationException;
 import m19.core.exception.ImportFileException;
 
@@ -163,14 +164,12 @@ public class LibraryManager {
     return _library.getWork(id).toString();
   }
 
-  public String printAllWorks(){
+  public void printAllWorks(Display display){
     int i;
     int numberWorks = _library.getNumberWorks();
-    String output = "";
     for (i = 0; i < numberWorks; i++){
-      output += _library.getWork(i).toString() + "\n";
+      display.addLine(_library.getWork(i).toString());
     }
-    return output;
   }
 
   public String printMatchingWorks(String searchTerm){
