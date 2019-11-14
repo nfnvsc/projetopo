@@ -3,6 +3,7 @@ package m19.core;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.TreeMap;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,6 +14,7 @@ import java.io.ObjectInputStream;
 
 
 import m19.core.exception.MissingFileAssociationException;
+import pt.tecnico.po.ui.Display;
 import m19.core.exception.BadEntrySpecificationException;
 import m19.core.exception.ImportFileException;
 
@@ -22,6 +24,7 @@ import java.util.List;
 import java.util.Comparator;
 // FIXME import other system types
 // FIXME import other project (core) types
+
 
 /**
  * The façade class.
@@ -127,15 +130,20 @@ public class LibraryManager {
 
   //Menu Gestao de Utentes Metodos
   public int registerUser(String name, String email) throws BadEntrySpecificationException {
+    if (!name.matches(".*[a-zA-Z]+.*") || !email.matches(".*[a-zA-Z]+.*"))
+      throw new BadEntrySpecificationException("Valid args");
     User user = new User(name, email);
     return _library.addUser(user);
   }
 
-  public String printUser(int id) {
+  public String printUser(int id) throws BadEntrySpecificationException {
+    if (_library.getUser(id) == null) {
+      throw new BadEntrySpecificationException("Id not found");
+    }
     return _library.getUser(id).toString();
   }
 
-  public void getUsers() {
+  public void getUsers(Display display) {
     Map <Integer, User> sorted = new TreeMap<>(new Comparator<Integer>() {
       @Override
       public int compare(Integer key1, Integer key2) {
@@ -153,7 +161,7 @@ public class LibraryManager {
     });
     sorted.putAll(_library.getAllUsers());
     for (Map.Entry<Integer, User> entry : sorted.entrySet())
-      System.out.println(printUser(entry.getKey()));
+      display.addLine(_library.getUser(entry.getKey()).toString());
   }  
 
   //Menu Gestao de Obras Metodos

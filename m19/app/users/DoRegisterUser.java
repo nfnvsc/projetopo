@@ -33,15 +33,18 @@ public class DoRegisterUser extends Command<LibraryManager> {
   public final void execute() throws DialogException {
     // FIXME implement command
     Scanner scan = new Scanner(System.in);
-    System.out.println(Message.requestUserName());
+    Display display = new Display();
+    display.popup(Message.requestUserName());
     _nome = scan.nextLine();
-    System.out.println(Message.requestUserEMail());
+    display.clear();
+    display.popup(Message.requestUserEMail());
+    display.clear();
     _email = scan.nextLine();
     try {
       _id = _receiver.registerUser(_nome, _email); // Falta verificar sucesso ou insucesso;  
     } catch (BadEntrySpecificationException bese) {
-      throw UserRegistrationFailedException(_nome, _email);
+      throw new UserRegistrationFailedException(_nome, _email);
     }
-    Message.userRegistrationSuccessful(_id);      
+    display.popup(Message.userRegistrationSuccessful(_id));      
   }
 }
