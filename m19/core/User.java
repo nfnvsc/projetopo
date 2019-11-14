@@ -22,6 +22,7 @@ public class User implements Serializable{
         _name = name;
         _email = email;
         _isActive = true;
+        _userDescription = UserBehavior.NORMAL;
     }
     public void setUserId(int id) {
         _id = id;
@@ -46,7 +47,7 @@ public class User implements Serializable{
     }
     public String toString() {
         if (_isActive) {
-            return String.valueOf(_id) + " - " + _name + " - " + _email +" - " + _userDescription + " - " +"ATIVO";
+            return String.valueOf(_id) + " - " + _name + " - " + _email +" - " + _userDescription + " - " + "ACTIVO";
         } else {
             return String.valueOf(_id) + " - " + _name + " - " + _email + " - " + _userDescription + " - " + "SUSPENSO"; //Falta adicionar multa
         }

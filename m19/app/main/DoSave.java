@@ -6,6 +6,7 @@ import m19.core.LibraryManager;
 import m19.core.exception.MissingFileAssociationException;
 import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.Display;
+import pt.tecnico.po.ui.Input;
 
 import java.util.Scanner;
 
@@ -18,7 +19,7 @@ import java.util.Scanner;
 public class DoSave extends Command<LibraryManager> {
   
   // FIXME define input fields
-  private String _filename;
+  private Input<String> _filename;
 
   /**
    * @param receiver
@@ -26,28 +27,20 @@ public class DoSave extends Command<LibraryManager> {
   public DoSave(LibraryManager receiver) {
     super(Label.SAVE, receiver);
     // FIXME initialize input fields
-    _filename = null;
+    _filename = _form.addStringInput(Message.newSaveAs());
   }
 
   /** @see pt.tecnico.po.ui.Command#execute() */
   @Override
   public final void execute() {
     // FIXME implement command
-    Display display = new Display();
-    if (_receiver.hasAssociatedFile()) {
-      _filename = null; 
-    }else {
-      Scanner scan = new Scanner(System.in);
-      display.popup(Message.newSaveAs());
-      _filename = scan.nextLine();
-    }
-
     try{
-      if (_filename == null){
+      if (_receiver.hasAssociatedFile()){
         _receiver.save();
       }
       else{
-        _receiver.saveAs(_filename);
+        _form.parse();
+        _receiver.saveAs(_filename.value());
       }
     }catch(MissingFileAssociationException fnfe){
       //nao faz sentido pq a library tem smp um ficheiro associado neste ponto (so se o ficheiro for invalido)

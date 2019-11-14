@@ -75,8 +75,12 @@ public class LibraryManager {
    */
   public void saveAs(String filename) throws MissingFileAssociationException, IOException {
     // FIXME implement method 
-    _filename = filename;
+    setFile(filename);
     saveSerialize();
+  }
+
+  public void setFile(String filename){
+    _filename = filename;
   }
 
   /**
@@ -92,6 +96,8 @@ public class LibraryManager {
     // FIXME implement method
     File file = new File(filename);
     if (!file.exists()) throw new FileNotFoundException();
+
+    setFile(filename);
 
     FileInputStream fileInputStream = new FileInputStream(filename);
 		BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);

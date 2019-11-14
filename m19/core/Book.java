@@ -16,6 +16,6 @@ public class Book extends Work {
 
     @Override
     public String toString(){
-        return super.toString("BOOK") + " - " + _author + " - " + _isbn;
+        return super.toString("Livro") + " - " + _author + " - " + _isbn;
     }
 }
