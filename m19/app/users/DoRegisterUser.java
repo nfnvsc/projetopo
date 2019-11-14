@@ -6,9 +6,9 @@ import m19.core.exception.BadEntrySpecificationException;
 import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.DialogException;
 import pt.tecnico.po.ui.Display;
+import pt.tecnico.po.ui.Input;
 
 // FIXME import other core concepts
-import java.util.Scanner;
 // FIXME import other ui concepts
 
 /**
@@ -17,34 +17,30 @@ import java.util.Scanner;
 public class DoRegisterUser extends Command<LibraryManager> {
 
   // FIXME define input fields
-  private String _nome;
-  private String _email;
+  private Input<String> _nome;
+  private Input<String> _email;
   private int _id;
   /**
    * @param receiver
    */
   public DoRegisterUser(LibraryManager receiver) {
     super(Label.REGISTER_USER, receiver);
+
     // FIXME initialize input fields
+    _nome = _form.addStringInput(Message.requestUserName());
+    _email = _form.addStringInput(Message.requestUserEMail());
   }
 
   /** @see pt.tecnico.po.ui.Command#execute() */
   @Override
   public final void execute() throws DialogException {
     // FIXME implement command
-    Scanner scan = new Scanner(System.in);
-    Display display = new Display();
-    display.popup(Message.requestUserName());
-    _nome = scan.nextLine();
-    display.clear();
-    display.popup(Message.requestUserEMail());
-    display.clear();
-    _email = scan.nextLine();
+    _form.parse();
     try {
-      _id = _receiver.registerUser(_nome, _email); // Falta verificar sucesso ou insucesso;  
+      _id = _receiver.registerUser(_nome.value(), _email.value()); // Falta verificar sucesso ou insucesso;  
     } catch (BadEntrySpecificationException bese) {
-      throw new UserRegistrationFailedException(_nome, _email);
+      throw new UserRegistrationFailedException(_nome.value(), _email.value());
     }
-    display.popup(Message.userRegistrationSuccessful(_id));      
+    _display.popup(Message.userRegistrationSuccessful(_id));      
   }
 }

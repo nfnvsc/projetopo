@@ -171,11 +171,12 @@ public class LibraryManager {
     return _library.getWork(id).toString();
   }
 
-  public void printAllWorks(Display display){
+  public void printAllWorks(){
     int i;
+    String output = "";
     int numberWorks = _library.getNumberWorks();
     for (i = 0; i < numberWorks; i++){
-      display.addLine(_library.getWork(i).toString());
+      output += _library.getWork(i).toString() + "\n";
     }
   }
 

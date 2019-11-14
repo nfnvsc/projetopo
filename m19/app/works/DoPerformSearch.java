@@ -5,6 +5,7 @@ import m19.core.LibraryManager;
 // FIXME import ui concepts
 import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.Display;
+import pt.tecnico.po.ui.Input;
 
 import java.util.Scanner;
 /**
@@ -13,27 +14,21 @@ import java.util.Scanner;
 public class DoPerformSearch extends Command<LibraryManager> {
 
   // FIXME define input fields
-  String _searchTerm;
+  private Input<String> _searchTerm;
   /**
    * @param m
    */
   public DoPerformSearch(LibraryManager m) {
     super(Label.PERFORM_SEARCH, m);
     // FIXME initialize input fields
-    _searchTerm = null;
+    _searchTerm = _form.addStringInput(Message.requestSearchTerm());
   }
 
   /** @see pt.tecnico.po.ui.Command#execute() */
   @Override
   public final void execute() {
     // FIXME implement command
-    Display display = new Display();
-    Scanner scan = new Scanner(System.in);
-    display.popup(Message.requestSearchTerm());
-    _searchTerm = scan.nextLine();
-    display.clear();
-
-    display.popup(_receiver.printMatchingWorks(_searchTerm));
+    _display.popup(_receiver.printMatchingWorks(_searchTerm.value()));
 
 
 

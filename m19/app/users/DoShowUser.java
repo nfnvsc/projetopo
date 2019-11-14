@@ -6,6 +6,7 @@ import m19.core.LibraryManager;
 import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.Display;
 import pt.tecnico.po.ui.DialogException;
+import pt.tecnico.po.ui.Input;
 
 // FIXME import other core concepts
 import java.util.Scanner;
@@ -17,29 +18,26 @@ import java.util.Scanner;
 public class DoShowUser extends Command<LibraryManager> {
 
   // FIXME define input fields
-  private int _id;
+  private Input<Integer> _id;
   /**
    * @param receiver
    */
   public DoShowUser(LibraryManager receiver) {
     super(Label.SHOW_USER, receiver);
     // FIXME initialize input fields
-    _id = -1;
+    _id = _form.addIntegerInput(Message.requestUserId());
+    
   }
 
   /** @see pt.tecnico.po.ui.Command#execute() */
   @Override
   public final void execute() throws DialogException {
     // FIXME implement command
-    Scanner scan = new Scanner(System.in);
-    Display display = new Display();
-    display.popup((Message.requestUserId()));
-    display.clear();
-    _id = scan.nextInt();
+    _form.parse();
     try {
-      display.popup(_receiver.printUser(_id));
+      _display.popup(_receiver.printUser(_id.value()));
     } catch (BadEntrySpecificationException bese) {
-      throw new NoSuchUserException(_id);
+      throw new NoSuchUserException(_id.value());
     }
   }
 }

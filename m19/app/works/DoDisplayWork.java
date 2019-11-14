@@ -8,6 +8,7 @@ import m19.core.exception.BadEntrySpecificationException;
 import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.DialogException;
 import pt.tecnico.po.ui.Display;
+import pt.tecnico.po.ui.Input;
 
 import java.util.Scanner;
 
@@ -17,30 +18,25 @@ import java.util.Scanner;
 public class DoDisplayWork extends Command<LibraryManager> {
 
   // FIXME define input fields
-  int _workId;
+  private Input<Integer> _workId;
   /**
    * @param receiver
    */
   public DoDisplayWork(LibraryManager receiver) {
     super(Label.SHOW_WORK, receiver);
     // FIXME initialize input fields
-    _workId = -1;
+    _workId = _form.addIntegerInput(Message.requestWorkId());
   }
 
   /** @see pt.tecnico.po.ui.Command#execute() */
   @Override
   public final void execute() throws DialogException {
     // FIXME implement command
-    Display display = new Display();
-    Scanner scan = new Scanner(System.in);
-
-    display.popup(Message.requestWorkId());
-    display.clear();
-    _workId = scan.nextInt();
+    _form.parse();
     try{
-      display.popup(_receiver.printWork(_workId));
+      _display.popup(_receiver.printWork(_workId.value()));
     } catch(BadEntrySpecificationException f){
-      throw new NoSuchWorkException(_workId);
+      throw new NoSuchWorkException(_workId.value());
     }
     
   }
