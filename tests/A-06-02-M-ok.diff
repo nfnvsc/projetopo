@@ -1,117 +1,67 @@
 *** tests/A-06-02-M-ok.out	2019-10-28 12:43:38.000000000 +0000
---- tests/A-06-02-M-ok.outhyp	2019-11-13 15:43:27.676719552 +0000
+--- tests/A-06-02-M-ok.outhyp	2019-11-14 13:41:36.550771762 +0000
 ***************
-*** 7,13 ****
+*** 7,67 ****
   6 - Menu de gestão de obras
   7 - Menu de gestão de requisições
   0 - Sair
-! Escolha uma opção: Introduza número de dias a avançar: Menu Principal
-  1 - Abrir dados
-  2 - Guardar dados
-  3 - Ver data
---- 7,23 ----
-  6 - Menu de gestão de obras
-  7 - Menu de gestão de requisições
-  0 - Sair
-! Escolha uma opção: Menu Principal
-! 1 - Abrir dados
-! 2 - Guardar dados
-! 3 - Ver data
-! 4 - Avançar data
-! 5 - Menu de gestão de utentes
-! 6 - Menu de gestão de obras
-! 7 - Menu de gestão de requisições
-! 0 - Sair
-! Escolha uma opção: Abrir dados: Operação inválida: O ficheiro '1' não existe.
-! Menu Principal
-  1 - Abrir dados
-  2 - Guardar dados
-  3 - Ver data
-***************
-*** 26,32 ****
-  6 - Menu de gestão de obras
-  7 - Menu de gestão de requisições
-  0 - Sair
-! Escolha uma opção: Introduza número de dias a avançar: Menu Principal
-  1 - Abrir dados
-  2 - Guardar dados
-  3 - Ver data
---- 36,52 ----
-  6 - Menu de gestão de obras
-  7 - Menu de gestão de requisições
-  0 - Sair
-! Escolha uma opção: Menu Principal
-! 1 - Abrir dados
-! 2 - Guardar dados
-! 3 - Ver data
-! 4 - Avançar data
-! 5 - Menu de gestão de utentes
-! 6 - Menu de gestão de obras
-! 7 - Menu de gestão de requisições
-! 0 - Sair
-! Escolha uma opção: Abrir dados: Operação inválida: O ficheiro '1' não existe.
-! Menu Principal
-  1 - Abrir dados
-  2 - Guardar dados
-  3 - Ver data
-***************
-*** 45,51 ****
-  6 - Menu de gestão de obras
-  7 - Menu de gestão de requisições
-  0 - Sair
-! Escolha uma opção: Introduza número de dias a avançar: Menu Principal
-  1 - Abrir dados
-  2 - Guardar dados
-  3 - Ver data
---- 65,71 ----
-  6 - Menu de gestão de obras
-  7 - Menu de gestão de requisições
-  0 - Sair
-! Escolha uma opção: Menu Principal
-  1 - Abrir dados
-  2 - Guardar dados
-  3 - Ver data
-***************
-*** 54,61 ****
-  6 - Menu de gestão de obras
-  7 - Menu de gestão de requisições
-  0 - Sair
-! Escolha uma opção: Data actual: 7
-! Menu Principal
-  1 - Abrir dados
-  2 - Guardar dados
-  3 - Ver data
---- 74,94 ----
-  6 - Menu de gestão de obras
-  7 - Menu de gestão de requisições
-  0 - Sair
-! Escolha uma opção: Menu de Gestão de Utentes
-! 1 - Registar utente
-! 2 - Mostrar utente
-! 3 - Listar utentes
-! 4 - Mostrar notificações de utente
-! 5 - Saldar multa de utente
-! 0 - Sair
-! Escolha uma opção: Menu de Gestão de Utentes
-! 1 - Registar utente
-! 2 - Mostrar utente
-! 3 - Listar utentes
-! 4 - Mostrar notificações de utente
-! 5 - Saldar multa de utente
-! 0 - Sair
-! Escolha uma opção: Menu Principal
-  1 - Abrir dados
-  2 - Guardar dados
-  3 - Ver data
-***************
-*** 64,67 ****
-  6 - Menu de gestão de obras
-  7 - Menu de gestão de requisições
-  0 - Sair
-! Escolha uma opção: 
+- Escolha uma opção: Introduza número de dias a avançar: Menu Principal
+- 1 - Abrir dados
+- 2 - Guardar dados
+- 3 - Ver data
+- 4 - Avançar data
+- 5 - Menu de gestão de utentes
+- 6 - Menu de gestão de obras
+- 7 - Menu de gestão de requisições
+- 0 - Sair
+- Escolha uma opção: Data actual: 1
+- Menu Principal
+- 1 - Abrir dados
+- 2 - Guardar dados
+- 3 - Ver data
+- 4 - Avançar data
+- 5 - Menu de gestão de utentes
+- 6 - Menu de gestão de obras
+- 7 - Menu de gestão de requisições
+- 0 - Sair
+- Escolha uma opção: Introduza número de dias a avançar: Menu Principal
+- 1 - Abrir dados
+- 2 - Guardar dados
+- 3 - Ver data
+- 4 - Avançar data
+- 5 - Menu de gestão de utentes
+- 6 - Menu de gestão de obras
+- 7 - Menu de gestão de requisições
+- 0 - Sair
+- Escolha uma opção: Data actual: 2
+- Menu Principal
+- 1 - Abrir dados
+- 2 - Guardar dados
+- 3 - Ver data
+- 4 - Avançar data
+- 5 - Menu de gestão de utentes
+- 6 - Menu de gestão de obras
+- 7 - Menu de gestão de requisições
+- 0 - Sair
+- Escolha uma opção: Introduza número de dias a avançar: Menu Principal
+- 1 - Abrir dados
+- 2 - Guardar dados
+- 3 - Ver data
+- 4 - Avançar data
+- 5 - Menu de gestão de utentes
+- 6 - Menu de gestão de obras
+- 7 - Menu de gestão de requisições
+- 0 - Sair
+- Escolha uma opção: Data actual: 7
+- Menu Principal
+- 1 - Abrir dados
+- 2 - Guardar dados
+- 3 - Ver data
+- 4 - Avançar data
+- 5 - Menu de gestão de utentes
+- 6 - Menu de gestão de obras
+- 7 - Menu de gestão de requisições
+- 0 - Sair
+  Escolha uma opção: 
 \ No newline at end of file
---- 97,100 ----
-  6 - Menu de gestão de obras
-  7 - Menu de gestão de requisições
-  0 - Sair
-! Escolha uma opção: Fim de entrada de dados (R-EOF): pt.tecnico.po.io.RuntimeEOFException: Fim do fluxo de dados de entrada
+--- 7,10 ----

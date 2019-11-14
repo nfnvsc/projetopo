@@ -112,8 +112,6 @@ public class LibraryManager {
     }
   }
 
-
-
   //Metodos Data
   public int getCurrentDate() {
     return _library.getDate();
@@ -124,7 +122,7 @@ public class LibraryManager {
   }
 
   public boolean hasAssociatedFile(){
-    return _filename == null;
+    return _filename != null;
   }
 
   //Menu Gestao de Utentes Metodos
@@ -132,9 +130,11 @@ public class LibraryManager {
     User user = new User(name, email);
     return _library.addUser(user);
   }
+
   public String printUser(int id) {
     return _library.getUser(id).toString();
   }
+
   public void getUsers() {
     Map <Integer, User> sorted = new TreeMap<>(new Comparator<Integer>() {
       @Override
@@ -158,14 +158,30 @@ public class LibraryManager {
 
   //Menu Gestao de Obras Metodos
   public String printWork(int id){
-    return _library.showWork(id);
+    return _library.getWork(id).toString();
   }
 
   public String printAllWorks(){
-    return _library.showAllWorks();
+    int i;
+    int numberWorks = _library.getNumberWorks();
+    String fullString = "";
+    for (i = 0; i < numberWorks; i++){
+      fullString += printWork(i) + "\n";
+    }
+    return fullString;
   }
 
   public String printMatchingWorks(String searchTerm){
-    return _library.showMatchingWorks(searchTerm);
+    int i;
+    String output = "";
+    Work aux_work;
+    int numberWorks = _library.getNumberWorks();
+    for(i = 0; i < numberWorks; i++){
+      aux_work = _library.getWork(i);
+      if (aux_work.searchTerm().toLowerCase().contains(searchTerm.toLowerCase())){
+        output += aux_work.toString() + "\n"; 
+      }
+    }
+    return output;
   }
 }
