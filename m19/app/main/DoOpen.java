@@ -11,6 +11,7 @@ import java.io.IOException;
 import pt.tecnico.po.ui.DialogException;
 // FIXME import other core concepts
 // FIXME import other ui concepts
+import pt.tecnico.po.ui.Display;
 
 /**
  * 4.1.1. Open existing document.
@@ -33,7 +34,8 @@ public class DoOpen extends Command<LibraryManager> {
   @Override
   public final void execute() throws DialogException {
     Scanner scan = new Scanner(System.in);
-    System.out.println(Message.openFile());
+    Display display = new Display();
+    display.popup(Message.openFile());
     _filename = scan.nextLine();
 
     try {

@@ -157,18 +157,20 @@ public class LibraryManager {
   }  
 
   //Menu Gestao de Obras Metodos
-  public String printWork(int id){
+  public String printWork(int id) throws BadEntrySpecificationException{
+    if (id > _library.getNumberWorks()) 
+      throw new BadEntrySpecificationException("Id not found");
     return _library.getWork(id).toString();
   }
 
   public String printAllWorks(){
     int i;
     int numberWorks = _library.getNumberWorks();
-    String fullString = "";
+    String output = "";
     for (i = 0; i < numberWorks; i++){
-      fullString += printWork(i) + "\n";
+      output += _library.getWork(i).toString() + "\n";
     }
-    return fullString;
+    return output;
   }
 
   public String printMatchingWorks(String searchTerm){

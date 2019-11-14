@@ -1,10 +1,14 @@
 package m19.app.works;
 
+import m19.app.exception.NoSuchWorkException;
 import m19.core.LibraryManager;
+import m19.core.exception.BadEntrySpecificationException;
 // FIXME import other core concepts
 // FIXME import ui concepts
 import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.DialogException;
+import pt.tecnico.po.ui.Display;
+
 import java.util.Scanner;
 
 /**
@@ -27,10 +31,17 @@ public class DoDisplayWork extends Command<LibraryManager> {
   @Override
   public final void execute() throws DialogException {
     // FIXME implement command
+    Display display = new Display();
     Scanner scan = new Scanner(System.in);
-    System.out.println(Message.requestWorkId());
+
+    display.popup(Message.requestWorkId());
+    display.clear();
     _workId = scan.nextInt();
-    System.out.println(_receiver.printWork(_workId));
+    try{
+      display.popup(_receiver.printWork(_workId));
+    } catch(BadEntrySpecificationException f){
+      throw new NoSuchWorkException(_workId);
+    }
     
   }
   

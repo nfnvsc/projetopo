@@ -5,6 +5,7 @@ import m19.core.LibraryManager;
 // FIXME import ui concepts
 import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.DialogException;
+import pt.tecnico.po.ui.Display;
 /**
  * 4.3.2. Display all works.
  */
@@ -21,6 +22,8 @@ public class DoDisplayWorks extends Command<LibraryManager> {
   @Override
   public final void execute() {
     // FIXME implement command
-    System.out.println(_receiver.printAllWorks());
+    Display display = new Display();
+    display.popup(_receiver.printAllWorks());
+    //System.out.println();
   }
 }
