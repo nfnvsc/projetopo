@@ -128,9 +128,9 @@ public class LibraryManager {
   }
 
   //Menu Gestao de Utentes Metodos
-  public void registerUser(String name, String email) {
+  public int registerUser(String name, String email) throws BadEntrySpecificationException {
     User user = new User(name, email);
-    _library.addUser(user);
+    return _library.addUser(user);
   }
   public String printUser(int id) {
     return _library.getUser(id).toString();

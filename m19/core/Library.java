@@ -40,10 +40,11 @@ public class Library implements Serializable {
   // FIXME define methods
 
   //Metodos User
-  public void addUser(User user) {
+  public int addUser(User user) {
     user.setUserId(_nextUserId);
     _users.put(user.getId(), user);
     _nextUserId++;
+    return user.getId();
   }
 
   public void addWork(Work work) {
