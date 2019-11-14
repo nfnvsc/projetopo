@@ -3,6 +3,7 @@ package m19.app.main;
 import m19.core.LibraryManager;
 
 import pt.tecnico.po.ui.Command;
+import pt.tecnico.po.ui.Display;
 
 import java.util.Scanner;
 // FIXME import other core concepts
@@ -31,8 +32,9 @@ public class DoAdvanceDate extends Command<LibraryManager> {
   @Override
   public final void execute() {
     // FIXME define method
+    Display display = new Display();
     Scanner scan = new Scanner(System.in);
-    System.out.println(Message.requestDaysToAdvance());
+    display.popup(Message.requestDaysToAdvance());
     _nDays = scan.nextInt();
     _receiver.advanceDays(_nDays);
   }

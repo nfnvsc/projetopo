@@ -1,5 +1,5 @@
 *** tests/A-07-07-M-ok.out	2019-10-28 12:43:38.000000000 +0000
---- tests/A-07-07-M-ok.outhyp	2019-11-14 13:41:38.486803865 +0000
+--- tests/A-07-07-M-ok.outhyp	2019-11-14 14:24:46.758778415 +0000
 ***************
 *** 7,13 ****
   6 - Menu de gestão de obras
@@ -13,7 +13,7 @@
   6 - Menu de gestão de obras
   7 - Menu de gestão de requisições
   0 - Sair
-! Escolha uma opção: Abrir dados: Operação inválida: O ficheiro 'h' não existe.
+! Escolha uma opção: Abrir dados: Operação inválida: O ficheiro 'fsd' não existe.
   Menu Principal
   1 - Abrir dados
   2 - Guardar dados

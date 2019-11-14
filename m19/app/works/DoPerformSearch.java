@@ -4,6 +4,8 @@ import m19.core.LibraryManager;
 // FIXME import other core concepts
 // FIXME import ui concepts
 import pt.tecnico.po.ui.Command;
+import pt.tecnico.po.ui.Display;
+
 import java.util.Scanner;
 /**
  * 4.3.3. Perform search according to miscellaneous criteria.
@@ -25,11 +27,13 @@ public class DoPerformSearch extends Command<LibraryManager> {
   @Override
   public final void execute() {
     // FIXME implement command
+    Display display = new Display();
     Scanner scan = new Scanner(System.in);
-    System.out.println(Message.requestSearchTerm());
+    display.popup(Message.requestSearchTerm());
     _searchTerm = scan.nextLine();
+    display.clear();
 
-    System.out.println(_receiver.printMatchingWorks(_searchTerm));
+    display.popup(_receiver.printMatchingWorks(_searchTerm));
 
 
 
