@@ -10,6 +10,10 @@ public class Dvd extends Work {
         _igac = igac;
     }
     
+    public String searchTerm(){
+        return _director + " " + super.getTitle();
+    }
+
     @Override
     public String toString(){
         return super.toString("DVD") + " - " + _director + " - " + _igac;

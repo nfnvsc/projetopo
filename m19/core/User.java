@@ -1,10 +1,11 @@
 package m19.core;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.sun.nio.sctp.Notification;
 
-public class User {
+public class User implements Serializable{
     private enum UserBehavior {
         NORMAL, CUMPRIDOR, FALTOSO;
     }
@@ -14,6 +15,8 @@ public class User {
     private String _email;
     private ArrayList<Notification> _notifications = new ArrayList<Notification>();
     private UserBehavior _userDescription;
+    private static final long serialVersionUID = 201901101347L;
+
 
     public User(String name, String email) {
         _name = name;

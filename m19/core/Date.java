@@ -1,8 +1,11 @@
 package m19.core;
 
-public class Date {
+import java.io.Serializable;
+
+public class Date implements Serializable{
 
     private int _currentDate;
+    private static final long serialVersionUID = 201901101349L;
 
     public Date() {
         _currentDate = 0;

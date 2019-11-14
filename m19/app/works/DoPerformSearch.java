@@ -29,6 +29,11 @@ public class DoPerformSearch extends Command<LibraryManager> {
     System.out.println(Message.requestSearchTerm());
     _searchTerm = scan.nextLine();
 
+    System.out.println(_receiver.printMatchingWorks(_searchTerm));
+
+
+
+
   }
   
 }

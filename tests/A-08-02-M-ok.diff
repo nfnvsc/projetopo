@@ -1,40 +1,38 @@
 *** tests/A-08-02-M-ok.out	2019-10-28 12:43:38.000000000 +0000
---- tests/A-08-02-M-ok.outhyp	2019-11-13 15:43:29.352739690 +0000
+--- tests/A-08-02-M-ok.outhyp	2019-11-14 13:41:40.250833219 +0000
 ***************
-*** 14,32 ****
+*** 14,45 ****
   4 - Mostrar notificações de utente
   5 - Saldar multa de utente
   0 - Sair
-! Escolha uma opção: Introduza o nome do utente: Introduza o endereço de correio do utente: Novo utente criado com o número 3.
-! Menu de Gestão de Utentes
-  1 - Registar utente
-  2 - Mostrar utente
-  3 - Listar utentes
-  4 - Mostrar notificações de utente
-  5 - Saldar multa de utente
-  0 - Sair
-! Escolha uma opção: 0 - Darth Vader - darth@dark.force.com - NORMAL - ACTIVO
-! 1 - Luke Skywalker - last.jedi@universe.com - NORMAL - ACTIVO
-! 2 - Obi-Wan Kenobi - obiwan@jedi.org - NORMAL - ACTIVO
-! 3 - R2D2 - r2d2@irobots.com - NORMAL - ACTIVO
-! Menu de Gestão de Utentes
-  1 - Registar utente
-  2 - Mostrar utente
-  3 - Listar utentes
---- 14,29 ----
-  4 - Mostrar notificações de utente
-  5 - Saldar multa de utente
-  0 - Sair
-! Escolha uma opção: Menu de Gestão de Utentes
-  1 - Registar utente
-  2 - Mostrar utente
-  3 - Listar utentes
-  4 - Mostrar notificações de utente
-  5 - Saldar multa de utente
-  0 - Sair
-! Escolha uma opção: Número inválido!
-! Escolha uma opção: Número inválido!
-! Escolha uma opção: Menu de Gestão de Utentes
-  1 - Registar utente
-  2 - Mostrar utente
-  3 - Listar utentes
+- Escolha uma opção: Introduza o nome do utente: Introduza o endereço de correio do utente: Novo utente criado com o número 3.
+- Menu de Gestão de Utentes
+- 1 - Registar utente
+- 2 - Mostrar utente
+- 3 - Listar utentes
+- 4 - Mostrar notificações de utente
+- 5 - Saldar multa de utente
+- 0 - Sair
+- Escolha uma opção: 0 - Darth Vader - darth@dark.force.com - NORMAL - ACTIVO
+- 1 - Luke Skywalker - last.jedi@universe.com - NORMAL - ACTIVO
+- 2 - Obi-Wan Kenobi - obiwan@jedi.org - NORMAL - ACTIVO
+- 3 - R2D2 - r2d2@irobots.com - NORMAL - ACTIVO
+- Menu de Gestão de Utentes
+- 1 - Registar utente
+- 2 - Mostrar utente
+- 3 - Listar utentes
+- 4 - Mostrar notificações de utente
+- 5 - Saldar multa de utente
+- 0 - Sair
+- Escolha uma opção: Menu Principal
+- 1 - Abrir dados
+- 2 - Guardar dados
+- 3 - Ver data
+- 4 - Avançar data
+- 5 - Menu de gestão de utentes
+- 6 - Menu de gestão de obras
+- 7 - Menu de gestão de requisições
+- 0 - Sair
+  Escolha uma opção: 
+\ No newline at end of file
+--- 14,17 ----

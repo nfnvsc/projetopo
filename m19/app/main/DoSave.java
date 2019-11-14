@@ -41,11 +41,18 @@ public class DoSave extends Command<LibraryManager> {
     }
 
     try{
-      if (_filename == null)
+      if (_filename == null){
         _receiver.save();
-      else
+        System.out.println("Saved!");
+
+      }
+      else{
         _receiver.saveAs(_filename);
+        System.out.println("SavedAs!");
+
+      }
     }catch(MissingFileAssociationException fnfe){
+      System.out.println("ERROR");
       //nao faz sentido pq a library tem smp um ficheiro associado neste ponto (so se o ficheiro for invalido)
     }catch(IOException e){
       e.printStackTrace();

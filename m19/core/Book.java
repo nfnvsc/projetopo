@@ -3,6 +3,8 @@ package m19.core;
 public class Book extends Work {
     private String _author;
     private String _isbn;
+    //private static final long serialVersionUID = 201901101340L;
+    
 
     public Book(String title, String author, int price, Category category, String isbn, int numberOfCopies) {
         super(price, numberOfCopies, title, category);
@@ -10,9 +12,8 @@ public class Book extends Work {
         _isbn = isbn;
     }
     
-    public String searchTerms(){
-        //por fazer
-        return "";
+    public String searchTerm(){
+        return _author + " " + super.getTitle();
     }
 
     @Override

@@ -7,10 +7,7 @@ import java.io.IOException;
 import m19.core.exception.BadEntrySpecificationException;
 
 // FIXME import other system types
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.TreeMap;
-import java.util.Map;
 import java.util.Hashtable;
 // FIXME import project (core) types if needed
 
@@ -28,7 +25,7 @@ public class Library implements Serializable {
   private int _nextUserId;
   private Date _date;
   private TreeMap<Integer, User> _users = new TreeMap<>();
-  private Hashtable<Integer, ? super Work> _works = new Hashtable<>();
+  private Hashtable<Integer, Work> _works = new Hashtable<>();
 
   // FIXME define contructor(s)
   public Library() {
@@ -68,29 +65,12 @@ public class Library implements Serializable {
     _date.advanceDays(nDays);
   }
 
-  public String showWork(int id){
-    Work work = (Work)_works.get(id);
-    return work.toString();
+  public Work getWork(int id){
+    return _works.get(id);
   }
 
-  public String showAllWorks(){
-    int i;
-    String fullString = "";
-    for (i = 0; i < _nextWorkId; i++){
-      fullString += showWork(i) + "\n";
-    }
-    return fullString;
-  }
-
-  public String showMatchingWorks(String name){
-    int i;
-    //String output;
-    Work aux_work;
-    for(i = 0; i < _nextWorkId; i++){
-      aux_work = (Work)_works.get(i);
-      //(if (aux_work.get)
-    }
-    return "";
+  public int getNumberWorks(){
+    return _nextWorkId - 1;
   }
 
   /**
