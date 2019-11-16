@@ -1,7 +1,5 @@
 package m19.app.main;
 
-import java.util.Scanner;
-
 import m19.core.LibraryManager;
 import m19.app.exception.FileOpenFailedException;
 import pt.tecnico.po.ui.Command;
