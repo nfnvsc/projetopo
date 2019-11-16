@@ -8,6 +8,7 @@ import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.Display;
 import pt.tecnico.po.ui.Input;
 
+import java.util.Scanner;
 
 // FIXME import other core concepts
 // FIXME import other ui concepts
@@ -41,9 +42,7 @@ public class DoSave extends Command<LibraryManager> {
         _form.parse();
         _receiver.saveAs(_filename.value());
       }
-    }catch(MissingFileAssociationException fnfe){
-      //nao faz sentido pq a library tem smp um ficheiro associado neste ponto (so se o ficheiro for invalido)
-    }catch(IOException e){
+    }catch(MissingFileAssociationException | IOException e){
       e.printStackTrace();
     }
     
