@@ -150,10 +150,7 @@ public class LibraryManager {
         User user2 = _library.getUser(key2);
         int compare = user1.getName().compareTo(user2.getName());
         if (compare == 0)
-          if (key1 > key2)
-            return 1;
-          else
-            return -1;
+          return (key1 > key2) ? 1 : -1;
         else
           return compare;
       }
