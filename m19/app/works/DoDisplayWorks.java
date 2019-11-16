@@ -4,8 +4,7 @@ import m19.core.LibraryManager;
 // FIXME import other core concepts
 // FIXME import ui concepts
 import pt.tecnico.po.ui.Command;
-import pt.tecnico.po.ui.DialogException;
-import pt.tecnico.po.ui.Display;
+
 /**
  * 4.3.2. Display all works.
  */

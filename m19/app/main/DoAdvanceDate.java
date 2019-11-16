@@ -5,7 +5,6 @@ import m19.core.LibraryManager;
 import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.Input;
 
-import java.util.Scanner;
 // FIXME import other core concepts
 // FIXME import ui concepts
 

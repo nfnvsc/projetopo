@@ -7,6 +7,7 @@ import java.io.IOException;
 import m19.core.exception.BadEntrySpecificationException;
 
 // FIXME import other system types
+import java.util.Map;
 import java.util.TreeMap;
 import java.util.Hashtable;
 // FIXME import project (core) types if needed
@@ -24,7 +25,7 @@ public class Library implements Serializable {
   private int _nextWorkId;
   private int _nextUserId;
   private Date _date;
-  private TreeMap<Integer, User> _users = new TreeMap<>();
+  private Map<Integer, User> _users = new TreeMap<>();
   private Hashtable<Integer, Work> _works = new Hashtable<>();
 
   // FIXME define contructor(s)
@@ -54,7 +55,7 @@ public class Library implements Serializable {
     return _users.get(id);
   }
 
-  protected TreeMap<Integer, User> getAllUsers(){
+  protected Map<Integer, User> getAllUsers(){
     return _users;
   }
 

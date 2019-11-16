@@ -5,7 +5,6 @@ import m19.core.LibraryManager;
 import m19.core.exception.BadEntrySpecificationException;
 import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.DialogException;
-import pt.tecnico.po.ui.Display;
 import pt.tecnico.po.ui.Input;
 
 // FIXME import other core concepts
@@ -19,7 +18,6 @@ public class DoRegisterUser extends Command<LibraryManager> {
   // FIXME define input fields
   private Input<String> _nome;
   private Input<String> _email;
-  private int _id;
   /**
    * @param receiver
    */
@@ -35,6 +33,7 @@ public class DoRegisterUser extends Command<LibraryManager> {
   @Override
   public final void execute() throws DialogException {
     // FIXME implement command
+    int _id;
     _form.parse();
     try {
       _id = _receiver.registerUser(_nome.value(), _email.value()); // Falta verificar sucesso ou insucesso;  

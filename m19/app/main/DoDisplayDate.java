@@ -3,11 +3,9 @@ package m19.app.main;
 import m19.core.LibraryManager;
 
 import pt.tecnico.po.ui.Command;
-import pt.tecnico.po.ui.Input;
 
 // FIXME import other core concepts
 // FIXME import other ui concepts
-import pt.tecnico.po.ui.Display;
 /**
  * 4.1.2. Display the current date.
  */

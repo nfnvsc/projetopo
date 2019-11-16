@@ -7,10 +7,8 @@ import m19.core.exception.BadEntrySpecificationException;
 // FIXME import ui concepts
 import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.DialogException;
-import pt.tecnico.po.ui.Display;
 import pt.tecnico.po.ui.Input;
 
-import java.util.Scanner;
 
 /**
  * 4.3.1. Display work.

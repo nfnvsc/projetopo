@@ -2,6 +2,7 @@ package m19.core;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.sun.nio.sctp.Notification;
 
@@ -13,7 +14,7 @@ public class User implements Serializable{
     private boolean _isActive;
     private String _name;
     private String _email;
-    private ArrayList<Notification> _notifications = new ArrayList<Notification>();
+    private List<Notification> _notifications = new ArrayList<Notification>();
     private UserBehavior _userDescription;
     private static final long serialVersionUID = 201901101347L;
 
@@ -39,7 +40,7 @@ public class User implements Serializable{
     public void setUserDescription(UserBehavior userDescription) {
         _userDescription = userDescription;
     }
-    protected ArrayList<Notification> getNotifications() {
+    protected List<Notification> getNotifications() {
         return _notifications;
     }
     public int getId(){

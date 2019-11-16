@@ -8,7 +8,6 @@ import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.Display;
 import pt.tecnico.po.ui.Input;
 
-import java.util.Scanner;
 
 // FIXME import other core concepts
 // FIXME import other ui concepts
