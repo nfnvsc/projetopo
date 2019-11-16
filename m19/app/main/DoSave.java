@@ -33,12 +33,10 @@ public class DoSave extends Command<LibraryManager> {
   /** @see pt.tecnico.po.ui.Command#execute() */
   @Override
   public final void execute() {
-    // FIXME implement command
     try{
-      if (_receiver.hasAssociatedFile()){
+      try{
         _receiver.save();
-      }
-      else{
+      } catch(MissingFileAssociationException f){
         _form.parse();
         _receiver.saveAs(_filename.value());
       }

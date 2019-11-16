@@ -126,10 +126,6 @@ public class LibraryManager {
     _library.advanceDate(nDays);
   }
 
-  public boolean hasAssociatedFile(){
-    return _filename != null;
-  }
-
   //Menu Gestao de Utentes Metodos
   public int registerUser(String name, String email) throws BadEntrySpecificationException {
     if (!name.matches(".*[a-zA-Z]+.*") || !email.matches(".*[a-zA-Z]+.*"))
