@@ -14,16 +14,11 @@ import java.io.ObjectInputStream;
 
 
 import m19.core.exception.MissingFileAssociationException;
-import pt.tecnico.po.ui.Display;
 import m19.core.exception.BadEntrySpecificationException;
 import m19.core.exception.ImportFileException;
 
 import java.util.Map;
-import java.util.TreeMap;
-import java.util.List;
 import java.util.Comparator;
-// FIXME import other system types
-// FIXME import other project (core) types
 
 
 /**
@@ -31,17 +26,15 @@ import java.util.Comparator;
  */
 public class LibraryManager {
 
-  private Library _library;  // FIXME initialize this attribute
+  private Library _library;  
 
-  // FIXME define other attributes
   private String _filename;
 
-  // FIXME define contructor(s)
   public LibraryManager(){
     _library = new Library();
     _filename = null;
   }
-  // FIXME define methods
+
   private void saveSerialize() throws MissingFileAssociationException, IOException{
     if (_filename == null) throw new MissingFileAssociationException();
 
@@ -93,7 +86,6 @@ public class LibraryManager {
    * @throws ClassNotFoundException 
    */
   public void load(String filename) throws FileNotFoundException, IOException, ClassNotFoundException {
-    // FIXME implement method
     File file = new File(filename);
     if (!file.exists()) throw new FileNotFoundException();
 

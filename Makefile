@@ -16,5 +16,8 @@ clean:
 	@echo Cleaning...
 	find . -name "*.class" -delete
 
+jar:
+	jar cfm MyJar.jar Manifest.txt `find m19 -name *.class`
+
 run: tecnicofs
 	./tecnicofs
