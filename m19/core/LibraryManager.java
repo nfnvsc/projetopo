@@ -43,6 +43,8 @@ public class LibraryManager {
     ObjectOutputStream out = new ObjectOutputStream(bufferedInputStream);
     out.writeObject(_library);
     out.close();
+    bufferedInputStream.close();
+    fileOutputStream.close();
   }
   /**
    * Serialize the persistent state of this application.
@@ -96,6 +98,8 @@ public class LibraryManager {
 		ObjectInputStream objectInputStream = new ObjectInputStream(bufferedInputStream);
 		Object object = objectInputStream.readObject();
     objectInputStream.close();
+    bufferedInputStream.close();
+    fileInputStream.close();
     _library = (Library) object;
   }
 
