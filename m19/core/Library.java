@@ -3,15 +3,11 @@ package m19.core;
 import java.io.Serializable;
 import java.io.IOException;
 
-//import m19.core.exception.MissingFileAssociationException;
 import m19.core.exception.BadEntrySpecificationException;
 
-// FIXME import other system types
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.HashMap;
-import java.util.Hashtable;
-// FIXME import project (core) types if needed
 
 
 /**

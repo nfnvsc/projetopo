@@ -12,10 +12,6 @@ abstract class Work implements Serializable {
     private Category _category;
     private static final long serialVersionUID = 201901101346L;
 
-   /* public String getDescription() {
-        return 
-    }*/
-
     public Work(int price, int numberOfCopies, String title, Category category) {
         _price = price;
         _numberOfCopies = numberOfCopies;
@@ -42,26 +38,5 @@ abstract class Work implements Serializable {
     }
 
     abstract String searchTerm();
-/*
-    public int getId(){
-        return _id;
-    }
-
-    public int getPrice(){
-        return _price;
-    }
-
-    public int getNumberOfCopies(){
-        return _numberOfCopies;
-    }
-
-    public String getTitle(){
-        return _title;
-    }
-
-    public Category getCategory(){
-        return _category;
-    }
-    */
 
 }

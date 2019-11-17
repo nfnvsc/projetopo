@@ -17,7 +17,7 @@ clean:
 	find . -name "*.class" -delete
 
 jar:
-	jar cfm MyJar.jar Manifest.txt `find m19 -name *.class`
+	jar -cf projetopo.jar `find m19 -name *.java`
 
 run: tecnicofs
 	./tecnicofs

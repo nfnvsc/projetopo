@@ -4,12 +4,10 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.TreeMap;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileInputStream;
-import java.io.BufferedInputStream;
 import java.io.ObjectInputStream;
 
 
@@ -38,13 +36,9 @@ public class LibraryManager {
   private void saveSerialize() throws MissingFileAssociationException, IOException{
     if (_filename == null) throw new MissingFileAssociationException();
 
-    FileOutputStream fileOutputStream = new FileOutputStream(_filename);
-		BufferedOutputStream bufferedInputStream = new BufferedOutputStream(fileOutputStream);
-    ObjectOutputStream out = new ObjectOutputStream(bufferedInputStream);
+    ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(_filename));
     out.writeObject(_library);
     out.close();
-    bufferedInputStream.close();
-    fileOutputStream.close();
   }
   /**
    * Serialize the persistent state of this application.
@@ -55,7 +49,6 @@ public class LibraryManager {
 
    */
   public void save() throws MissingFileAssociationException, IOException {
-    // FIXME implement method 
     saveSerialize();
   }
 
@@ -69,7 +62,6 @@ public class LibraryManager {
    * @throws IOException if some error happen during the serialization of the persistent state
    */
   public void saveAs(String filename) throws MissingFileAssociationException, IOException {
-    // FIXME implement method 
     setFile(filename);
     saveSerialize();
   }
@@ -93,13 +85,9 @@ public class LibraryManager {
 
     setFile(filename);
 
-    FileInputStream fileInputStream = new FileInputStream(filename);
-		BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
-		ObjectInputStream objectInputStream = new ObjectInputStream(bufferedInputStream);
+		ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(filename));
 		Object object = objectInputStream.readObject();
     objectInputStream.close();
-    bufferedInputStream.close();
-    fileInputStream.close();
     _library = (Library) object;
   }
 
