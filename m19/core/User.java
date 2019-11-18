@@ -46,9 +46,6 @@ public class User implements Serializable{
     public int getId(){
         return _id;
     }
-    public String getEmail(){
-        return _email;
-    }
     public String toString() {
         if (_isActive) {
             return String.valueOf(_id) + " - " + _name + " - " + _email +" - " + _userDescription + " - " + "ACTIVO";

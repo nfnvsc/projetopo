@@ -130,6 +130,8 @@ public class LibraryManager {
 
   //Menu Gestao de Utentes Metodos
   public int registerUser(String name, String email) throws BadEntrySpecificationException {
+    if (!name.matches(".*[a-zA-Z]+.*") || !email.matches(".*[a-zA-Z]+.*"))
+      throw new BadEntrySpecificationException("Invalid argumentss");
     User user = new User(name, email);
     return _library.addUser(user);
   }

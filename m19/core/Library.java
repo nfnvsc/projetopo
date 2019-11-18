@@ -70,8 +70,6 @@ public class Library implements Serializable {
    * 
    */ 
   public int addUser(User user) throws BadEntrySpecificationException {
-    if (!user.getName().matches(".*[a-zA-Z]+.*") || !user.getEmail().matches(".*[a-zA-Z]+.*"))
-      throw new BadEntrySpecificationException("Invalid argumentss");
     user.setUserId(_nextUserId);
     _users.put(user.getId(), user);
     _nextUserId++;
