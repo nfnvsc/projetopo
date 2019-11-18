@@ -37,8 +37,13 @@ public class LibraryManager {
     if (_filename == null) throw new MissingFileAssociationException();
 
     ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(_filename));
-    out.writeObject(_library);
-    out.close();
+    try{
+      out.writeObject(_library);
+    } catch(IOException e){
+      throw new IOException();
+    }finally{
+      out.close();
+    }
   }
   /**
    * Serialize the persistent state of this application.
@@ -86,9 +91,18 @@ public class LibraryManager {
     setFile(filename);
 
 		ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(filename));
-		Object object = objectInputStream.readObject();
-    objectInputStream.close();
-    _library = (Library) object;
+    
+    try{
+      Object object = objectInputStream.readObject();
+      _library = (Library) object;
+    } catch(IOException e){
+      throw new IOException();
+    }catch(ClassNotFoundException f){
+      throw new ClassNotFoundException();
+    }finally{
+      objectInputStream.close();
+    }
+
   }
 
   /**
