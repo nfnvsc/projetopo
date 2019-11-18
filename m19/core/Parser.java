@@ -3,7 +3,6 @@ package m19.core;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.FileReader;
-import java.io.Reader;
 
 import m19.core.exception.BadEntrySpecificationException;
 
@@ -51,7 +50,6 @@ public class Parser {
                       Category.valueOf(components[4]), components[5],
                       Integer.parseInt(components[6]));
     _library.addWork(dvd);
-    // add dvd to _library
   }
 
   private void parseBook(String[] components, String line) throws BadEntrySpecificationException {
@@ -62,7 +60,6 @@ public class Parser {
                          Category.valueOf(components[4]), components[5],
                          Integer.parseInt(components[6]));
     _library.addWork(book);
-    // add book to _library
   }
 
   private void parseUser(String[] components, String line) throws BadEntrySpecificationException {
@@ -70,8 +67,6 @@ public class Parser {
       throw new BadEntrySpecificationException("Wrong number of fields (2) in " + line);
     User user = new User(components[1], components[2]);
     _library.addUser(user);
-    // add user to _library
-    // Pode ser necessário ter um try-catch adicional neste método
   }
 
 }

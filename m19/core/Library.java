@@ -18,7 +18,6 @@ public class Library implements Serializable {
   /** Serial number for serialization. */
   private static final long serialVersionUID = 201901101348L;
 
-  // FIXME define attributes
   /**
    * The Id to be assigned to the next Work
    */
@@ -40,16 +39,15 @@ public class Library implements Serializable {
    * 
    * @see User#getId()
    */
-  private Map<Integer, User> _users = new TreeMap<>();
+  private Map<Integer, User> _users;
 
   /**
    * A map of all the works in the Library (indexed by WorkId)
    * 
    * @see Work#getId()
    */
-  private Map<Integer, Work> _works = new HashMap<>();
+  private Map<Integer, Work> _works;
 
-  // FIXME define contructor(s)
   /**
    * Makes a {@code Library} instace 
    */
@@ -57,9 +55,10 @@ public class Library implements Serializable {
     _nextUserId = 0;
     _nextWorkId = 0;
     _date = new Date();
+    _users = new TreeMap<>();
+    _works = new HashMap<>();
   }
 
-  // FIXME define methods
 
   //Metodos User
   /**
@@ -70,7 +69,9 @@ public class Library implements Serializable {
    * @see         User
    * 
    */ 
-  public int addUser(User user) {
+  public int addUser(User user) throws BadEntrySpecificationException {
+    if (!user.getName().matches(".*[a-zA-Z]+.*") || !user.getEmail().matches(".*[a-zA-Z]+.*"))
+      throw new BadEntrySpecificationException("Invalid argumentss");
     user.setUserId(_nextUserId);
     _users.put(user.getId(), user);
     _nextUserId++;

@@ -82,7 +82,7 @@ public class LibraryManager {
   public void load(String filename) throws FileNotFoundException, IOException, ClassNotFoundException {
     File file = new File(filename);
     if (!file.exists()) throw new FileNotFoundException();
-
+    
     setFile(filename);
 
 		ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(filename));
@@ -116,8 +116,6 @@ public class LibraryManager {
 
   //Menu Gestao de Utentes Metodos
   public int registerUser(String name, String email) throws BadEntrySpecificationException {
-    if (!name.matches(".*[a-zA-Z]+.*") || !email.matches(".*[a-zA-Z]+.*"))
-      throw new BadEntrySpecificationException("Valid args");
     User user = new User(name, email);
     return _library.addUser(user);
   }
