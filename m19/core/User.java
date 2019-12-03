@@ -28,7 +28,7 @@ public class User implements Serializable{
     public void setUserId(int id) {
         _id = id;
     }
-    protected boolean isActive() {
+    public boolean isActive() {
         return _isActive;
     }
     public String getName(){

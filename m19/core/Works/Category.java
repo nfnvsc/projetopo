@@ -1,4 +1,4 @@
-package m19.core;
+package m19.core.Works;
 
 public enum Category {
     REFERENCE("Referência"),

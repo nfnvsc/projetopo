@@ -1,8 +1,8 @@
-package m19.core;
+package m19.core.Works;
 
 import java.io.Serializable;
 
-abstract class Work implements Serializable {
+abstract public class Work implements Serializable {
 
     private int _id;
     private int _price;
@@ -37,6 +37,6 @@ abstract class Work implements Serializable {
         return _title;
     }
 
-    abstract String searchTerm();
+    abstract public String searchTerm();
 
 }
