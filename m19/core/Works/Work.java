@@ -37,6 +37,18 @@ abstract public class Work implements Serializable {
         return _title;
     }
 
+    public int getAvaliableCopies(){
+        return _copiesAvaliable; 
+    }
+
+    public Category getCategory(){
+        return _category;
+    }
+
+    public int getPrice(){
+        return _price;
+    }
+
     abstract public String searchTerm();
 
 }

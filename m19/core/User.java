@@ -7,7 +7,7 @@ import java.util.List;
 import com.sun.nio.sctp.Notification;
 
 public class User implements Serializable{
-    private enum UserBehavior {
+    public enum UserBehavior {
         NORMAL, CUMPRIDOR, FALTOSO;
     }
     private int _id;
