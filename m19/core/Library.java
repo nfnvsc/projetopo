@@ -7,6 +7,8 @@ import java.io.IOException;
 
 import m19.core.exception.BadEntrySpecificationException;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.HashMap;
@@ -51,6 +53,13 @@ public class Library implements Serializable {
   private Map<Integer, Work> _works;
 
   /**
+   * A list of all the requests in the Library
+   * 
+   * @see Requests
+   */
+  private List<Requests> _requests;
+
+  /**
    * Makes a {@code Library} instace 
    */
   public Library() {
@@ -59,6 +68,7 @@ public class Library implements Serializable {
     _date = new Date();
     _users = new TreeMap<>();
     _works = new HashMap<>();
+    _requests = new ArrayList<>();
   }
 
 
@@ -134,7 +144,7 @@ public class Library implements Serializable {
    * @param id    the id of a Work
    * @return      the Work associated to that Id
    */
-  public Work getWork(int id){
+  public Work getWork(int id) {
     return _works.get(id);
   }
 
@@ -143,7 +153,7 @@ public class Library implements Serializable {
    * 
    * @return      the number of Works
    */
-  public int getNumberWorks(){
+  public int getNumberWorks() {
     return _nextWorkId - 1;
   }
 
@@ -161,4 +171,9 @@ public class Library implements Serializable {
     parser.parseFile(filename);
   }
 
+  public void registerRequest(Requests request) {
+    _requests.add(request);
+    //FALTA ADICIONAR A DEADLINE PARA ISSO E NECESSARIO STATE DO USER
+    request.getUser().addUserRequest(request);
+  }
 }

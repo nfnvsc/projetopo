@@ -6,14 +6,17 @@ import java.util.List;
 
 import com.sun.nio.sctp.Notification;
 
+
 public class User implements Serializable{
     public enum UserBehavior {
         NORMAL, CUMPRIDOR, FALTOSO;
     }
+
     private int _id;
     private boolean _isActive;
     private String _name;
     private String _email;
+    private List<Requests> _requests = new ArrayList<>();
     private List<Notification> _notifications = new ArrayList<Notification>();
     private UserBehavior _userDescription;
     private static final long serialVersionUID = 201901101347L;
@@ -52,5 +55,8 @@ public class User implements Serializable{
         } else {
             return String.valueOf(_id) + " - " + _name + " - " + _email + " - " + _userDescription + " - " + "SUSPENSO"; //Falta adicionar multa
         }
+    }
+    public void addUserRequest(Requests request) {
+        _requests.add(request);
     }
 }

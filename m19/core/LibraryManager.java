@@ -1,6 +1,7 @@
 package m19.core;
 
 import m19.core.Works.*;
+import m19.core.Rules.*;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -194,5 +195,14 @@ public class LibraryManager {
       }
     }
     return output;
+  }
+
+  //Menu Gestao de Requisicoes
+  public void requestWork(int userID, int workID) {
+    User user = _library.getUser(userID);
+    Work work = _library.getWork(workID);
+    // Fazer check rules e dar throw check(user, work) se for a rule 3 ainda nao sei se e suposto guardar a request na mesma com o user e o work para depois notificar, mas suponho que seja
+    Requests request = new Requests(user, work);
+    _library.registerRequest(request);
   }
 }
