@@ -1,6 +1,6 @@
 package m19.core.Rules;
 import m19.core.Works.Work;
-import m19.core.Users.*;
+import m19.core.Users.User;
 
 public class CheckMaxRequestedWorks implements Rule{
     int _id = 4;
