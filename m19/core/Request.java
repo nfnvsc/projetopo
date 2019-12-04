@@ -7,13 +7,13 @@ import m19.core.Works.*;
 /*
  * Mediator class between Users and Works
  */
-public class Requests {
+public class Request {
     
     private int _deadline; 
     private User _user;
     private Work _work;
 
-    public Requests(User user, Work work) {
+    public Request(User user, Work work) {
         _user = user;
         _work = work;
     }

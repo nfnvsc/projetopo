@@ -3,7 +3,7 @@ package m19.app.requests;
 import m19.core.LibraryManager;
 import pt.tecnico.po.ui.Command;
 
-/** 4.4. Requests menu. */
+/** 4.4. Request menu. */
 public class Menu extends pt.tecnico.po.ui.Menu {
 
   /**

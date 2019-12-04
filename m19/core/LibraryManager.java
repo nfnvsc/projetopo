@@ -203,7 +203,7 @@ public class LibraryManager {
     User user = _library.getUser(userID);
     Work work = _library.getWork(workID);
     // Fazer check rules e dar throw check(user, work) se for a rule 3 ainda nao sei se e suposto guardar a request na mesma com o user e o work para depois notificar, mas suponho que seja
-    Requests request = new Requests(user, work);
+    Request request = new Request(user, work);
     _library.registerRequest(request);
   }
 }

@@ -14,7 +14,7 @@ public class User implements Serializable{
     private boolean _isActive;
     private String _name;
     private String _email;
-    private List<Requests> _requests = new ArrayList<>();
+    private List<Request> _requests = new ArrayList<>();
     private List<Notification> _notifications = new ArrayList<Notification>();
     private Behavior _userBehavior;
     private static final long serialVersionUID = 201901101347L;
@@ -57,7 +57,7 @@ public class User implements Serializable{
             return String.valueOf(_id) + " - " + _name + " - " + _email + " - " + _userBehavior.toString() + " - " + "SUSPENSO"; //Falta adicionar multa
         }
     }
-    public void addUserRequest(Requests request) {
+    public void addUserRequest(Request request) {
         _requests.add(request);
     }
 }

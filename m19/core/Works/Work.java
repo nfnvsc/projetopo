@@ -1,6 +1,6 @@
 package m19.core.Works;
 
-import m19.core.Requests;
+import m19.core.Request;
 import java.io.Serializable;
 
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 abstract public class Work implements Serializable {
 
-    private List<Requests> _requests = new ArrayList<>();
+    private List<Request> _requests = new ArrayList<>();
     private int _id;
     private int _price;
     private int _numberOfCopies;
@@ -54,7 +54,7 @@ abstract public class Work implements Serializable {
         return _price;
     }
     
-    public void addRequest(Requests request) {
+    public void addRequest(Request request) {
         _requests.add(request);
         _copiesAvaliable--;
     }

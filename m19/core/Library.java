@@ -56,9 +56,9 @@ public class Library implements Serializable {
   /**
    * A list of all the requests in the Library
    * 
-   * @see Requests
+   * @see Request
    */
-  private List<Requests> _requests;
+  private List<Request> _requests;
 
   /**
    * Makes a {@code Library} instace 
@@ -172,7 +172,7 @@ public class Library implements Serializable {
     parser.parseFile(filename);
   }
 
-  public void registerRequest(Requests request) {
+  public void registerRequest(Request request) {
     _requests.add(request);
     //FALTA ADICIONAR A DEADLINE PARA ISSO E NECESSARIO STATE DO USER
     request.getUser().addUserRequest(request);
