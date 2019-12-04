@@ -129,12 +129,13 @@ public class LibraryManager {
   }
 
   public void advanceDays(int nDays) {
-    _library.advanceDate(nDays);
+    if (nDays > 0) 
+      _library.advanceDate(nDays);
   }
 
   //Menu Gestao de Utentes Metodos
   public int registerUser(String name, String email) throws BadEntrySpecificationException {
-    if (!name.matches(".*[a-zA-Z]+.*") || !email.matches(".*[a-zA-Z]+.*"))
+    if (!name.matches(".*[a-zA-Z]+.*") || !email.matches(".*[a-zA-Z0-9]+.*"))
       throw new BadEntrySpecificationException("Invalid argumentss");
     User user = new User(name, email);
     return _library.addUser(user);
@@ -169,7 +170,7 @@ public class LibraryManager {
 
   //Menu Gestao de Obras Metodos
   public String printWork(int id) throws BadEntrySpecificationException{
-    if (id > _library.getNumberWorks()) 
+    if (id > _library.getNumberWorks() || id < 0) 
       throw new BadEntrySpecificationException("Id not found");
     return _library.getWork(id).toString();
   }
@@ -202,6 +203,14 @@ public class LibraryManager {
   public void requestWork(int userID, int workID) {
     User user = _library.getUser(userID);
     Work work = _library.getWork(workID);
+
+    RulesWraper rulesWraper = new RulesWraper();
+    int val;
+
+    while((val = rulesWraper.checkRule(user, work)) == 0); //-1 se deu certo
+
+    //if (val != -1) throw EXCEPTION(id da regra)
+
     // Fazer check rules e dar throw check(user, work) se for a rule 3 ainda nao sei se e suposto guardar a request na mesma com o user e o work para depois notificar, mas suponho que seja
     Request request = new Request(user, work);
     _library.registerRequest(request);
