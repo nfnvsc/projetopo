@@ -1,6 +1,7 @@
 package m19.core;
 
-import m19.core.Works.*;
+import m19.core.Works.Work;
+import m19.core.Users.User;
 
 import java.io.Serializable;
 import java.io.IOException;

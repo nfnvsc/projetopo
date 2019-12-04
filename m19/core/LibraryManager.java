@@ -2,6 +2,7 @@ package m19.core;
 
 import m19.core.Works.*;
 import m19.core.Rules.*;
+import m19.core.Users.*;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
