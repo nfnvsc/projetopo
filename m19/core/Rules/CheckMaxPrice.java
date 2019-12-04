@@ -1,10 +1,13 @@
 package m19.core.Rules;
 import m19.core.Works.Work;
-import m19.core.User;
-import m19.core.User.UserBehavior;
+import m19.core.Users.*;
 
-public class CheckMaxPrice extends Rule{
-    public boolean checkRule(User user, Work work){
-        return (user.getDescription() == UserBehavior.CUMPRIDOR) ? true : (work.getPrice() <= 25);
+public class CheckMaxPrice implements Rule{
+    int _id = 6;
+
+    public int checkRule(RulesWraper wraper, User user, Work work){
+        wraper.set_state(null);
+        int maxRequestPrice = user.getUserBehavior().getMaxRequestPrice();
+        return (maxRequestPrice == -1 || maxRequestPrice > work.getPrice()) ? 0 : this._id;
     }
 }
