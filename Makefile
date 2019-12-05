@@ -19,5 +19,3 @@ clean:
 jar:
 	jar -cf projetopo.jar `find m19 -name *.java`
 
-run: tecnicofs
-	./tecnicofs
