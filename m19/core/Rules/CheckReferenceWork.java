@@ -5,7 +5,7 @@ import m19.core.Works.Category;
 import m19.core.Users.User;
 
 public class CheckReferenceWork implements Rule{
-    int _id = 5;
+    private final int _id = 5;
 
     public int checkRule(RulesWraper wraper, User user, Work work){
         wraper.set_state(new CheckMaxPrice());

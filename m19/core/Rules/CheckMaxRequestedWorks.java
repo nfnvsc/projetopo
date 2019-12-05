@@ -3,7 +3,7 @@ import m19.core.Works.Work;
 import m19.core.Users.User;
 
 public class CheckMaxRequestedWorks implements Rule{
-    int _id = 4;
+    private final int _id = 4;
 
     public int checkRule(RulesWraper wraper, User user, Work work){
         wraper.set_state(new CheckReferenceWork());
