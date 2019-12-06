@@ -1,6 +1,8 @@
 package m19.core.Users;
 
 import m19.core.*;
+import m19.core.exception.BadEntrySpecificationException;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +10,9 @@ import java.util.List;
 import com.sun.nio.sctp.Notification;
 
 
-public class User implements Serializable{
+public class User implements Serializable {
 
+    private int _fine;
     private int _id;
     private boolean _isActive;
     private String _name;
@@ -25,6 +28,15 @@ public class User implements Serializable{
         _email = email;
         _isActive = true;
         _userBehavior = null;
+    }
+    public void clearFine() {
+        _fine = 0;
+    }
+    public int getFine() {
+        return _fine;
+    }
+    public void updateFine(int fine) {
+        _fine += fine;
     }
     public void setUserId(int id) {
         _id = id;
@@ -50,6 +62,9 @@ public class User implements Serializable{
     public int getNumberRequests() {
         return _requests.size();
     }
+    public List<Request> getRequests() {
+        return _requests;
+    }
     public String toString() {
         if (_isActive) {
             return String.valueOf(_id) + " - " + _name + " - " + _email +" - " + _userBehavior.toString() + " - " + "ACTIVO";
@@ -59,5 +74,8 @@ public class User implements Serializable{
     }
     public void addUserRequest(Request request) {
         _requests.add(request);
+    }
+    public void removeUserRequest(Request request) throws BadEntrySpecificationException {
+        if (!(_requests.remove(request))) throw new BadEntrySpecificationException("bese");
     }
 }

@@ -26,4 +26,8 @@ public class Cumpridor implements Behavior {
             return 30;
         }
     }
+    
+    public boolean canPayFine() {
+        return false;
+    }
 }

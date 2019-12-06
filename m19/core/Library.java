@@ -177,4 +177,7 @@ public class Library implements Serializable {
     //FALTA ADICIONAR A DEADLINE PARA ISSO E NECESSARIO STATE DO USER
     request.getUser().addUserRequest(request);
   }
+  public void registerReturn(Request request) throws BadEntrySpecificationException {
+    request.getUser().removeUserRequest(request);
+  }
 }

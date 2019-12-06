@@ -6,4 +6,5 @@ public interface Behavior {
     public int getDeadline(int AvailableCopies);
     public int getMaxRequestPrice();
     public int getMaxRequests();
+    public boolean canPayFine();
 }

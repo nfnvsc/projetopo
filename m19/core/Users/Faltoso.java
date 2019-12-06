@@ -19,4 +19,7 @@ public class Faltoso implements Behavior {
     public int getMaxRequestPrice() {
         return 25;
     }
+    public boolean canPayFine() {
+        return true;
+    }
 }

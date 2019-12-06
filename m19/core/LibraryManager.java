@@ -200,7 +200,7 @@ public class LibraryManager {
   }
 
   //Menu Gestao de Requisicoes
-  public void requestWork(int userID, int workID) {
+  public int requestWork(int userID, int workID) {
     User user = _library.getUser(userID);
     Work work = _library.getWork(workID);
 
@@ -211,8 +211,23 @@ public class LibraryManager {
 
     //if (val != -1) throw EXCEPTION(id da regra)
 
-    // Fazer check rules e dar throw check(user, work) se for a rule 3 ainda nao sei se e suposto guardar a request na mesma com o user e o work para depois notificar, mas suponho que seja
     Request request = new Request(user, work);
     _library.registerRequest(request);
+    return request.getDeadline();
+
+  }
+
+  public void payFine(int userID) throws BadEntrySpecificationException {
+    if(!(_library.getUser(userID).isActive())) {
+      _library.getUser(userID).clearFine();
+    } else {
+      throw new BadEntrySpecificationException("bese");
+    }
+  }
+
+  public int returnWork(int userID, int workID) throws BadEntrySpecificationException {
+    Request request = new Request(_library.getUser(userID), _library.getWork(workID));
+    _library.registerReturn(request);
+    return _library.getUser(userID).getFine();
   }
 }

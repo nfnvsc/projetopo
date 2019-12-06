@@ -1,7 +1,7 @@
 package m19.core;
 
 /*
- * Mediator class between Users and Works
+ * Observer class for users
  */
 public class Notification {
 
