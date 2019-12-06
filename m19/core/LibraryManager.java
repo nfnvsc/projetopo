@@ -14,7 +14,6 @@ import java.io.FileOutputStream;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 
-
 import m19.core.exception.MissingFileAssociationException;
 import m19.core.exception.BadEntrySpecificationException;
 import m19.core.exception.ImportFileException;
@@ -198,6 +197,8 @@ public class LibraryManager {
     }
     return output;
   }
+
+
 
   //Menu Gestao de Requisicoes
   public void requestWork(int userID, int workID) {

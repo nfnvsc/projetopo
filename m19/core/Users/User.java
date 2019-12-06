@@ -1,21 +1,19 @@
 package m19.core.Users;
 
 import m19.core.*;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.nio.sctp.Notification;
-
-
-public class User implements Serializable{
+public class User implements Serializable, Entity{
 
     private int _id;
     private boolean _isActive;
     private String _name;
     private String _email;
     private List<Request> _requests = new ArrayList<>();
-    private List<Notification> _notifications = new ArrayList<Notification>();
+    private List<String> _inbox = new ArrayList<String>();
     private Behavior _userBehavior;
     private static final long serialVersionUID = 201901101347L;
 
@@ -59,5 +57,9 @@ public class User implements Serializable{
     }
     public void addUserRequest(Request request) {
         _requests.add(request);
+    }
+
+    public void addToInbox(String message){
+        _inbox.add(message);
     }
 }
