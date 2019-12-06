@@ -7,8 +7,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.nio.sctp.Notification;
-
 public class User implements Serializable, Entity{
 
     private int _fine;
@@ -26,7 +24,7 @@ public class User implements Serializable, Entity{
         _name = name;
         _email = email;
         _isActive = true;
-        _userBehavior = null;
+        setUserBehavior(new Normal());
     }
     public void clearFine() {
         _fine = 0;
