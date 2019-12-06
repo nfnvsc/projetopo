@@ -197,11 +197,11 @@ public class LibraryManager {
     }
     return output;
   }
-
+/*
   public void createNotification(int userId, int workId, int flag){
     _library.addNotification(workId, userId);
   }
-
+*/
   //Menu Gestao de Requisicoes
   public int requestWork(int userID, int workID) throws BadEntrySpecificationException {
     User user = _library.getUser(userID);

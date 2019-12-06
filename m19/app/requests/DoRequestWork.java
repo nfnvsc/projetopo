@@ -31,7 +31,7 @@ public class DoRequestWork extends Command<LibraryManager> {
   /** @see pt.tecnico.po.ui.Command#execute() */
   @Override
   public final void execute() throws DialogException {
-    int value;
+    int value = 0;
     // FIXME implement command
     _form.parse();
     try {
@@ -43,10 +43,12 @@ public class DoRequestWork extends Command<LibraryManager> {
         throw new RuleFailedException(_userID.value(), _workID.value(), Integer.parseInt(bese.getMessage()));
       }
     }
+/*
     if(_decision.value().equals("s")) {
       _receiver.createNotification(_userID.value(), _workID.value(), 1);
       return;
     }
+*/
     _display.popup(Message.workReturnDay(_workID.value(), value));
   }
 }
