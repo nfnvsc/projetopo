@@ -6,6 +6,7 @@ public class Entrega implements Notification{
     
     private Work _work;
     private int _id = 1;
+    private static final long serialVersionUID = 201901101348L;
 
     public Entrega(Work work){
         _work = work;

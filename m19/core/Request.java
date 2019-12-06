@@ -1,4 +1,6 @@
 package m19.core;
+import java.io.Serializable;
+
 import m19.core.Users.User;
 
 
@@ -7,11 +9,12 @@ import m19.core.Works.*;
 /*
  * Mediator class between Users and Works
  */
-public class Request {
+public class Request implements Serializable {
     
     private int _deadline; 
     private User _user;
     private Work _work;
+    private static final long serialVersionUID = 201901101348L;
 
     public Request(User user, Work work) {
         _user = user;

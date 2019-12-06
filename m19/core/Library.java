@@ -180,11 +180,11 @@ public class Library implements Serializable {
     Parser parser = new Parser(this);
     parser.parseFile(filename);
   }
-
+/*
   public void addNotification(int userId, Notification notification){
     _notificationManager.registerNotificationObserver(new NotificationObserver(getUser(userId), notification));
   }
-
+*/
   public void registerRequest(Request request) {
     _requests.add(request);
     _notificationManager.notifyObservers(new Requisicao(request.getWork()));
