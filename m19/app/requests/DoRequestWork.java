@@ -1,6 +1,8 @@
 package m19.app.requests;
 
+import m19.app.exception.RuleFailedException;
 import m19.core.LibraryManager;
+import m19.core.exception.BadEntrySpecificationException;
 import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.DialogException;
 // FIXME import other core concepts
@@ -32,7 +34,8 @@ public class DoRequestWork extends Command<LibraryManager> {
     _form.parse();
     try {
       _receiver.requestWork(_userID.value(), _workID.value());
-    }
+    } catch (BadEntrySpecificationException bese) {//rule 3
+      throw new RuleFailedException(_userID, _workID, ruleIndex);
   }
 
 }

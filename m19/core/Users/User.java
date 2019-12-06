@@ -9,8 +9,7 @@ import java.util.List;
 
 import com.sun.nio.sctp.Notification;
 
-
-public class User implements Serializable {
+public class User implements Serializable, Entity{
 
     private int _fine;
     private int _id;
@@ -18,7 +17,7 @@ public class User implements Serializable {
     private String _name;
     private String _email;
     private List<Request> _requests = new ArrayList<>();
-    private List<Notification> _notifications = new ArrayList<Notification>();
+    private List<String> _inbox = new ArrayList<String>();
     private Behavior _userBehavior;
     private static final long serialVersionUID = 201901101347L;
 
@@ -53,9 +52,6 @@ public class User implements Serializable {
     public void setUserBehavior(Behavior behavior) {
         this._userBehavior = behavior;
     }
-    protected List<Notification> getNotifications() {
-        return _notifications;
-    }
     public int getId(){
         return _id;
     }
@@ -77,5 +73,8 @@ public class User implements Serializable {
     }
     public void removeUserRequest(Request request) throws BadEntrySpecificationException {
         if (!(_requests.remove(request))) throw new BadEntrySpecificationException("bese");
+    }
+    public void addToInbox(String message){
+        _inbox.add(message);
     }
 }
