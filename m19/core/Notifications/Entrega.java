@@ -5,8 +5,9 @@ import m19.core.Works.Work;
 public class Entrega implements Notification{
     
     private Work _work;
+    private int _id = 1;
 
-    Entrega(Work work){
+    public Entrega(Work work){
         _work = work;
     }
 
@@ -15,6 +16,10 @@ public class Entrega implements Notification{
     }
 
     public int getId(){
+        return _id;
+    }
+
+    public int getWorkId(){
         return _work.getId();
     }
 }

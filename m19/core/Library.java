@@ -2,6 +2,7 @@ package m19.core;
 
 import m19.core.Works.Work;
 import m19.core.Users.User;
+import m19.core.Notifications.*;
 
 import java.io.Serializable;
 import java.io.IOException;
@@ -61,6 +62,13 @@ public class Library implements Serializable {
   private List<Request> _requests;
 
   /**
+   * A list of all the requests in the Library
+   * 
+   * @see Request
+   */
+  private NotificationManager _notificationManager;
+
+  /**
    * Makes a {@code Library} instace 
    */
   public Library() {
@@ -70,6 +78,7 @@ public class Library implements Serializable {
     _users = new TreeMap<>();
     _works = new HashMap<>();
     _requests = new ArrayList<>();
+    _notificationManager = new NotificationManager();
   }
 
 
@@ -172,12 +181,21 @@ public class Library implements Serializable {
     parser.parseFile(filename);
   }
 
+  public void addNotification(int userId, Notification notification){
+    _notificationManager.registerNotificationObserver(new NotificationObserver(getUser(userId), notification));
+  }
+
   public void registerRequest(Request request) {
     _requests.add(request);
+    _notificationManager.notifyObservers(new Requisicao(request.getWork()));
     //FALTA ADICIONAR A DEADLINE PARA ISSO E NECESSARIO STATE DO USER
     request.getUser().addUserRequest(request);
+
   }
+
   public void registerReturn(Request request) throws BadEntrySpecificationException {
     request.getUser().removeUserRequest(request);
+    _notificationManager.notifyObservers(new Entrega(request.getWork()));
+
   }
 }

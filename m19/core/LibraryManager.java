@@ -198,7 +198,9 @@ public class LibraryManager {
     return output;
   }
 
-
+  public void createNotification(int userId, int workId, int flag){
+    _library.addNotification(workId, userId);
+  }
 
   //Menu Gestao de Requisicoes
   public int requestWork(int userID, int workID) {
@@ -211,7 +213,7 @@ public class LibraryManager {
     while((val = rulesWraper.checkRule(user, work)) == 0); //-1 se deu certo
 
     //if (val != -1) throw EXCEPTION(id da regra)
-
+    
     Request request = new Request(user, work);
     _library.registerRequest(request);
     return request.getDeadline();

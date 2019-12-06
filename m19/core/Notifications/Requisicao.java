@@ -5,8 +5,9 @@ import m19.core.Works.Work;
 public class Requisicao implements Notification{
 
     private Work _work;
+    private int _id = 2;
 
-    Requisicao(Work work){
+    public Requisicao(Work work){
         _work = work;
     }
 
@@ -15,6 +16,10 @@ public class Requisicao implements Notification{
     }
 
     public int getId(){
+        return _id;
+    }
+
+    public int getWorkId(){
         return _work.getId();
     }
 }
