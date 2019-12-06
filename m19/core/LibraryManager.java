@@ -201,7 +201,7 @@ public class LibraryManager {
 
 
   //Menu Gestao de Requisicoes
-  public int requestWork(int userID, int workID) {
+  public int requestWork(int userID, int workID) throws BadEntrySpecificationException {
     User user = _library.getUser(userID);
     Work work = _library.getWork(workID);
 
@@ -210,7 +210,7 @@ public class LibraryManager {
 
     while((val = rulesWraper.checkRule(user, work)) == 0); //-1 se deu certo
 
-    //if (val != -1) throw EXCEPTION(id da regra)
+    if (val != -1) throw new BadEntrySpecificationException(Integer.toString(val));
 
     Request request = new Request(user, work);
     _library.registerRequest(request);
