@@ -21,9 +21,8 @@ public class NotificationObserver implements Observer, Serializable{
     }
 
     @Override
-    public void update(Observable notificationManager, Object input) {
-        Notification notificationReceived = (Notification) input;
-        if(_notification.getId() == notificationReceived.getId() && _notification.getWorkId() == notificationReceived.getWorkId()) 
+    public void update(Observable notificationManager, Object o) {
+        if(_notification.equals(o)) 
             _entity.addToInbox(_notification.writeNotification());
     }
 }

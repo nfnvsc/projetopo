@@ -7,11 +7,12 @@ import java.io.Serializable;
 abstract public class Notification implements Serializable{
     
     private Work _work;
-    private int _id;
+    private final int _id;
     private static final long serialVersionUID = 201901101348L;
 
     Notification(Work work, int id){
         _work = work;
+        _id = id;
     }
 
     public int getId(){
@@ -26,4 +27,16 @@ abstract public class Notification implements Serializable{
         return _work.toString();
     }
 
+    @Override
+    public boolean equals(Object o) { 
+  
+        if (o == this) return true; 
+  
+        if (!(o instanceof Notification)) return false; 
+          
+        Notification c = (Notification) o; 
+          
+        return c.getId() == this.getId() && c.getWorkId() == this.getWorkId();
+
+    }
 }
