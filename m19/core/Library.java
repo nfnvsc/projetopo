@@ -198,4 +198,7 @@ public class Library implements Serializable {
     _notificationManager.notifyObservers(new Entrega(request.getWork()));
 
   }
+  public List<Request> getRequests() {
+    return _requests;
+  }
 }

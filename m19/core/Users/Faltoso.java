@@ -22,4 +22,7 @@ public class Faltoso implements Behavior {
     public boolean canPayFine() {
         return true;
     }
+    public void checkBehavior() {
+        return true;
+    }
 }

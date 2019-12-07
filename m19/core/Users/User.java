@@ -9,6 +9,7 @@ import java.util.List;
 
 public class User implements Serializable, Entity{
 
+    private int _returns;
     private int _fine;
     private int _id;
     private boolean _isActive;
@@ -69,10 +70,30 @@ public class User implements Serializable, Entity{
     public void addUserRequest(Request request) {
         _requests.add(request);
     }
+    public void checkState() {
+        for (Request r : _requests) {
+            if(r.getDeadline() < 0) {
+                _isActive = false;
+                return;
+            }
+        }
+        _isActive = true;
+
+    }
     public void removeUserRequest(Request request) throws BadEntrySpecificationException {
         if (!(_requests.remove(request))) throw new BadEntrySpecificationException("bese");
     }
-    public void addToInbox(String message){
+    public void addToInbox(String message) {
         _inbox.add(message);
+    }
+    public void updateReturns(int inTime) {
+        if (inTime == 1) {
+            _returns++;
+        } else {
+            _returns--;
+        }
+    }
+    public int getReturns() {
+        return _returns;
     }
 }

@@ -127,9 +127,16 @@ public class LibraryManager {
     return _library.getDate();
   }
 
+  public void updateRequests(int nDays) {
+    for (Request r : _library.getRequests()) {
+      r.updateDeadline(nDays);
+    }
+  }
   public void advanceDays(int nDays) {
-    if (nDays > 0) 
+    if (nDays > 0) {
       _library.advanceDate(nDays);
+      updateRequests(nDays);
+    }
   }
 
   //Menu Gestao de Utentes Metodos

@@ -7,4 +7,5 @@ public interface Behavior {
     public int getMaxRequestPrice();
     public int getMaxRequests();
     public boolean canPayFine();
+    public void checkBehavior(User user);
 }

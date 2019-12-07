@@ -30,4 +30,7 @@ public class Cumpridor implements Behavior {
     public boolean canPayFine() {
         return false;
     }
+    public void checkBehavior(User user) {
+        
+    }
 }
