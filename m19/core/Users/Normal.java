@@ -4,10 +4,6 @@ public class Normal implements Behavior {
     private final int _maxRequests = 3;
     private static final long serialVersionUID = 201901101348L;
     
-  public void doBehavior(User user) {
-        user.setUserBehavior(this);
-    }
-
     public String toString() {
         return "NORMAL";
     }
@@ -28,5 +24,14 @@ public class Normal implements Behavior {
     }
     public boolean canPayFine() {
         return false;
+    }
+    public void checkBehavior(UserBehavior currentBehavior, User user) {
+        if (user.getLastReturns() == -3) {
+            currentBehavior.setBehavior(new Faltoso());
+            user.resetLastReturns();
+        } else if (user.getLastReturns() == 5) {
+            currentBehavior.setBehavior(new Cumpridor());
+            user.resetLastReturns();
+        }
     }
 }

@@ -3,9 +3,6 @@ package m19.core.Users;
 public class Cumpridor implements Behavior {
     private final int _maxRequests = 5;
 
-    public void doBehavior(User user) {
-        user.setUserBehavior(this);
-    }
     public String toString() {
         return "CUMPRIDOR";
     }
@@ -30,7 +27,8 @@ public class Cumpridor implements Behavior {
     public boolean canPayFine() {
         return false;
     }
-    public void checkBehavior(User user) {
-        
+
+    public void checkBehavior(UserBehavior currentBehavior, User user) {
+        // User pode deixar de ser cumpridor?
     }
 }

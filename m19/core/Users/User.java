@@ -17,7 +17,7 @@ public class User implements Serializable{
     private String _email;
     private List<Request> _requests = new ArrayList<>();
     private List<String> _inbox = new ArrayList<String>();
-    private Behavior _userBehavior;
+    private UserBehavior _userBehavior;
     private static final long serialVersionUID = 201901101347L;
 
 
@@ -25,13 +25,14 @@ public class User implements Serializable{
         _name = name;
         _email = email;
         _isActive = true;
-        setUserBehavior(new Normal());
+        _userBehavior = new UserBehavior();
     }
     public void clearFine() {
         _fine = 0;
     }
-    public int getFine() {
-        return _fine;
+    public int getFine(int date, int deadline) {
+        _fine = (date - deadline) * 5;
+        return _fine > 0 ? _fine : 0;
     }
     public void updateFine(int fine) {
         _fine += fine;
@@ -46,11 +47,9 @@ public class User implements Serializable{
         return _name;
     }
     public Behavior getUserBehavior() {
-        return _userBehavior;
+        return _userBehavior.getCurrentBehavior();
     }
-    public void setUserBehavior(Behavior behavior) {
-        this._userBehavior = behavior;
-    }
+
     public int getId(){
         return _id;
     }
@@ -62,9 +61,9 @@ public class User implements Serializable{
     }
     public String toString() {
         if (_isActive) {
-            return String.valueOf(_id) + " - " + _name + " - " + _email +" - " + _userBehavior.toString() + " - " + "ACTIVO";
+            return String.valueOf(_id) + " - " + _name + " - " + _email +" - " + _userBehavior.getCurrentBehavior().toString() + " - " + "ACTIVO";
         } else {
-            return String.valueOf(_id) + " - " + _name + " - " + _email + " - " + _userBehavior.toString() + " - " + "SUSPENSO"; //Falta adicionar multa
+            return String.valueOf(_id) + " - " + _name + " - " + _email + " - " + _userBehavior.getCurrentBehavior().toString() + " - " + "SUSPENSO"; //Falta adicionar multa
         }
     }
     public void addUserRequest(Request request) {
@@ -80,20 +79,31 @@ public class User implements Serializable{
         _isActive = true;
 
     }
-    public void removeUserRequest(Request request) throws BadEntrySpecificationException {
+    public void removeUserRequest(Request request, int date) throws BadEntrySpecificationException {
         if (!(_requests.remove(request))) throw new BadEntrySpecificationException("bese");
+        int inTime = date - request.getDeadline();
+        updateReturns(inTime);
+        checkState();
+        checkBehavior();
     }
+    
     public void addToInbox(String message) {
         _inbox.add(message);
     }
     public void updateReturns(int inTime) {
-        if (inTime == 1) {
+        if (inTime < 0) {
             _returns++;
         } else {
             _returns--;
         }
     }
-    public int getReturns() {
+    public int getLastReturns() {
         return _returns;
+    }
+    public void resetLastReturns() {
+        _returns = 0;
+    }
+    public void checkBehavior() {
+        _userBehavior.checkBehavior(this);
     }
 }

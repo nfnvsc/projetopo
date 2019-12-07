@@ -133,10 +133,15 @@ public class LibraryManager {
       r.updateDeadline(nDays);
     }
   }
+
+  //Avanca n Dias e faz update as deadlines verificando o estado dos users apos o update
   public void advanceDays(int nDays) {
     if (nDays > 0) {
       _library.advanceDate(nDays);
       updateRequests(nDays);
+      for (Map.Entry<Integer, User> entry : _library.getAllUsers().entrySet()) {
+        entry.getValue().checkState();
+      }
     }
   }
 
@@ -244,6 +249,6 @@ public class LibraryManager {
   public int returnWork(int userID, int workID) throws BadEntrySpecificationException {
     Request request = new Request(_library.getUser(userID), _library.getWork(workID));
     _library.registerReturn(request);
-    return _library.getUser(userID).getFine();
+    return _library.getUser(userID).getFine(_library.getDate(), request.getDeadline());
   }
 }

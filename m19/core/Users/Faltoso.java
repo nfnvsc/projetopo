@@ -4,10 +4,8 @@ public class Faltoso implements Behavior {
     private final int _maxRequests = 1;
     private final int _deadline = 2;
 
-    public void doBehavior(User user) {
-        user.setUserBehavior(this);
-    }
-    public String toString(){
+
+    public String toString() {
         return "FALTOSO";
     }
     public int getMaxRequests() {
@@ -22,7 +20,11 @@ public class Faltoso implements Behavior {
     public boolean canPayFine() {
         return true;
     }
-    public void checkBehavior() {
-        return true;
-    }
+    
+    public void checkBehavior(UserBehavior currentBehavior, User user) {
+        if (user.getLastReturns() == 3) {
+            currentBehavior.setBehavior(new Normal());
+            user.resetLastReturns();
+        }
+    }    
 }

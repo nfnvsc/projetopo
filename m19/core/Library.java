@@ -194,7 +194,7 @@ public class Library implements Serializable {
   }
 
   public void registerReturn(Request request) throws BadEntrySpecificationException {
-    request.getUser().removeUserRequest(request);
+    request.getUser().removeUserRequest(request, _date.getCurrentDate());
     _notificationManager.notifyObservers(new Entrega(request.getWork()));
 
   }

@@ -3,11 +3,10 @@ package m19.core.Users;
 import java.io.Serializable;
 
 public interface Behavior extends Serializable {
-    public void doBehavior(User user);
     public String toString();
     public int getDeadline(int AvailableCopies);
     public int getMaxRequestPrice();
     public int getMaxRequests();
     public boolean canPayFine();
-    public void checkBehavior(User user);
+    public void checkBehavior(UserBehavior currentBehavior, User user);
 }
