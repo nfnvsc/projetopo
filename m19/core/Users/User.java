@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User implements Serializable, Entity{
+public class User implements Serializable{
 
     private int _returns;
     private int _fine;

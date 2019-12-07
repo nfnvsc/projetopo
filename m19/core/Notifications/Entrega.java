@@ -2,24 +2,15 @@ package m19.core.Notifications;
 
 import m19.core.Works.Work;
 
-public class Entrega implements Notification{
-    
-    private Work _work;
-    private int _id = 1;
+public class Entrega extends Notification{
 
     public Entrega(Work work){
-        _work = work;
+        super(work, 1);
     }
 
+    @Override
     public String writeNotification(){
-        return "ENTREGA: " + _work.toString();
+        return "ENTREGA: " + super.writeNotification();
     }
 
-    public int getId(){
-        return _id;
-    }
-
-    public int getWorkId(){
-        return _work.getId();
-    }
 }

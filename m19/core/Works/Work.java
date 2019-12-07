@@ -17,7 +17,7 @@ abstract public class Work implements Serializable {
     private Category _category;
     private static final long serialVersionUID = 201901101346L;
 
-    public Work(int price, int numberOfCopies, String title, Category category) {
+    Work(int price, int numberOfCopies, String title, Category category) {
         _price = price;
         _numberOfCopies = numberOfCopies;
         _copiesAvaliable = numberOfCopies;

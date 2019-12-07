@@ -1,6 +1,7 @@
 package m19.core;
 
 import m19.core.Works.*;
+import m19.core.Notifications.*;
 import m19.core.Rules.*;
 import m19.core.Users.*;
 
@@ -204,11 +205,15 @@ public class LibraryManager {
     }
     return output;
   }
-/*
-  public void createNotification(int userId, int workId, int flag){
-    _library.addNotification(workId, userId);
+
+  public void createRequisicao(int userId, int workId){
+    _library.addNotification(_library.getUser(userId), new Requisicao(_library.getWork(workId)));
   }
-*/
+
+  public void createEntrega(int userId, int workId){
+    _library.addNotification(_library.getUser(userId), new Entrega(_library.getWork(workId)));
+  }
+
   //Menu Gestao de Requisicoes
   public int requestWork(int userID, int workID) throws BadEntrySpecificationException {
     User user = _library.getUser(userID);
@@ -223,6 +228,7 @@ public class LibraryManager {
 
     Request request = new Request(user, work);
     _library.registerRequest(request);
+    
     return request.getDeadline();
 
   }

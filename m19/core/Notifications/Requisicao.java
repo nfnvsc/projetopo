@@ -2,24 +2,15 @@ package m19.core.Notifications;
 
 import m19.core.Works.Work;
 
-public class Requisicao implements Notification{
-
-    private Work _work;
-    private int _id = 2;
-
+public class Requisicao extends Notification{
+    
     public Requisicao(Work work){
-        _work = work;
+        super(work, 2);
     }
 
+    @Override
     public String writeNotification(){
-        return "REQUISICÃO: " + _work.toString();
+        return "REQUISICÃO: " + super.writeNotification();
     }
 
-    public int getId(){
-        return _id;
-    }
-
-    public int getWorkId(){
-        return _work.getId();
-    }
 }

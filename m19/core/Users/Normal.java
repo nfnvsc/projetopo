@@ -2,7 +2,9 @@ package m19.core.Users;
 
 public class Normal implements Behavior {
     private final int _maxRequests = 3;
-    public void doBehavior(User user) {
+    private static final long serialVersionUID = 201901101348L;
+    
+  public void doBehavior(User user) {
         user.setUserBehavior(this);
     }
 
