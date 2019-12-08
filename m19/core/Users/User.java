@@ -25,16 +25,17 @@ public class User implements Serializable, Entity{
         _isActive = true;
         _userBehavior = new UserBehavior();
     }
+    public int getFine() {
+        return _fine;
+    }
     public void clearFine() {
         _fine = 0;
         _isActive = true;
     }
-    public int getFine(int date, int deadline) {
-        _fine = (date - deadline);
-        return _fine > 0 ? (_fine*5) : 0;
-    }
+
     public void updateFine(int fine) {
         _fine += fine;
+        _isActive = false;
     }
     public void setUserId(int id) {
         _id = id;
@@ -92,7 +93,6 @@ public class User implements Serializable, Entity{
         updateReturns(inTime);
         checkState(date);
         checkBehavior();
-        System.out.println(_userBehavior.getCurrentBehavior().toString());
         return userRequest.getDeadline();
     }
     
