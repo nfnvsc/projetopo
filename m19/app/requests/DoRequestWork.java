@@ -1,5 +1,7 @@
 package m19.app.requests;
 
+import m19.app.exception.NoSuchUserException;
+import m19.app.exception.NoSuchWorkException;
 import m19.app.exception.RuleFailedException;
 import m19.core.LibraryManager;
 import m19.core.exception.BadEntrySpecificationException;
@@ -35,20 +37,20 @@ public class DoRequestWork extends Command<LibraryManager> {
     try {
       value = _receiver.requestWork(_userID.value(), _workID.value());
       _display.popup(Message.workReturnDay(_workID.value(), value));
-
-    } catch (BadEntrySpecificationException bese) {
-
-        if (Integer.parseInt(bese.getMessage()) == 3) {
+    } catch (NoSuchUserException nsue) {
+      throw new NoSuchUserException(_userID.value());
+    } catch (NoSuchWorkException nswe) {
+      throw new NoSuchWorkException(_workID.value());
+    } catch (RuleFailedException rfe) {
+        if (Integer.parseInt(rfe.getMessage()) == 3) {
           _decision = _form.addStringInput(Message.requestReturnNotificationPreference());
           _form.parse();
-
           if(_decision.value().equals("s")) {
             _receiver.createDevolucaoNotification(_userID.value(), _workID.value());
             return;
-        }
-
-      } else {
-        throw new RuleFailedException(_userID.value(), _workID.value(), Integer.parseInt(bese.getMessage()));
+          }
+        } else {
+        throw new RuleFailedException(_userID.value(), _workID.value(), Integer.parseInt(rfe.getMessage()));
       }
     }
   }

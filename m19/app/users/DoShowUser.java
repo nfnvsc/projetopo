@@ -29,7 +29,7 @@ public class DoShowUser extends Command<LibraryManager> {
     _form.parse();
     try {
       _display.popup(_receiver.printUser(_id.value()));
-    } catch (BadEntrySpecificationException bese) {
+    } catch (NoSuchUserException bese) {
       throw new NoSuchUserException(_id.value());
     }
   }

@@ -1,5 +1,6 @@
 package m19.app.works;
 
+import m19.app.exception.NoSuchWorkException;
 import m19.core.LibraryManager;
 
 import pt.tecnico.po.ui.Command;
@@ -11,6 +12,7 @@ import pt.tecnico.po.ui.Input;
 public class DoPerformSearch extends Command<LibraryManager> {
 
   private Input<String> _searchTerm;
+
   /**
    * @param m
    */
@@ -19,9 +21,12 @@ public class DoPerformSearch extends Command<LibraryManager> {
     _searchTerm = _form.addStringInput(Message.requestSearchTerm());
   }
 
-  /** @see pt.tecnico.po.ui.Command#execute() */
+  /**
+   * @throws NoSuchWorkException
+   * @see pt.tecnico.po.ui.Command#execute()
+   */
   @Override
-  public final void execute() {
+  public final void execute() throws NoSuchWorkException {
     _form.parse();
     _display.popup(_receiver.printMatchingWorks(_searchTerm.value()));
 

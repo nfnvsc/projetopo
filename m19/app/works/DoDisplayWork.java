@@ -29,7 +29,7 @@ public class DoDisplayWork extends Command<LibraryManager> {
     _form.parse();
     try{
       _display.popup(_receiver.printWork(_workId.value()));
-    } catch(BadEntrySpecificationException f){
+    } catch(NoSuchWorkException f){
       throw new NoSuchWorkException(_workId.value());
     }
     

@@ -9,6 +9,9 @@ import java.io.Serializable;
 import java.io.IOException;
 
 import m19.core.exception.BadEntrySpecificationException;
+import m19.app.exception.NoSuchUserException;
+import m19.app.exception.NoSuchWorkException;
+import m19.app.exception.WorkNotBorrowedByUserException;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -107,7 +110,7 @@ public class Library implements Serializable {
   /**
    * Add Work to the Library TreeMap
    * 
-   * @param Work  the uwork that is meant to be add to the Library database
+   * @param Work  the work that is meant to be add to the Library database
    * @see         Work
    * 
    */
@@ -123,8 +126,10 @@ public class Library implements Serializable {
    * @param id    the id of a User 
    * @return      the user associated to that id
    */
-  public User getUser(int id) {
-    return _users.get(id);
+  public User getUser(int id) throws NoSuchUserException {
+    User user;
+    if ((user = _users.get(id)) != null) return user;
+    throw new NoSuchUserException(id);
   }
 
   /**
@@ -160,8 +165,10 @@ public class Library implements Serializable {
    * @param id    the id of a Work
    * @return      the Work associated to that Id
    */
-  public Work getWork(int id) {
-    return _works.get(id);
+  public Work getWork(int id) throws NoSuchWorkException { //throw NoSuchUserWork
+    Work work; 
+    if ((work = _works.get(id)) != null) return work;
+    throw new NoSuchWorkException(id);
   }
 
   /**
@@ -194,18 +201,19 @@ public class Library implements Serializable {
   public void registerRequest(Request request) {
     _requests.add(request);
     _notificationManager.notifyObservers(new Requisicao(request.getWork()));
-    //FALTA ADICIONAR A DEADLINE PARA ISSO E NECESSARIO STATE DO USER
+    request.setDeadline(request.getUser().getUserBehavior().getDeadline(request.getWork().getAvaliableCopies()));
     request.getUser().addUserRequest(request);
 
   }
 
-  public void registerReturn(Request request) throws BadEntrySpecificationException {
+  public void registerReturn(Request request) throws WorkNotBorrowedByUserException {
     request.getUser().removeUserRequest(request, _date.getCurrentDate());
+    _requests.remove(request);
     _notificationManager.notifyObservers(new Devolucao(request.getWork()));
 
   }
 
-  public int checkRules(int userId, int workId){
+  public int checkRules(int userId, int workId) throws NoSuchUserException, NoSuchWorkException {
     int value;
     _rulesWraper.resetState();
 

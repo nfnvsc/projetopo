@@ -2,7 +2,7 @@ package m19.core.Users;
 
 import m19.core.*;
 import m19.core.exception.BadEntrySpecificationException;
-
+import m19.app.exception.WorkNotBorrowedByUserException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -78,8 +78,8 @@ public class User implements Serializable{
         _isActive = true;
 
     }
-    public void removeUserRequest(Request request, int date) throws BadEntrySpecificationException {
-        if (!(_requests.remove(request))) throw new BadEntrySpecificationException("bese");
+    public void removeUserRequest(Request request, int date) throws WorkNotBorrowedByUserException {
+        if (!(_requests.remove(request))) throw new WorkNotBorrowedByUserException(request.getWork().getId(), _id);
         int inTime = date - request.getDeadline();
         updateReturns(inTime);
         checkState();

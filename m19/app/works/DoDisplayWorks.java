@@ -1,5 +1,6 @@
 package m19.app.works;
 
+import m19.app.exception.NoSuchWorkException;
 import m19.core.LibraryManager;
 
 import pt.tecnico.po.ui.Command;
@@ -16,9 +17,12 @@ public class DoDisplayWorks extends Command<LibraryManager> {
     super(Label.SHOW_WORKS, receiver);
   }
 
-  /** @see pt.tecnico.po.ui.Command#execute() */
+  /**
+   * @throws NoSuchWorkException
+   * @see pt.tecnico.po.ui.Command#execute()
+   */
   @Override
-  public final void execute() {
+  public final void execute() throws NoSuchWorkException {
     _display.addLine(_receiver.printAllWorks());
     _display.display();
   }
