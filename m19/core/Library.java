@@ -3,6 +3,7 @@ package m19.core;
 import m19.core.Works.Work;
 import m19.core.Users.User;
 import m19.core.Notifications.*;
+import m19.core.Rules.RulesWraper;
 
 import java.io.Serializable;
 import java.io.IOException;
@@ -68,6 +69,7 @@ public class Library implements Serializable {
    */
   private NotificationManager _notificationManager;
 
+  private RulesWraper _rulesWraper;
   /**
    * Makes a {@code Library} instace 
    */
@@ -79,6 +81,7 @@ public class Library implements Serializable {
     _works = new HashMap<>();
     _requests = new ArrayList<>();
     _notificationManager = new NotificationManager();
+    _rulesWraper = new RulesWraper();
   }
 
 
@@ -195,9 +198,19 @@ public class Library implements Serializable {
 
   public void registerReturn(Request request) throws BadEntrySpecificationException {
     request.getUser().removeUserRequest(request, _date.getCurrentDate());
-    _notificationManager.notifyObservers(new Entrega(request.getWork()));
+    _notificationManager.notifyObservers(new Devolucao(request.getWork()));
 
   }
+
+  public int checkRules(int userId, int workId){
+    int value;
+    _rulesWraper.resetState();
+
+    while((value = _rulesWraper.checkRule(getUser(userId), getWork(workId))) == 0);
+
+    return value;
+  }
+  
   public List<Request> getRequests() {
     return _requests;
   }

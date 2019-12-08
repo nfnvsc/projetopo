@@ -211,27 +211,28 @@ public class LibraryManager {
     return output;
   }
 
-  public void createRequisicao(int userId, int workId){
+  public void createRequisicaoNotification(int userId, int workId){
     _library.addNotification(_library.getUser(userId), new Requisicao(_library.getWork(workId)));
   }
 
-  public void createEntrega(int userId, int workId){
-    _library.addNotification(_library.getUser(userId), new Entrega(_library.getWork(workId)));
+  public void createDevolucaoNotification(int userId, int workId){
+    _library.addNotification(_library.getUser(userId), new Devolucao(_library.getWork(workId)));
+  }
+
+  public String printUserNotifications(int id) throws BadEntrySpecificationException{
+    if (_library.getUser(id) == null) {
+      throw new BadEntrySpecificationException("Id not found");
+    }
+    return _library.getUser(id).checkInbox();
   }
 
   //Menu Gestao de Requisicoes
   public int requestWork(int userID, int workID) throws BadEntrySpecificationException {
-    User user = _library.getUser(userID);
-    Work work = _library.getWork(workID);
-
-    RulesWraper rulesWraper = new RulesWraper();
     int val;
+    if ((val = _library.checkRules(userID, workID)) != -1) 
+      throw new BadEntrySpecificationException(Integer.toString(val));
 
-    while((val = rulesWraper.checkRule(user, work)) == 0); //-1 se deu certo
-
-    if (val != -1) throw new BadEntrySpecificationException(Integer.toString(val));
-
-    Request request = new Request(user, work);
+    Request request = new Request(_library.getUser(userID),_library.getWork(workID));
     _library.registerRequest(request);
     
     return request.getDeadline();

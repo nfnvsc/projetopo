@@ -23,7 +23,6 @@ public class DoRequestWork extends Command<LibraryManager> {
    */
   public DoRequestWork(LibraryManager receiver) {
     super(Label.REQUEST_WORK, receiver);
-    // FIXME initialize input fields
     _userID = _form.addIntegerInput(Message.requestUserId());
     _workID = _form.addIntegerInput(Message.requestWorkId());
   }
@@ -32,23 +31,25 @@ public class DoRequestWork extends Command<LibraryManager> {
   @Override
   public final void execute() throws DialogException {
     int value = 0;
-    // FIXME implement command
     _form.parse();
     try {
-    value = _receiver.requestWork(_userID.value(), _workID.value());
+      value = _receiver.requestWork(_userID.value(), _workID.value());
+      _display.popup(Message.workReturnDay(_workID.value(), value));
+
     } catch (BadEntrySpecificationException bese) {
-      if (Integer.parseInt(bese.getMessage()) == 3) {
-        _decision = _form.addStringInput(Message.requestReturnNotificationPreference());
+
+        if (Integer.parseInt(bese.getMessage()) == 3) {
+          _decision = _form.addStringInput(Message.requestReturnNotificationPreference());
+          _form.parse();
+
+          if(_decision.value().equals("s")) {
+            _receiver.createDevolucaoNotification(_userID.value(), _workID.value());
+            return;
+        }
+
       } else {
         throw new RuleFailedException(_userID.value(), _workID.value(), Integer.parseInt(bese.getMessage()));
       }
     }
-/*
-    if(_decision.value().equals("s")) {
-      _receiver.createNotification(_userID.value(), _workID.value(), 1);
-      return;
-    }
-*/
-    _display.popup(Message.workReturnDay(_workID.value(), value));
   }
 }

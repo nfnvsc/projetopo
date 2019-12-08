@@ -5,6 +5,7 @@ import m19.core.exception.BadEntrySpecificationException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class User implements Serializable{
@@ -19,7 +20,6 @@ public class User implements Serializable{
     private List<String> _inbox = new ArrayList<String>();
     private UserBehavior _userBehavior;
     private static final long serialVersionUID = 201901101347L;
-
 
     public User(String name, String email) {
         _name = name;
@@ -105,5 +105,18 @@ public class User implements Serializable{
     }
     public void checkBehavior() {
         _userBehavior.checkBehavior(this);
+    }
+
+    public String checkInbox(){
+        String outString = "";
+        Iterator<String> iter = _inbox.iterator(); 
+  
+        while (iter.hasNext()) { 
+            outString += iter.next() + "\n"; 
+        }
+
+        _inbox.clear(); //reset the inbox
+
+        return outString;
     }
 }

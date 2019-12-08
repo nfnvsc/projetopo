@@ -2,9 +2,9 @@ package m19.core.Notifications;
 
 import m19.core.Works.Work;
 
-public class Entrega extends Notification{
+public class Devolucao extends Notification{
 
-    public Entrega(Work work){
+    public Devolucao(Work work){
         super(work, 1);
     }
 
