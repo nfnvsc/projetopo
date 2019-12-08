@@ -30,6 +30,9 @@ public class Cumpridor implements Behavior {
     }
 
     public void checkBehavior(UserBehavior currentBehavior, User user) {
-        // User pode deixar de ser cumpridor?
+        if (user.getLastReturns() == -3) {
+            currentBehavior.setBehavior(new Faltoso());
+            user.resetLastReturns();
+        }
     }
 }

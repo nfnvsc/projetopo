@@ -27,6 +27,7 @@ public class User implements Serializable, Entity{
     }
     public void clearFine() {
         _fine = 0;
+        _isActive = true;
     }
     public int getFine(int date, int deadline) {
         _fine = (date - deadline);
@@ -69,7 +70,7 @@ public class User implements Serializable, Entity{
     }
     public void checkState(int date) {
         for (Request r : _requests) {
-            if(r.getDeadline() < date) {
+            if(r.getDeadline() < date || _fine > 0) {
                 _isActive = false;
                 return;
             }
@@ -86,6 +87,7 @@ public class User implements Serializable, Entity{
         updateReturns(inTime);
         checkState(date);
         checkBehavior();
+        System.out.println(_userBehavior.getCurrentBehavior().toString());
         return userRequest.getDeadline();
     }
     

@@ -20,8 +20,8 @@ public class Request implements Serializable {
         _user = user;
         _work = work;
     }
-    public void setDeadline(int deadline) {
-        _deadline = deadline;
+    public void setDeadline(int deadline, int date) {
+        _deadline = deadline + date;
     }
     public User getUser() {
         return _user;
