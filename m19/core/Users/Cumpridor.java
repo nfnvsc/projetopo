@@ -13,11 +13,11 @@ public class Cumpridor implements Behavior {
     public int getMaxRequestPrice() {
         return -1;
     }
-    public int getDeadline(int AvailableCopies) {
-        if (AvailableCopies == 1) {
+    public int getDeadline(int NumberofCopies) {
+        if (NumberofCopies == 1) {
             return 8;
         }
-        else if (AvailableCopies <= 5) {
+        else if (NumberofCopies <= 5) {
             return 15;
         }
         else {

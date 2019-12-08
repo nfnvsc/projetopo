@@ -191,7 +191,7 @@ public class Library implements Serializable {
   }
 
   public void registerRequest(Request request) {
-    request.setDeadline(request.getUser().getUserBehavior().getDeadline(request.getWork().getAvaliableCopies()), _date.getCurrentDate());
+    request.setDeadline(request.getUser().getUserBehavior().getDeadline(request.getWork().getNumberOfCopies()), _date.getCurrentDate());
     _requests.add(request);
     _notificationManager.notifyObservers(new Requisicao(request.getWork()));
     request.getUser().addUserRequest(request);

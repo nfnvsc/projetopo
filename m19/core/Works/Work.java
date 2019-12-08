@@ -28,7 +28,9 @@ abstract public class Work implements Serializable {
     public String toString(String type){
         return String.valueOf(_id) +  " - " + _copiesAvaliable + " de " + _numberOfCopies + " - " + type + " - " + _title + " - " + String.valueOf(_price) + " - " +  _category.getDescription();
     }
-
+    public int getNumberOfCopies() {
+        return _numberOfCopies;
+    }
     
     public void setWorkId(int id){
         _id = id;
