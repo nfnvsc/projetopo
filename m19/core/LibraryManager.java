@@ -271,10 +271,7 @@ public class LibraryManager {
 
     Request request = new Request(user, work);
 
-    //work.incrementCopiesAvaliable();
-
     int deadline = _library.registerReturn(request);
-
 
     int workFine = (_library.getDate() - deadline) * 5;
 
