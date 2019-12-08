@@ -23,26 +23,30 @@ public class DoReturnWork extends Command<LibraryManager> {
    */
   public DoReturnWork(LibraryManager receiver) {
     super(Label.RETURN_WORK, receiver);
-
-    _userID = _form.addIntegerInput(Message.requestUserId());
-    _workID = _form.addIntegerInput(Message.requestWorkId());
   }
 
   /** @see pt.tecnico.po.ui.Command#execute() */
   @Override
   public final void execute() throws DialogException {
     int value;
+    _form.clear();
+    _userID = _form.addIntegerInput(Message.requestUserId());
+    _workID = _form.addIntegerInput(Message.requestWorkId());
     _form.parse();
+
     try {
       value = _receiver.returnWork(_userID.value(), _workID.value());
     } catch (WorkNotBorrowedByUserException wnkbbuse) {
         throw new WorkNotBorrowedByUserException(_workID.value(), _userID.value());
     }
+    
     if (value != 0) {
       _display.popup(Message.showFine(_userID.value(), value));
+
       _form.clear();
       _decision = _form.addStringInput(Message.requestFinePaymentChoice());
       _form.parse();
+
       if (_decision.value().equals("s"))
         try {
           _receiver.payFine(_userID.value());

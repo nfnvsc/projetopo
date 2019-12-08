@@ -15,7 +15,6 @@ import pt.tecnico.po.ui.Input;
  */
 public class DoRequestWork extends Command<LibraryManager> {
 
-  // FIXME define input fields
   private Input<Integer> _userID;
   private Input<Integer> _workID;
   private Input<String> _decision;
@@ -24,14 +23,15 @@ public class DoRequestWork extends Command<LibraryManager> {
    */
   public DoRequestWork(LibraryManager receiver) {
     super(Label.REQUEST_WORK, receiver);
-    _userID = _form.addIntegerInput(Message.requestUserId());
-    _workID = _form.addIntegerInput(Message.requestWorkId());
   }
 
   /** @see pt.tecnico.po.ui.Command#execute() */
   @Override
   public final void execute() throws DialogException {
     int value = 0;
+    _form.clear();
+    _userID = _form.addIntegerInput(Message.requestUserId());
+    _workID = _form.addIntegerInput(Message.requestWorkId());
     _form.parse();
     try {
       value = _receiver.requestWork(_userID.value(), _workID.value());
@@ -53,5 +53,6 @@ public class DoRequestWork extends Command<LibraryManager> {
         throw rfe;
       }
     }
+
   }
 }
