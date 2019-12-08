@@ -1,5 +1,6 @@
 package m19.app.users;
 
+import m19.app.exception.NoSuchUserException;
 import m19.core.LibraryManager;
 import pt.tecnico.po.ui.Command;
 //import pt.tecnico.po.ui.DialogException;
@@ -18,9 +19,12 @@ public class DoShowUsers extends Command<LibraryManager> {
     super(Label.SHOW_USERS, receiver);
   }
 
-  /** @see pt.tecnico.po.ui.Command#execute() */
+  /**
+   * @throws NoSuchUserException
+   * @see pt.tecnico.po.ui.Command#execute()
+   */
   @Override
-  public final void execute() {
+  public final void execute() throws NoSuchUserException {
     // FIXME implement command
     _display.addLine(_receiver.getUsers());
     _display.display();

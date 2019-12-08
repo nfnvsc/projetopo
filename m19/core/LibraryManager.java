@@ -15,6 +15,11 @@ import java.io.FileOutputStream;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 
+import m19.app.exception.NoSuchUserException;
+import m19.app.exception.NoSuchWorkException;
+import m19.app.exception.RuleFailedException;
+import m19.app.exception.UserIsActiveException;
+import m19.app.exception.WorkNotBorrowedByUserException;
 import m19.core.exception.MissingFileAssociationException;
 import m19.core.exception.BadEntrySpecificationException;
 import m19.core.exception.ImportFileException;
@@ -22,40 +27,43 @@ import m19.core.exception.ImportFileException;
 import java.util.Map;
 import java.util.Comparator;
 
-
 /**
  * The façade class.
  */
 public class LibraryManager {
 
-  private Library _library;  
+  private Library _library;
 
   private String _filename;
 
-  public LibraryManager(){
+  public LibraryManager() {
     _library = new Library();
     _filename = null;
   }
 
-  private void saveSerialize() throws MissingFileAssociationException, IOException{
-    if (_filename == null) throw new MissingFileAssociationException();
+  private void saveSerialize() throws MissingFileAssociationException, IOException {
+    if (_filename == null)
+      throw new MissingFileAssociationException();
 
     ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(_filename));
-    try{
+    try {
       out.writeObject(_library);
-    } catch(IOException e){
+    } catch (IOException e) {
       throw new IOException();
-    }finally{
+    } finally {
       out.close();
     }
   }
+
   /**
    * Serialize the persistent state of this application.
    * 
-   * @throws MissingFileAssociationException if the name of the file to store the persistent
-   *         state has not been set yet.
-   * @throws IOException if some error happen during the serialization of the persistent state
-
+   * @throws MissingFileAssociationException if the name of the file to store the
+   *                                         persistent state has not been set
+   *                                         yet.
+   * @throws IOException                     if some error happen during the
+   *                                         serialization of the persistent state
+   * 
    */
   public void save() throws MissingFileAssociationException, IOException {
     saveSerialize();
@@ -66,54 +74,61 @@ public class LibraryManager {
    * 
    * @param filename the name of the target file
    *
-   * @throws MissingFileAssociationException if the name of the file to store the persistent
-   *         is not a valid one.
-   * @throws IOException if some error happen during the serialization of the persistent state
+   * @throws MissingFileAssociationException if the name of the file to store the
+   *                                         persistent is not a valid one.
+   * @throws IOException                     if some error happen during the
+   *                                         serialization of the persistent state
    */
   public void saveAs(String filename) throws MissingFileAssociationException, IOException {
     setFile(filename);
     saveSerialize();
   }
 
-  public void setFile(String filename){
+  public void setFile(String filename) {
     _filename = filename;
   }
 
   /**
    * Recover the previously serialized persitent state of this application.
    * 
-   * @param filename the name of the file containing the perssitente state to recover
+   * @param filename the name of the file containing the perssitente state to
+   *                 recover
    *
-   * @throws IOException if there is a reading error while processing the file
-   * @throws FileNotFoundException if the file does not exist
-   * @throws ClassNotFoundException 
+   * @throws IOException            if there is a reading error while processing
+   *                                the file
+   * @throws FileNotFoundException  if the file does not exist
+   * @throws ClassNotFoundException
    */
   public void load(String filename) throws FileNotFoundException, IOException, ClassNotFoundException {
     File file = new File(filename);
-    if (!file.exists()) throw new FileNotFoundException();
-    
+    if (!file.exists())
+      throw new FileNotFoundException();
+
     setFile(filename);
 
-		ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(filename));
-    
-    try{
+    ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(filename));
+
+    try {
       Object object = objectInputStream.readObject();
       _library = (Library) object;
-    } catch(IOException e){
+    } catch (IOException e) {
       throw new IOException();
-    }catch(ClassNotFoundException f){
+    } catch (ClassNotFoundException f) {
       throw new ClassNotFoundException();
-    }finally{
+    } finally {
       objectInputStream.close();
     }
 
   }
 
   /**
-   * Set the state of this application from a textual representation stored into a file.
+   * Set the state of this application from a textual representation stored into a
+   * file.
    * 
-   * @param datafile the filename of the file with the textual represntation of the state of this application.
-   * @throws ImportFileException if it happens some error during the parsing of the textual representation.
+   * @param datafile the filename of the file with the textual represntation of
+   *                 the state of this application.
+   * @throws ImportFileException if it happens some error during the parsing of
+   *                             the textual representation.
    */
   public void importFile(String datafile) throws ImportFileException {
     try {
@@ -123,7 +138,7 @@ public class LibraryManager {
     }
   }
 
-  //Metodos Data
+  // Metodos Data
   public int getCurrentDate() {
     return _library.getDate();
   }
@@ -134,7 +149,8 @@ public class LibraryManager {
     }
   }
 
-  //Avanca n Dias e faz update as deadlines verificando o estado dos users apos o update
+  // Avanca n Dias e faz update as deadlines verificando o estado dos users apos o
+  // update
   public void advanceDays(int nDays) {
     if (nDays > 0) {
       _library.advanceDate(nDays);
@@ -145,7 +161,7 @@ public class LibraryManager {
     }
   }
 
-  //Menu Gestao de Utentes Metodos
+  // Menu Gestao de Utentes Metodos
   public int registerUser(String name, String email) throws BadEntrySpecificationException {
     if (!name.matches(".*[a-zA-Z]+.*") || !email.matches(".*[a-zA-Z0-9]+.*"))
       throw new BadEntrySpecificationException("Invalid argumentss");
@@ -153,16 +169,16 @@ public class LibraryManager {
     return _library.addUser(user);
   }
 
-  public String printUser(int id) throws BadEntrySpecificationException {
+  public String printUser(int id) throws NoSuchUserException {
     if (_library.getUser(id) == null) {
-      throw new BadEntrySpecificationException("Id not found");
+      throw new NoSuchUserException(id);
     }
     return _library.getUser(id).toString();
   }
 
-  public String getUsers() {
+  public String getUsers() throws NoSuchUserException {
     String output = "";
-    Map <Integer, User> sorted = new TreeMap<>(new Comparator<Integer>() {
+    Map<Integer, User> sorted = new TreeMap<>(new Comparator<Integer>() {
       @Override
       public int compare(Integer key1, Integer key2) {
         User user1 = _library.getUser(key1);
@@ -178,76 +194,74 @@ public class LibraryManager {
     for (Map.Entry<Integer, User> entry : sorted.entrySet())
       output += _library.getUser(entry.getKey()).toString() + "\n";
     return output;
-  }  
+  }
 
-  //Menu Gestao de Obras Metodos
-  public String printWork(int id) throws BadEntrySpecificationException{
-    if (id > _library.getNumberWorks() || id < 0) 
-      throw new BadEntrySpecificationException("Id not found");
+  // Menu Gestao de Obras Metodos
+  public String printWork(int id) throws NoSuchWorkException {
+    if (id > _library.getNumberWorks() || id < 0)
+      throw new NoSuchWorkException(id);
     return _library.getWork(id).toString();
   }
 
-  public String printAllWorks(){
+  public String printAllWorks() throws NoSuchWorkException {
     int i;
     String output = "";
     int numberWorks = _library.getNumberWorks();
-    for (i = 0; i <= numberWorks; i++){
+    for (i = 0; i <= numberWorks; i++) {
       output += _library.getWork(i).toString() + "\n";
     }
     return output;
   }
 
-  public String printMatchingWorks(String searchTerm){
+  public String printMatchingWorks(String searchTerm) throws NoSuchWorkException {
     int i;
     String output = "";
     Work aux_work;
     int numberWorks = _library.getNumberWorks();
-    for(i = 0; i < numberWorks; i++){
+    for (i = 0; i < numberWorks; i++) {
       aux_work = _library.getWork(i);
-      if (aux_work.searchTerm().toLowerCase().contains(searchTerm.toLowerCase())){
-        output += aux_work.toString() + "\n"; 
+      if (aux_work.searchTerm().toLowerCase().contains(searchTerm.toLowerCase())) {
+        output += aux_work.toString() + "\n";
       }
     }
     return output;
   }
 
-  public void createRequisicaoNotification(int userId, int workId){
+  public void createRequisicaoNotification(int userId, int workId) throws NoSuchUserException, NoSuchWorkException {
     _library.addNotification(_library.getUser(userId), new Requisicao(_library.getWork(workId)));
   }
 
-  public void createDevolucaoNotification(int userId, int workId){
+  public void createDevolucaoNotification(int userId, int workId) throws NoSuchUserException, NoSuchWorkException {
     _library.addNotification(_library.getUser(userId), new Devolucao(_library.getWork(workId)));
   }
 
-  public String printUserNotifications(int id) throws BadEntrySpecificationException{
-    if (_library.getUser(id) == null) {
-      throw new BadEntrySpecificationException("Id not found");
-    }
+  public String printUserNotifications(int id) throws NoSuchUserException {
+
     return _library.getUser(id).checkInbox();
   }
 
-  //Menu Gestao de Requisicoes
-  public int requestWork(int userID, int workID) throws BadEntrySpecificationException {
+  // Menu Gestao de Requisicoes
+  public int requestWork(int userID, int workID) throws NoSuchUserException, NoSuchWorkException, RuleFailedException {
     int val;
-    if ((val = _library.checkRules(userID, workID)) != -1) 
-      throw new BadEntrySpecificationException(Integer.toString(val));
+    if ((val = _library.checkRules(userID, workID)) != -1)
+      throw new RuleFailedException(userID, workID, val);
 
-    Request request = new Request(_library.getUser(userID),_library.getWork(workID));
+    Request request = new Request(_library.getUser(userID), _library.getWork(workID));
     _library.registerRequest(request);
-    
+
     return request.getDeadline();
 
   }
 
-  public void payFine(int userID) throws BadEntrySpecificationException {
-    if(!(_library.getUser(userID).isActive())) {
+  public void payFine(int userID) throws NoSuchUserException, UserIsActiveException {
+    if (!(_library.getUser(userID).isActive())) {
       _library.getUser(userID).clearFine();
     } else {
-      throw new BadEntrySpecificationException("bese");
+      throw new UserIsActiveException(userID);
     }
   }
 
-  public int returnWork(int userID, int workID) throws BadEntrySpecificationException {
+  public int returnWork(int userID, int workID) throws NoSuchUserException, NoSuchWorkException, WorkNotBorrowedByUserException {
     Request request = new Request(_library.getUser(userID), _library.getWork(workID));
     _library.registerReturn(request);
     return _library.getUser(userID).getFine(_library.getDate(), request.getDeadline());

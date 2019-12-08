@@ -1,6 +1,7 @@
 package m19.app.users;
 
 import pt.tecnico.po.ui.Input;
+import m19.app.exception.NoSuchUserException;
 import m19.app.exception.UserIsActiveException;
 import m19.core.LibraryManager;
 import m19.core.exception.BadEntrySpecificationException;
@@ -29,11 +30,12 @@ public class DoPayFine extends Command<LibraryManager> {
   /** @see pt.tecnico.po.ui.Command#execute() */
   @Override
   public final void execute() throws DialogException {
-    // FIXME implement command
     _form.parse();
     try {
       _receiver.payFine(_id.value());
-    } catch (BadEntrySpecificationException bese) {
+    } catch (NoSuchUserException nsue) {
+      throw new NoSuchUserException(_id.value());
+    } catch (UserIsActiveException uiae) {
       throw new UserIsActiveException(_id.value());
     }
   }

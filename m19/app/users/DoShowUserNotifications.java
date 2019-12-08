@@ -29,7 +29,7 @@ public class DoShowUserNotifications extends Command<LibraryManager> {
     _form.parse();
     try {
       _display.popup(_receiver.printUserNotifications(_id.value()));
-    } catch (BadEntrySpecificationException bese) {
+    } catch (NoSuchUserException userID) {
       throw new NoSuchUserException(_id.value());
     }
 

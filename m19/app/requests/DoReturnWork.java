@@ -1,6 +1,7 @@
 package m19.app.requests;
 
 import pt.tecnico.po.ui.Input;
+import m19.app.exception.NoSuchUserException;
 import m19.app.exception.WorkNotBorrowedByUserException;
 import m19.core.LibraryManager;
 import m19.core.exception.BadEntrySpecificationException;
@@ -32,10 +33,9 @@ public class DoReturnWork extends Command<LibraryManager> {
   @Override
   public final void execute() throws DialogException {
     int value;
-    // FIXME implement command
     try {
       value = _receiver.returnWork(_userID.value(), _workID.value());
-    } catch (BadEntrySpecificationException bese) {
+    } catch (WorkNotBorrowedByUserException wnkbbuse) {
       throw new WorkNotBorrowedByUserException(_workID.value(), _userID.value());
     }
     if (value != 0) {
@@ -44,8 +44,8 @@ public class DoReturnWork extends Command<LibraryManager> {
       if (_decision.value().equals("s"))
         try {
           _receiver.payFine(_userID.value());
-        } catch (BadEntrySpecificationException e) {
-          e.printStackTrace();
+        } catch (NoSuchUserException e) {
+          throw new NoSuchUserException(_userID.value());
         }
     }
 
