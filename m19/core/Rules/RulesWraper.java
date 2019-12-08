@@ -7,10 +7,6 @@ public class RulesWraper {
     private Rule currentState;
 
     public RulesWraper() {
-        resetState();
-    }
-
-    public void resetState(){
         currentState = new CheckRequestTwice();
     }
 

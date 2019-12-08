@@ -32,6 +32,7 @@ public class DoReturnWork extends Command<LibraryManager> {
   @Override
   public final void execute() throws DialogException {
     int value;
+    _form.parse();
     try {
       value = _receiver.returnWork(_userID.value(), _workID.value());
     } catch (WorkNotBorrowedByUserException wnkbbuse) {

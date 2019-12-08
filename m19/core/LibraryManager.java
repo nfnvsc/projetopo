@@ -253,11 +253,10 @@ public class LibraryManager {
     User user = _library.getUser(userID);
     Work work = _library.getWork(workID);
 
-    work.decrementCopiesAvaliable();
-    
+
     Request request = new Request(user, work);
     _library.registerRequest(request);
-
+    work.decrementCopiesAvaliable();
 
     return request.getDeadline();
   }

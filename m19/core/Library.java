@@ -71,12 +71,6 @@ public class Library implements Serializable {
   private NotificationManager _notificationManager;
 
   /**
-   * Stores all the rules
-   */
-  transient private RulesWraper _rulesWraper;
-
-
-  /**
    * Makes a {@code Library} instace 
    */
   public Library() {
@@ -87,9 +81,7 @@ public class Library implements Serializable {
     _works = new HashMap<>();
     _requests = new ArrayList<>();
     _notificationManager = new NotificationManager();
-    _rulesWraper = new RulesWraper();
   }
-
 
   //Metodos User
   /**
@@ -215,9 +207,10 @@ public class Library implements Serializable {
 
   public int checkRules(int userId, int workId) throws NoSuchUserException, NoSuchWorkException {
     int value;
-    _rulesWraper.resetState();
 
-    while((value = _rulesWraper.checkRule(getUser(userId), getWork(workId))) == 0);
+    RulesWraper rulesWraper = new RulesWraper();    
+    
+    while((value = rulesWraper.checkRule(getUser(userId), getWork(workId))) == 0);
 
     return value;
   }
