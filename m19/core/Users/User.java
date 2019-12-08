@@ -77,8 +77,11 @@ public class User implements Serializable, Entity{
         _isActive = true;
 
     }
+
     public void removeUserRequest(Request request, int date) throws WorkNotBorrowedByUserException {
-        if (!(_requests.remove(request))) throw new WorkNotBorrowedByUserException(request.getWork().getId(), _id);
+        Request userRequest;
+        if ((userRequest = checkRequest(request.getWork().getId())) == null) throw new WorkNotBorrowedByUserException(request.getWork().getId(), _id);
+        _requests.remove(userRequest);
         int inTime = date - request.getDeadline();
         updateReturns(inTime);
         checkState();
@@ -105,11 +108,11 @@ public class User implements Serializable, Entity{
         _userBehavior.checkBehavior(this);
     }
 
-    public boolean checkRequest(int workId){
+    public Request checkRequest(int workId){
         for(Request request : _requests){
-            if(request.getWork().getId() == workId) return true;
+            if(request.getWork().getId() == workId) return request;
         }
-        return false;
+        return null;
     }
 
     public String checkInbox(){
@@ -123,4 +126,5 @@ public class User implements Serializable, Entity{
 
         return outString;
     }
+    
 }
