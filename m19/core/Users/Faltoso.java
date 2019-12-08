@@ -11,7 +11,7 @@ public class Faltoso implements Behavior {
     public int getMaxRequests() {
         return _maxRequests;
     }   
-    public int getDeadline(int AvailableCopies) {
+    public int getDeadline(int NumberofCopies) {
         return _deadline;
     }
     public int getMaxRequestPrice() {

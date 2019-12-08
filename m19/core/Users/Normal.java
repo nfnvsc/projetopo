@@ -10,10 +10,10 @@ public class Normal implements Behavior {
     public int getMaxRequests() {
         return _maxRequests;
     }
-    public int getDeadline(int AvailableCopies) {
-        if (AvailableCopies == 1) {
+    public int getDeadline(int NumberofCopies) {
+        if (NumberofCopies == 1) {
             return 3;
-        } else if (AvailableCopies <= 5) {
+        } else if (NumberofCopies <= 5) {
             return 8;
         } else {
             return 15;
