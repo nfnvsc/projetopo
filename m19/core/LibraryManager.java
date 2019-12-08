@@ -181,8 +181,12 @@ public class LibraryManager {
     Map<Integer, User> sorted = new TreeMap<>(new Comparator<Integer>() {
       @Override
       public int compare(Integer key1, Integer key2) {
-        User user1 = _library.getUser(key1);
-        User user2 = _library.getUser(key2);
+        User user1 = null;
+        User user2 = null;
+        try {
+          user1 = _library.getUser(key1);
+          user2 = _library.getUser(key2);
+        } catch (NoSuchUserException e) {}
         int compare = user1.getName().compareTo(user2.getName());
         if (compare == 0)
           return (key1 > key2) ? 1 : -1;
