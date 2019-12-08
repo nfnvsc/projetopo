@@ -2,8 +2,11 @@ package m19.core.Users;
 
 import m19.core.Users.User;
 
-public class UserBehavior {
+import java.io.Serializable;
+
+public class UserBehavior implements Serializable{
     private Behavior currentBehavior;
+    private static final long serialVersionUID = 201901101348L;
 
     public UserBehavior() {
         currentBehavior = new Normal();

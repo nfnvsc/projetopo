@@ -62,14 +62,17 @@ public class Library implements Serializable {
    */
   private List<Request> _requests;
 
-  /**
-   * A list of all the requests in the Library
-   * 
-   * @see Request
+   /**
+   * Stores all the notifications
    */
   private NotificationManager _notificationManager;
 
-  private RulesWraper _rulesWraper;
+  /**
+   * Stores all the rules
+   */
+  transient private RulesWraper _rulesWraper;
+
+
   /**
    * Makes a {@code Library} instace 
    */
@@ -207,6 +210,8 @@ public class Library implements Serializable {
     _rulesWraper.resetState();
 
     while((value = _rulesWraper.checkRule(getUser(userId), getWork(workId))) == 0);
+
+    System.out.printf("VALUE: %d", value);
 
     return value;
   }

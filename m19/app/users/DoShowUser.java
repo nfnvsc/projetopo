@@ -3,6 +3,7 @@ package m19.app.users;
 import m19.core.exception.BadEntrySpecificationException;
 import m19.app.exception.NoSuchUserException;
 import m19.core.LibraryManager;
+
 import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.DialogException;
 import pt.tecnico.po.ui.Input;

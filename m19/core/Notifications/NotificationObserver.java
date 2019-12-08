@@ -3,6 +3,7 @@ package m19.core.Notifications;
 import m19.core.Entity;
 
 import java.io.Serializable;
+
 import java.util.Observable;
 import java.util.Observer;
 

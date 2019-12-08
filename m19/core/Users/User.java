@@ -5,7 +5,6 @@ import m19.core.exception.BadEntrySpecificationException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class User implements Serializable{
@@ -107,12 +106,18 @@ public class User implements Serializable{
         _userBehavior.checkBehavior(this);
     }
 
+    public boolean checkRequest(int workId){
+        for(Request request : _requests){
+            if(request.getWork().getId() == workId) return true;
+        }
+        return false;
+    }
+
     public String checkInbox(){
         String outString = "";
-        Iterator<String> iter = _inbox.iterator(); 
   
-        while (iter.hasNext()) { 
-            outString += iter.next() + "\n"; 
+        for(String message : _inbox) { 
+            outString += message + "\n"; 
         }
 
         _inbox.clear(); //reset the inbox

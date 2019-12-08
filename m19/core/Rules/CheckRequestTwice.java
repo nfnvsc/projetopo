@@ -6,8 +6,7 @@ public class CheckRequestTwice implements Rule{
     private final int _id = 1;
 
     public int checkRule(RulesWraper wraper, User user, Work work){
-        //verificar requests dos users
         wraper.set_state(new CheckUserIsSuspended());
-        return 1;
+        return user.checkRequest(work.getId()) ? this._id : 0;
     }
 }

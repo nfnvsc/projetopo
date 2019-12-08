@@ -36,11 +36,12 @@ public class DoReturnWork extends Command<LibraryManager> {
     try {
       value = _receiver.returnWork(_userID.value(), _workID.value());
     } catch (BadEntrySpecificationException bese) {
-      throw new WorkNotBorrowedByUserException(_workID.value(), _userID.value());
+        throw new WorkNotBorrowedByUserException(_workID.value(), _userID.value());
     }
     if (value != 0) {
       _display.popup(Message.showFine(_userID.value(), value));
       _decision = _form.addStringInput(Message.requestFinePaymentChoice());
+      _form.parse();
       if (_decision.value().equals("s"))
         try {
           _receiver.payFine(_userID.value());
