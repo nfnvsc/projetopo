@@ -240,34 +240,46 @@ public class LibraryManager {
   // Menu Gestao de Requisicoes
   public int requestWork(int userID, int workID) throws NoSuchUserException, NoSuchWorkException, RuleFailedException {
     int val;
-    if ((val = _library.checkRules(userID, workID)) != -1)
-      throw new RuleFailedException(userID, workID, val);
 
     User user = _library.getUser(userID);
     Work work = _library.getWork(workID);
 
+    if ((val = _library.checkRules(userID, workID)) != -1)
+      throw new RuleFailedException(userID, workID, val);
 
     Request request = new Request(user, work);
+
     _library.registerRequest(request);
+
     work.decrementCopiesAvaliable();
 
     return request.getDeadline();
   }
 
   public void payFine(int userID) throws NoSuchUserException, UserIsActiveException {
-    if (!(_library.getUser(userID).isActive())) {
-      _library.getUser(userID).clearFine();
+    User user = _library.getUser(userID);
+    
+    if (!(user.isActive())) {
+      user.clearFine();
     } else {
       throw new UserIsActiveException(userID);
     }
   }
 
   public int returnWork(int userID, int workID) throws NoSuchUserException, NoSuchWorkException, WorkNotBorrowedByUserException {
-    Request request = new Request(_library.getUser(userID), _library.getWork(workID));
-    _library.getWork(workID).incrementCopiesAvaliable();
+    User user = _library.getUser(userID);
+    Work work = _library.getWork(workID);
+
+    Request request = new Request(user, work);
+    work.incrementCopiesAvaliable();
+
     int deadline = _library.registerReturn(request);
+
+
     int workFine = (_library.getDate() - deadline) * 5;
-    if (workFine > 0) _library.getUser(userID).updateFine(workFine);
-    return _library.getUser(userID).getFine();
+
+    if (workFine > 0) user.updateFine(workFine);
+
+    return user.getFine();
   }
 }
