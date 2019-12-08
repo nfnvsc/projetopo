@@ -30,7 +30,6 @@ public class User implements Serializable, Entity{
     }
     public void clearFine() {
         _fine = 0;
-        _isActive = true;
     }
 
     public void updateFine(int fine) {
