@@ -200,6 +200,7 @@ public class Library implements Serializable {
 
   public int registerReturn(Request request) throws WorkNotBorrowedByUserException {
     int deadline = request.getUser().removeUserRequest(request, _date.getCurrentDate());
+    request.getWork().incrementCopiesAvaliable();
     _requests.remove(request);
     _notificationManager.notifyObservers(new Devolucao(request.getWork()));
     return deadline;

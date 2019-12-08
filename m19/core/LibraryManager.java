@@ -270,7 +270,8 @@ public class LibraryManager {
     Work work = _library.getWork(workID);
 
     Request request = new Request(user, work);
-    work.incrementCopiesAvaliable();
+
+    //work.incrementCopiesAvaliable();
 
     int deadline = _library.registerReturn(request);
 
