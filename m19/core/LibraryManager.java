@@ -143,20 +143,13 @@ public class LibraryManager {
     return _library.getDate();
   }
 
-  public void updateRequests(int nDays) {
-    for (Request r : _library.getRequests()) {
-      r.updateDeadline(nDays);
-    }
-  }
-
   // Avanca n Dias e faz update as deadlines verificando o estado dos users apos o
   // update
   public void advanceDays(int nDays) {
     if (nDays > 0) {
       _library.advanceDate(nDays);
-      updateRequests(nDays);
       for (Map.Entry<Integer, User> entry : _library.getAllUsers().entrySet()) {
-        entry.getValue().checkState();
+        entry.getValue().checkState(_library.getDate());
       }
     }
   }
@@ -275,7 +268,7 @@ public class LibraryManager {
   public int returnWork(int userID, int workID) throws NoSuchUserException, NoSuchWorkException, WorkNotBorrowedByUserException {
     Request request = new Request(_library.getUser(userID), _library.getWork(workID));
     _library.getWork(workID).incrementCopiesAvaliable();
-    _library.registerReturn(request);
-    return _library.getUser(userID).getFine(_library.getDate(), request.getDeadline());
+    int deadline = _library.registerReturn(request);
+    return _library.getUser(userID).getFine(_library.getDate(), deadline);
   }
 }

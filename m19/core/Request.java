@@ -23,9 +23,6 @@ public class Request implements Serializable {
     public void setDeadline(int deadline) {
         _deadline = deadline;
     }
-    public void updateDeadline(int daysAdvanced) {
-        _deadline -= daysAdvanced;
-    }
     public User getUser() {
         return _user;
     }

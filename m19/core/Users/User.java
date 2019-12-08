@@ -29,8 +29,8 @@ public class User implements Serializable, Entity{
         _fine = 0;
     }
     public int getFine(int date, int deadline) {
-        _fine = (date - deadline) * 5;
-        return _fine > 0 ? _fine : 0;
+        _fine = (date - deadline);
+        return _fine > 0 ? (_fine*5) : 0;
     }
     public void updateFine(int fine) {
         _fine += fine;
@@ -67,9 +67,9 @@ public class User implements Serializable, Entity{
     public void addUserRequest(Request request) {
         _requests.add(request);
     }
-    public void checkState() {
+    public void checkState(int date) {
         for (Request r : _requests) {
-            if(r.getDeadline() < 0) {
+            if(r.getDeadline() < date) {
                 _isActive = false;
                 return;
             }
@@ -78,14 +78,15 @@ public class User implements Serializable, Entity{
 
     }
 
-    public void removeUserRequest(Request request, int date) throws WorkNotBorrowedByUserException {
+    public int removeUserRequest(Request request, int date) throws WorkNotBorrowedByUserException {
         Request userRequest;
         if ((userRequest = checkRequest(request.getWork().getId())) == null) throw new WorkNotBorrowedByUserException(request.getWork().getId(), _id);
         _requests.remove(userRequest);
-        int inTime = date - request.getDeadline();
+        int inTime = date - userRequest.getDeadline();
         updateReturns(inTime);
-        checkState();
+        checkState(date);
         checkBehavior();
+        return userRequest.getDeadline();
     }
     
     public void addToInbox(String message) {
