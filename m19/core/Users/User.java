@@ -61,7 +61,7 @@ public class User implements Serializable, Entity{
         if (_isActive) {
             return String.valueOf(_id) + " - " + _name + " - " + _email +" - " + _userBehavior.getCurrentBehavior().toString() + " - " + "ACTIVO";
         } else {
-            return String.valueOf(_id) + " - " + _name + " - " + _email + " - " + _userBehavior.getCurrentBehavior().toString() + " - " + "SUSPENSO"; //Falta adicionar multa
+            return String.valueOf(_id) + " - " + _name + " - " + _email + " - " + _userBehavior.getCurrentBehavior().toString() + " - " + "SUSPENSO - EUR " + String.valueOf(_fine); //Falta adicionar multa
         }
     }
     public void addUserRequest(Request request) {
