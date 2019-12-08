@@ -54,6 +54,10 @@ abstract public class Work implements Serializable {
         _copiesAvaliable--;
     }
 
+    public void incrementCopiesAvaliable(){
+        _copiesAvaliable++;
+    }
+
     public int getPrice(){
         return _price;
     }

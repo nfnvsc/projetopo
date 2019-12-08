@@ -199,9 +199,7 @@ public class Library implements Serializable {
   }
 
   public void registerReturn(Request request) throws WorkNotBorrowedByUserException {
-    System.out.println("Vai remover");
     request.getUser().removeUserRequest(request, _date.getCurrentDate());
-    System.out.println("Removeu user");
     _requests.remove(request);
     _notificationManager.notifyObservers(new Devolucao(request.getWork()));
 
@@ -211,7 +209,7 @@ public class Library implements Serializable {
     int value;
 
     RulesWraper rulesWraper = new RulesWraper();    
-    
+
     while((value = rulesWraper.checkRule(getUser(userId), getWork(workId))) == 0);
 
     return value;

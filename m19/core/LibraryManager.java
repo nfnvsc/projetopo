@@ -272,6 +272,7 @@ public class LibraryManager {
   public int returnWork(int userID, int workID) throws NoSuchUserException, NoSuchWorkException, WorkNotBorrowedByUserException {
     Request request = new Request(_library.getUser(userID), _library.getWork(workID));
     _library.registerReturn(request);
+    _library.getWork(workID).incrementCopiesAvaliable();
     return _library.getUser(userID).getFine(_library.getDate(), request.getDeadline());
   }
 }
