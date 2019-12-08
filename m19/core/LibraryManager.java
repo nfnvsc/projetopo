@@ -263,6 +263,8 @@ public class LibraryManager {
   }
   public void addFine(int userID, int fine) throws NoSuchUserException {
     _library.getUser(userID).updateFine(fine);
+    _library.getUser(userID).checkState(_library.getDate());
+
   }
 
   public int returnWork(int userID, int workID) throws NoSuchUserException, NoSuchWorkException, WorkNotBorrowedByUserException {

@@ -69,8 +69,13 @@ public class User implements Serializable, Entity{
         _requests.add(request);
     }
     public void checkState(int date) {
+        if (_fine > 0){
+            _isActive = false;
+            return;
+        } 
+        
         for (Request r : _requests) {
-            if(r.getDeadline() < date || _fine > 0) {
+            if(r.getDeadline() < date) {
                 _isActive = false;
                 return;
             }
