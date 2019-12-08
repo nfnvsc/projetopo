@@ -268,11 +268,14 @@ public class LibraryManager {
       throw new UserIsActiveException(userID);
     }
   }
+  public void addFine(int userID, int fine) throws NoSuchUserException {
+    _library.getUser(userID).updateFine(fine);
+  }
 
   public int returnWork(int userID, int workID) throws NoSuchUserException, NoSuchWorkException, WorkNotBorrowedByUserException {
     Request request = new Request(_library.getUser(userID), _library.getWork(workID));
-    _library.registerReturn(request);
     _library.getWork(workID).incrementCopiesAvaliable();
+    _library.registerReturn(request);
     return _library.getUser(userID).getFine(_library.getDate(), request.getDeadline());
   }
 }

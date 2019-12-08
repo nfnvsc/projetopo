@@ -47,12 +47,15 @@ public class DoReturnWork extends Command<LibraryManager> {
       _decision = _form.addStringInput(Message.requestFinePaymentChoice());
       _form.parse();
 
-      if (_decision.value().equals("s"))
+      if (_decision.value().equals("s")) {
         try {
           _receiver.payFine(_userID.value());
         } catch (NoSuchUserException e) {
           throw new NoSuchUserException(_userID.value());
         }
+      } else {
+        _receiver.addFine(_userID.value(), value);
+      }
     }
 
   }
