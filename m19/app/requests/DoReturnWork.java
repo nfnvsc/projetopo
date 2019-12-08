@@ -52,7 +52,7 @@ public class DoReturnWork extends Command<LibraryManager> {
       _decision = _form.addStringInput(Message.requestFinePaymentChoice());
       _form.parse();
 
-      if (_decision.value().equals("s")) 
+      if ("s".equals(_decision.value())) 
           _receiver.payFine(_userID.value());
       
     }

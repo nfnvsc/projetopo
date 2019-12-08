@@ -45,7 +45,7 @@ public class DoRequestWork extends Command<LibraryManager> {
           _form.clear();
           _decision = _form.addStringInput(Message.requestReturnNotificationPreference());
           _form.parse();
-          if(_decision.value().equals("s")) {
+          if ("s".equals(_decision.value())) {
             _receiver.createDevolucaoNotification(_userID.value(), _workID.value());
             return;
           }
