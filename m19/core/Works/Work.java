@@ -50,6 +50,10 @@ abstract public class Work implements Serializable {
         return _category;
     }
 
+    public void decrementCopiesAvaliable(){
+        _copiesAvaliable--;
+    }
+
     public int getPrice(){
         return _price;
     }

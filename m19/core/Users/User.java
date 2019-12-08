@@ -1,13 +1,12 @@
 package m19.core.Users;
 
 import m19.core.*;
-import m19.core.exception.BadEntrySpecificationException;
 import m19.app.exception.WorkNotBorrowedByUserException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User implements Serializable{
+public class User implements Serializable, Entity{
 
     private int _returns;
     private int _fine;

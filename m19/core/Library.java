@@ -195,7 +195,7 @@ public class Library implements Serializable {
   }
 
   public void addNotification(User user, Notification notification){
-    _notificationManager.registerNotificationObserver(new NotificationObserver((Entity)user, notification));
+    _notificationManager.registerNotificationObserver(new NotificationObserver(user, notification));
   }
 
   public void registerRequest(Request request) {
@@ -218,8 +218,6 @@ public class Library implements Serializable {
     _rulesWraper.resetState();
 
     while((value = _rulesWraper.checkRule(getUser(userId), getWork(workId))) == 0);
-
-    System.out.printf("VALUE: %d", value);
 
     return value;
   }

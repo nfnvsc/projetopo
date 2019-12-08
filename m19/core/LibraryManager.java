@@ -250,11 +250,16 @@ public class LibraryManager {
     if ((val = _library.checkRules(userID, workID)) != -1)
       throw new RuleFailedException(userID, workID, val);
 
-    Request request = new Request(_library.getUser(userID), _library.getWork(workID));
+    User user = _library.getUser(userID);
+    Work work = _library.getWork(workID);
+
+    work.decrementCopiesAvaliable();
+    
+    Request request = new Request(user, work);
     _library.registerRequest(request);
 
-    return request.getDeadline();
 
+    return request.getDeadline();
   }
 
   public void payFine(int userID) throws NoSuchUserException, UserIsActiveException {

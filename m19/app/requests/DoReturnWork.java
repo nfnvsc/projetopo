@@ -15,7 +15,6 @@ import pt.tecnico.po.ui.DialogException;
  */
 public class DoReturnWork extends Command<LibraryManager> {
 
-  // FIXME define input fields
   private Input<Integer> _userID;
   private Input<Integer> _workID;
   private Input<String> _decision;
@@ -24,7 +23,7 @@ public class DoReturnWork extends Command<LibraryManager> {
    */
   public DoReturnWork(LibraryManager receiver) {
     super(Label.RETURN_WORK, receiver);
-    // FIXME initialize input fields
+
     _userID = _form.addIntegerInput(Message.requestUserId());
     _workID = _form.addIntegerInput(Message.requestWorkId());
   }
@@ -40,6 +39,7 @@ public class DoReturnWork extends Command<LibraryManager> {
     }
     if (value != 0) {
       _display.popup(Message.showFine(_userID.value(), value));
+      _form.clear();
       _decision = _form.addStringInput(Message.requestFinePaymentChoice());
       _form.parse();
       if (_decision.value().equals("s"))

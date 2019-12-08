@@ -3,12 +3,11 @@ package m19.app.requests;
 import m19.app.exception.NoSuchUserException;
 import m19.app.exception.NoSuchWorkException;
 import m19.app.exception.RuleFailedException;
+
 import m19.core.LibraryManager;
-import m19.core.exception.BadEntrySpecificationException;
+
 import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.DialogException;
-// FIXME import other core concepts
-// FIXME import other ui concepts
 import pt.tecnico.po.ui.Input;
 
 /**
@@ -38,11 +37,12 @@ public class DoRequestWork extends Command<LibraryManager> {
       value = _receiver.requestWork(_userID.value(), _workID.value());
       _display.popup(Message.workReturnDay(_workID.value(), value));
     } catch (NoSuchUserException nsue) {
-      throw new NoSuchUserException(_userID.value());
+        throw new NoSuchUserException(_userID.value());
     } catch (NoSuchWorkException nswe) {
-      throw new NoSuchWorkException(_workID.value());
+        throw new NoSuchWorkException(_workID.value());
     } catch (RuleFailedException rfe) {
-        if (Integer.parseInt(rfe.getMessage()) == 3) {
+        if (rfe.getRuleIndex() == 3) {
+          _form.clear();
           _decision = _form.addStringInput(Message.requestReturnNotificationPreference());
           _form.parse();
           if(_decision.value().equals("s")) {
@@ -50,7 +50,7 @@ public class DoRequestWork extends Command<LibraryManager> {
             return;
           }
         } else {
-        throw new RuleFailedException(_userID.value(), _workID.value(), Integer.parseInt(rfe.getMessage()));
+        throw rfe;
       }
     }
   }
