@@ -247,8 +247,6 @@ public class LibraryManager {
 
     _library.registerRequest(request);
 
-    work.decrementCopiesAvaliable();
-
     return request.getDeadline();
   }
 

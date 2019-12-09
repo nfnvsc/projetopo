@@ -191,18 +191,30 @@ public class Library implements Serializable {
   }
 
   public void registerRequest(Request request) {
-    request.setDeadline(request.getUser().getUserBehavior().getDeadline(request.getWork().getNumberOfCopies()), _date.getCurrentDate());
+    User user = request.getUser();
+    Work work = request.getWork();
+
+    request.setDeadline(user.getUserBehavior().getDeadline(work.getNumberOfCopies()), getDate());
+
     _requests.add(request);
     _notificationManager.notifyObservers(new Requisicao(request.getWork()));
-    request.getUser().addUserRequest(request);
 
+    user.addUserRequest(request);
+
+    work.decrementCopiesAvaliable();
   }
 
   public int registerReturn(Request request) throws WorkNotBorrowedByUserException {
-    int deadline = request.getUser().removeUserRequest(request, _date.getCurrentDate());
-    request.getWork().incrementCopiesAvaliable();
+    User user = request.getUser();
+    Work work = request.getWork();
+
+    int deadline = user.removeUserRequest(request, getDate());
+
+    work.incrementCopiesAvaliable();
+
     _requests.remove(request);
     _notificationManager.notifyObservers(new Devolucao(request.getWork()));
+
     return deadline;
   }
 
