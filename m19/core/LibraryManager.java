@@ -174,7 +174,7 @@ public class LibraryManager {
           user1 = _library.getUser(key1);
           user2 = _library.getUser(key2);
         } catch (NoSuchUserException e) {
-
+          e.printStackTrace();
         }
         int compare = user1.getName().compareTo(user2.getName());
         if (compare == 0)
