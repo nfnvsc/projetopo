@@ -7,9 +7,6 @@ import java.io.Serializable;
 import java.util.Observable;
 import java.util.Observer;
 
-/*
- * Mediator class between Users and Works
- */
 public class NotificationObserver implements Observer, Serializable{
 
     private Entity _entity;
