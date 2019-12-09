@@ -90,7 +90,6 @@ public class Library implements Serializable {
    * @param user  the user that is meant to be add to the Library database
    * @return      the user identification in the database
    * @see         User
-   * 
    */ 
   public int addUser(User user) throws BadEntrySpecificationException {
     user.setUserId(_nextUserId);
@@ -104,7 +103,6 @@ public class Library implements Serializable {
    * 
    * @param Work  the work that is meant to be add to the Library database
    * @see         Work
-   * 
    */
   public void addWork(Work work) {
     work.setWorkId(_nextWorkId);
@@ -156,6 +154,7 @@ public class Library implements Serializable {
    * 
    * @param id    the id of a Work
    * @return      the Work associated to that Id
+   * @throws NoSuchWorkException
    */
   public Work getWork(int id) throws NoSuchWorkException { //throw NoSuchUserWork
     Work work; 
@@ -186,10 +185,31 @@ public class Library implements Serializable {
     parser.parseFile(filename);
   }
 
+  /**
+   * Adds a certain notification to user inbox
+   * 
+   * @param user         user that needs to be notified
+   * @param notification notification that is going to be sent to user inbox
+   */
   public void addNotification(User user, Notification notification){
     _notificationManager.registerNotificationObserver(new NotificationObserver(user, notification));
   }
+  
+  /**
+   * Gets a list of all requests in the library.
+   * 
+   * @return List of all requests
+   */
+  public List<Request> getRequests() {
+    return _requests;
+  }
 
+  /**
+   * Sets request deadline based on user current behavior, registers the request in library request list and
+   * in user request list. Notifies all observers interested in this action.
+   * 
+   * @param request   Request that is meant to be registered
+   */
   public void registerRequest(Request request) {
     User user = request.getUser();
     Work work = request.getWork();
@@ -204,6 +224,14 @@ public class Library implements Serializable {
     work.decrementCopiesAvaliable();
   }
 
+  /**
+   * Returns the request and notifies all observers interested in this action, if user doesnt have that request
+   * throws exception
+   * 
+   * @param request   Request that is meant to be returned
+   * @return Request deadline
+   * @throws WorkNotBorrowedByUserException
+   */
   public int registerReturn(Request request) throws WorkNotBorrowedByUserException {
     User user = request.getUser();
     Work work = request.getWork();
@@ -217,6 +245,15 @@ public class Library implements Serializable {
     return user.removeUserRequest(request, getDate());
   }
 
+  /**
+   * Checks if user can request a work based on all the rules available.
+   * 
+   * @param userId  user that is going to be checked
+   * @param workId  work that user wants to request
+   * @return if one rule is violated it returns val = RuleIndex, if no rule is violated val = -1
+   * @throws NoSuchUserException
+   * @throws NoSuchWorkException
+   */
   public int checkRules(int userId, int workId) throws NoSuchUserException, NoSuchWorkException {
     int value;
 
@@ -227,7 +264,4 @@ public class Library implements Serializable {
     return value;
   }
   
-  public List<Request> getRequests() {
-    return _requests;
-  }
 }
