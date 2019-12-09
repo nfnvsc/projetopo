@@ -25,9 +25,12 @@ abstract public class Work implements Serializable {
         _category = category;
     }
 
-    public String toString(String type){
+    protected String getString(String type){
         return String.valueOf(_id) +  " - " + _copiesAvaliable + " de " + _numberOfCopies + " - " + type + " - " + _title + " - " + String.valueOf(_price) + " - " +  _category.getDescription();
     }
+
+    public abstract String toString();
+
     public int getNumberOfCopies() {
         return _numberOfCopies;
     }

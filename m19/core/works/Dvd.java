@@ -3,6 +3,7 @@ package m19.core.works;
 public class Dvd extends Work {
     private String _director;
     private String _igac;
+    private static final long serialVersionUID = 201901101346L;
 
     public Dvd(String title, String director, int price, Category category, String igac, int numberOfCopies) {
         super(price, numberOfCopies, title, category);
@@ -16,6 +17,6 @@ public class Dvd extends Work {
 
     @Override
     public String toString(){
-        return super.toString("DVD") + " - " + _director + " - " + _igac;
+        return super.getString("DVD") + " - " + _director + " - " + _igac;
     }
 }

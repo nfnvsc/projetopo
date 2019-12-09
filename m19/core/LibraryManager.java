@@ -2,7 +2,6 @@ package m19.core;
 
 import m19.core.works.*;
 import m19.core.notifications.*;
-import m19.core.rules.*;
 import m19.core.users.*;
 
 import java.io.IOException;
@@ -45,13 +44,11 @@ public class LibraryManager {
     if (_filename == null)
       throw new MissingFileAssociationException();
 
-    ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(_filename));
-    try {
+    ;
+    try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(_filename))){
       out.writeObject(_library);
     } catch (IOException e) {
       throw new IOException();
-    } finally {
-      out.close();
     }
 
   }
@@ -107,17 +104,13 @@ public class LibraryManager {
 
     setFile(filename);
 
-    ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(filename));
-
-    try {
+    try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(filename))) {
       Object object = objectInputStream.readObject();
       _library = (Library) object;
     } catch (IOException e) {
       throw new IOException();
     } catch (ClassNotFoundException f) {
       throw new ClassNotFoundException();
-    } finally {
-      objectInputStream.close();
     }
 
   }
@@ -180,7 +173,9 @@ public class LibraryManager {
         try {
           user1 = _library.getUser(key1);
           user2 = _library.getUser(key2);
-        } catch (NoSuchUserException e) {}
+        } catch (NoSuchUserException e) {
+
+        }
         int compare = user1.getName().compareTo(user2.getName());
         if (compare == 0)
           return (key1 > key2) ? 1 : -1;
