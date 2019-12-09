@@ -14,15 +14,18 @@ public class Cumpridor implements Behavior {
         return -1;
     }
     public int getDeadline(int NumberofCopies) {
-        if (NumberofCopies == 1) {
-            return 8;
+        if (NumberofCopies > 0) {
+            if (NumberofCopies == 1) {
+                return 8;
+            }
+            else if (NumberofCopies <= 5) {
+                return 15;
+            }
+            else {
+                return 30;
+            }
         }
-        else if (NumberofCopies <= 5) {
-            return 15;
-        }
-        else {
-            return 30;
-        }
+        return 0;
     }
     
     public boolean canPayFine() {

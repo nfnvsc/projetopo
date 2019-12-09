@@ -11,13 +11,16 @@ public class Normal implements Behavior {
         return _maxRequests;
     }
     public int getDeadline(int NumberofCopies) {
-        if (NumberofCopies == 1) {
-            return 3;
-        } else if (NumberofCopies <= 5) {
-            return 8;
-        } else {
-            return 15;
+        if (NumberofCopies > 0) {
+            if (NumberofCopies == 1) {
+                return 3;
+            } else if (NumberofCopies <= 5) {
+                return 8;
+            } else {
+                return 15;
+            }
         }
+        return 0;
     }
     public int getMaxRequestPrice() {
         return 25;
