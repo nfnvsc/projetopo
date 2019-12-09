@@ -208,14 +208,13 @@ public class Library implements Serializable {
     User user = request.getUser();
     Work work = request.getWork();
 
-    int deadline = user.removeUserRequest(request, getDate());
-
     work.incrementCopiesAvaliable();
 
     _requests.remove(request);
+    
     _notificationManager.notifyObservers(new Devolucao(request.getWork()));
 
-    return deadline;
+    return user.removeUserRequest(request, getDate());
   }
 
   public int checkRules(int userId, int workId) throws NoSuchUserException, NoSuchWorkException {
