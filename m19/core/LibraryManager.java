@@ -251,12 +251,10 @@ public class LibraryManager {
   }
 
   public void payFine(int userID) throws NoSuchUserException, UserIsActiveException {
-    if (!(_library.getUser(userID).isActive())) {
-      _library.getUser(userID).clearFine();
-      _library.getUser(userID).checkState(_library.getDate());
-    } else {
-      throw new UserIsActiveException(userID);
-    }
+    if (_library.getUser(userID).isActive()) throw new UserIsActiveException(userID);
+      
+    _library.getUser(userID).clearFine();
+    _library.getUser(userID).checkState(_library.getDate());
   }
 
   public int returnWork(int userID, int workID) throws NoSuchUserException, NoSuchWorkException, WorkNotBorrowedByUserException {
