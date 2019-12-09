@@ -2,11 +2,11 @@ package m19.core.users;
 
 import m19.core.*;
 import m19.app.exception.WorkNotBorrowedByUserException;
-import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class User implements Serializable, Entity{
+public class User extends Entity{
 
     private int _returns;
     private int _fine;
@@ -15,7 +15,6 @@ public class User implements Serializable, Entity{
     private String _name;
     private String _email;
     private List<Request> _requests = new ArrayList<>();
-    private List<String> _inbox = new ArrayList<String>();
     private UserBehavior _userBehavior;
     private static final long serialVersionUID = 201901101347L;
 
@@ -62,7 +61,7 @@ public class User implements Serializable, Entity{
         if (_isActive) {
             return String.valueOf(_id) + " - " + _name + " - " + _email +" - " + _userBehavior.getCurrentBehavior().toString() + " - " + "ACTIVO";
         } else {
-            return String.valueOf(_id) + " - " + _name + " - " + _email + " - " + _userBehavior.getCurrentBehavior().toString() + " - " + "SUSPENSO - EUR " + String.valueOf(_fine);
+            return String.valueOf(_id) + "  - " + _name + " - " + _email + " - " + _userBehavior.getCurrentBehavior().toString() + " - " + "SUSPENSO - EUR " + String.valueOf(_fine);
         }
     }
     public void addUserRequest(Request request) {
@@ -94,10 +93,7 @@ public class User implements Serializable, Entity{
         checkBehavior();
         return userRequest.getDeadline();
     }
-    
-    public void addToInbox(String message) {
-        _inbox.add(message);
-    }
+
     public void updateReturns(int inTime) {
         if (inTime < 0) {
             _returns++;
@@ -122,16 +118,6 @@ public class User implements Serializable, Entity{
         return null;
     }
 
-    public String checkInbox(){
-        String outString = "";
-  
-        for(String message : _inbox) { 
-            outString += message + "\n"; 
-        }
-
-        _inbox.clear(); //reset the inbox
-
-        return outString;
-    }
+    
     
 }

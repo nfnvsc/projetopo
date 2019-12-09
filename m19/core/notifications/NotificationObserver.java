@@ -20,7 +20,8 @@ public class NotificationObserver implements Observer, Serializable{
 
     @Override
     public void update(Observable notificationManager, Object o) {
-        if(_notification.equals(o)) 
+        if(_notification.equals(o)) {
             _entity.addToInbox(_notification.writeNotification());
+        }
     }
 }
