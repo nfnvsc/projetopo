@@ -1,4 +1,4 @@
-package m19.core.Users;
+package m19.core.users;
 
 import java.io.Serializable;
 

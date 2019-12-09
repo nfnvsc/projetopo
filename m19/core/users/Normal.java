@@ -1,4 +1,4 @@
-package m19.core.Users;
+package m19.core.users;
 
 public class Normal implements Behavior {
     private final int _maxRequests = 3;

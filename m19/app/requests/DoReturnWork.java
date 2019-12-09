@@ -5,20 +5,13 @@ import m19.app.exception.NoSuchUserException;
 import m19.app.exception.NoSuchWorkException;
 import m19.app.exception.WorkNotBorrowedByUserException;
 import m19.core.LibraryManager;
-import m19.core.exception.BadEntrySpecificationException;
 import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.DialogException;
-// FIXME import other core concepts
-// FIXME import other ui concepts
 
 /**
  * 4.4.2. Return a work.
  */
 public class DoReturnWork extends Command<LibraryManager> {
-
-  private Input<Integer> _userID;
-  private Input<Integer> _workID;
-  private Input<String> _decision;
   /**
    * @param receiver
    */
@@ -31,8 +24,10 @@ public class DoReturnWork extends Command<LibraryManager> {
   public final void execute() throws DialogException {
     int value;
     _form.clear();
-    _userID = _form.addIntegerInput(Message.requestUserId());
-    _workID = _form.addIntegerInput(Message.requestWorkId());
+
+    Input<Integer> _userID = _form.addIntegerInput(Message.requestUserId());
+    Input<Integer> _workID = _form.addIntegerInput(Message.requestWorkId());
+
     _form.parse();
 
     try {
@@ -49,11 +44,11 @@ public class DoReturnWork extends Command<LibraryManager> {
       _display.popup(Message.showFine(_userID.value(), value));
       
       _form.clear();
-      _decision = _form.addStringInput(Message.requestFinePaymentChoice());
+      Input<String> _decision = _form.addStringInput(Message.requestFinePaymentChoice());
       _form.parse();
 
       if ("s".equals(_decision.value())) 
-          _receiver.payFine(_userID.value());
+        _receiver.payFine(_userID.value());
       
     }
 

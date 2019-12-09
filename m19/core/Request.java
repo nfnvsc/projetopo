@@ -1,10 +1,10 @@
 package m19.core;
 import java.io.Serializable;
 
-import m19.core.Users.User;
+import m19.core.users.User;
 
 
-import m19.core.Works.*;
+import m19.core.works.*;
 
 /*
  * Mediator class between Users and Works

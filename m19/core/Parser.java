@@ -1,7 +1,7 @@
 package m19.core;
 
-import m19.core.Users.User;
-import m19.core.Works.*;
+import m19.core.users.User;
+import m19.core.works.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;

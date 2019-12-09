@@ -1,8 +1,10 @@
-package m19.core.Notifications;
+package m19.core.notifications;
 
-import m19.core.Works.Work;
+import m19.core.works.Work;
 
 import java.io.Serializable;
+
+import java.util.Objects;
 
 abstract public class Notification implements Serializable{
     
@@ -29,7 +31,6 @@ abstract public class Notification implements Serializable{
 
     @Override
     public boolean equals(Object o) { 
-  
         if (o == this) return true; 
   
         if (!(o instanceof Notification)) return false; 
@@ -38,5 +39,10 @@ abstract public class Notification implements Serializable{
           
         return c.getId() == this.getId() && c.getWorkId() == this.getWorkId();
 
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(_work, _id);
     }
 }

@@ -1,9 +1,9 @@
 package m19.core;
 
-import m19.core.Works.Work;
-import m19.core.Users.User;
-import m19.core.Notifications.*;
-import m19.core.Rules.RulesWraper;
+import m19.core.works.Work;
+import m19.core.users.User;
+import m19.core.notifications.*;
+import m19.core.rules.RulesWraper;
 
 import java.io.Serializable;
 import java.io.IOException;
@@ -209,9 +209,9 @@ public class Library implements Serializable {
   public int checkRules(int userId, int workId) throws NoSuchUserException, NoSuchWorkException {
     int value;
 
-    RulesWraper rulesWraper = new RulesWraper();    
+    RulesWraper rulesWraper = new RulesWraper(getUser(userId), getWork(workId));    
 
-    while((value = rulesWraper.checkRule(getUser(userId), getWork(workId))) == 0);
+    while((value = rulesWraper.checkRule()) == 0);
 
     return value;
   }

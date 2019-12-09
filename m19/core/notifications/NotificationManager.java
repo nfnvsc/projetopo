@@ -1,4 +1,4 @@
-package m19.core.Notifications;
+package m19.core.notifications;
 
 import java.io.Serializable;
 

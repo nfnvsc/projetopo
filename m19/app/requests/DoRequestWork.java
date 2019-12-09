@@ -14,10 +14,6 @@ import pt.tecnico.po.ui.Input;
  * 4.4.1. Request work.
  */
 public class DoRequestWork extends Command<LibraryManager> {
-
-  private Input<Integer> _userID;
-  private Input<Integer> _workID;
-  private Input<String> _decision;
   /**
    * @param receiver
    */
@@ -30,8 +26,10 @@ public class DoRequestWork extends Command<LibraryManager> {
   public final void execute() throws DialogException {
     int value = 0;
     _form.clear();
-    _userID = _form.addIntegerInput(Message.requestUserId());
-    _workID = _form.addIntegerInput(Message.requestWorkId());
+
+    Input<Integer> _userID = _form.addIntegerInput(Message.requestUserId());
+    Input<Integer> _workID = _form.addIntegerInput(Message.requestWorkId());
+
     _form.parse();
     try {
       value = _receiver.requestWork(_userID.value(), _workID.value());
@@ -41,16 +39,17 @@ public class DoRequestWork extends Command<LibraryManager> {
     } catch (NoSuchWorkException nswe) {
         throw new NoSuchWorkException(_workID.value());
     } catch (RuleFailedException rfe) {
+
         if (rfe.getRuleIndex() == 3) {
           _form.clear();
-          _decision = _form.addStringInput(Message.requestReturnNotificationPreference());
+          Input<String> _decision = _form.addStringInput(Message.requestReturnNotificationPreference());
           _form.parse();
           if ("s".equals(_decision.value())) {
             _receiver.createDevolucaoNotification(_userID.value(), _workID.value());
             return;
           }
         } else {
-        throw rfe;
+            throw rfe;
       }
     }
 

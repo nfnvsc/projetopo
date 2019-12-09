@@ -1,6 +1,6 @@
-package m19.core.Notifications;
+package m19.core.notifications;
 
-import m19.core.Works.Work;
+import m19.core.works.Work;
 
 public class Requisicao extends Notification{
     

@@ -1,4 +1,4 @@
-package m19.core.Works;
+package m19.core.works;
 
 public class Book extends Work {
     private String _author;

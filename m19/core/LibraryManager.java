@@ -1,9 +1,9 @@
 package m19.core;
 
-import m19.core.Works.*;
-import m19.core.Notifications.*;
-import m19.core.Rules.*;
-import m19.core.Users.*;
+import m19.core.works.*;
+import m19.core.notifications.*;
+import m19.core.rules.*;
+import m19.core.users.*;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
