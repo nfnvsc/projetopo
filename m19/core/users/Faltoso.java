@@ -26,7 +26,6 @@ public class Faltoso implements Behavior {
     public void checkBehavior(UserBehavior currentBehavior, User user) {
         if (user.getLastReturns() == 3) {
             currentBehavior.setBehavior(new Normal());
-            user.resetLastReturns();
         }
     }    
 }
