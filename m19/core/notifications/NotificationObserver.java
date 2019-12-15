@@ -13,6 +13,10 @@ public class NotificationObserver implements Observer, Serializable{
     private Notification _notification;
     private static final long serialVersionUID = 201901101348L;
 
+    public boolean isEqual(int entityId, int workId){
+        return _entity.getId() == entityId && _notification.getWorkId() == workId;
+    }
+
     public NotificationObserver(Entity entity, Notification notification){
         _entity = entity;
         _notification = notification;
@@ -24,4 +28,5 @@ public class NotificationObserver implements Observer, Serializable{
             _entity.addToInbox(_notification.writeNotification());
         }
     }
+
 }
