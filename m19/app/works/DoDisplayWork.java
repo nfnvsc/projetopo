@@ -2,8 +2,6 @@ package m19.app.works;
 
 import m19.app.exception.NoSuchWorkException;
 import m19.core.LibraryManager;
-import m19.core.exception.BadEntrySpecificationException;
-
 import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.DialogException;
 import pt.tecnico.po.ui.Input;

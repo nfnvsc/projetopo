@@ -96,8 +96,10 @@ public class User extends Entity{
 
     public void updateReturns(int inTime) {
         if (inTime < 0) {
+            if (_returns < 0) resetLastReturns();
             _returns++;
         } else {
+            if (_returns > 0) resetLastReturns();
             _returns--;
         }
     }
