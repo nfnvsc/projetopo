@@ -10,7 +10,6 @@ public class User extends Entity{
 
     private int _returns;
     private int _fine;
-    private int _id;
     private boolean _isActive;
     private String _name;
     private String _email;
@@ -35,9 +34,7 @@ public class User extends Entity{
         _fine += fine;
         _isActive = false;
     }
-    public void setUserId(int id) {
-        _id = id;
-    }
+
     public boolean isActive() {
         return _isActive;
     }
@@ -48,9 +45,6 @@ public class User extends Entity{
         return _userBehavior.getCurrentBehavior();
     }
 
-    public int getId(){
-        return _id;
-    }
     public int getNumberRequests() {
         return _requests.size();
     }
@@ -59,9 +53,9 @@ public class User extends Entity{
     }
     public String toString() {
         if (_isActive) {
-            return String.valueOf(_id) + " - " + _name + " - " + _email +" - " + _userBehavior.getCurrentBehavior().toString() + " - " + "ACTIVO";
+            return String.valueOf(super.getId()) + " - " + _name + " - " + _email +" - " + _userBehavior.getCurrentBehavior().toString() + " - " + "ACTIVO";
         } else {
-            return String.valueOf(_id) + "  - " + _name + " - " + _email + " - " + _userBehavior.getCurrentBehavior().toString() + " - " + "SUSPENSO - EUR " + String.valueOf(_fine);
+            return String.valueOf(super.getId()) + "  - " + _name + " - " + _email + " - " + _userBehavior.getCurrentBehavior().toString() + " - " + "SUSPENSO - EUR " + String.valueOf(_fine);
         }
     }
     public void addUserRequest(Request request) {
@@ -85,7 +79,7 @@ public class User extends Entity{
 
     public int removeUserRequest(Request request, int date) throws WorkNotBorrowedByUserException {
         Request userRequest;
-        if ((userRequest = checkRequest(request.getWork().getId())) == null) throw new WorkNotBorrowedByUserException(request.getWork().getId(), _id);
+        if ((userRequest = checkRequest(request.getWork().getId())) == null) throw new WorkNotBorrowedByUserException(request.getWork().getId(), super.getId());
         _requests.remove(userRequest);
         int inTime = date - userRequest.getDeadline();
         updateReturns(inTime);

@@ -92,7 +92,7 @@ public class Library implements Serializable {
    * @see         User
    */ 
   public int addUser(User user) throws BadEntrySpecificationException {
-    user.setUserId(_nextUserId);
+    user.setId(_nextUserId);
     _users.put(user.getId(), user);
     _nextUserId++;
     return user.getId();
@@ -168,7 +168,7 @@ public class Library implements Serializable {
    * @return      the number of Works
    */
   public int getNumberWorks() {
-    return _nextWorkId - 1;
+    return _nextWorkId;
   }
 
   /**
@@ -217,7 +217,9 @@ public class Library implements Serializable {
     request.setDeadline(user.getUserBehavior().getDeadline(work.getNumberOfCopies()), getDate());
 
     _requests.add(request);
-    _notificationManager.notifyObservers(new Requisicao(request.getWork()));
+    
+    //_notificationManager.removeNotificationObserver(user.getId(), work.getId()); //remove all notficationsObservers from user relative to that work
+    _notificationManager.notifyObservers(new Requisicao(work));
 
     user.addUserRequest(request);
 

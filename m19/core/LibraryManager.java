@@ -191,7 +191,7 @@ public class LibraryManager {
 
   // Menu Gestao de Obras Metodos
   public String printWork(int id) throws NoSuchWorkException {
-    if (id > _library.getNumberWorks() || id < 0)
+    if (id > _library.getNumberWorks()-1 || id < 0)
       throw new NoSuchWorkException(id);
     return _library.getWork(id).toString();
   }
@@ -200,7 +200,7 @@ public class LibraryManager {
     int i;
     String output = "";
     int numberWorks = _library.getNumberWorks();
-    for (i = 0; i <= numberWorks; i++) {
+    for (i = 0; i < numberWorks; i++) {
       output += _library.getWork(i).toString() + "\n";
     }
     return output;
@@ -213,6 +213,7 @@ public class LibraryManager {
     int numberWorks = _library.getNumberWorks();
     for (i = 0; i < numberWorks; i++) {
       aux_work = _library.getWork(i);
+
       if (aux_work.searchTerm().toLowerCase().contains(searchTerm.toLowerCase())) {
         output += aux_work.toString() + "\n";
       }
