@@ -31,10 +31,8 @@ public class Normal implements Behavior {
     public void checkBehavior(UserBehavior currentBehavior, User user) {
         if (user.getLastReturns() == -3) {
             currentBehavior.setBehavior(new Faltoso());
-            user.resetLastReturns();
         } else if (user.getLastReturns() == 5) {
             currentBehavior.setBehavior(new Cumpridor());
-            user.resetLastReturns();
         }
     }
 }
